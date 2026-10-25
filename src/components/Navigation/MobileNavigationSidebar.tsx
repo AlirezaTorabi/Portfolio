@@ -56,7 +56,7 @@ export default function MobileNavigationSidebar({ items }: MobileNavigationSideb
 
       <div
         aria-hidden="true"
-        className={`fixed inset-0 z-[60] cursor-default bg-[#060607]/35 backdrop-blur-[2px] transition-opacity duration-400 ease-out md:hidden ${isOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}
+        className={`fixed inset-0 z-[60] cursor-default bg-[#060607]/35 backdrop-blur-[2px] transition-opacity duration-300 ease-out md:hidden ${isOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}
       />
 
       <aside
@@ -64,7 +64,7 @@ export default function MobileNavigationSidebar({ items }: MobileNavigationSideb
         aria-label="Mobile navigation"
         aria-hidden={!isOpen}
         inert={!isOpen}
-        className={`pointer-events-auto fixed left-[10px] right-[70px] top-[10px] z-[70] flex items-center rounded-full border border-white/10 bg-[#26232e]/95 px-2 py-1.5 shadow-xl backdrop-blur-xl transition-transform duration-500 ease-out motion-reduce:transition-none md:hidden ${isOpen ? "translate-y-0" : "-translate-y-[calc(100%+10px)]"}`}
+        className={`pointer-events-auto fixed left-1/2 top-[10px] z-[70] flex w-fit max-w-[calc(100%-70px)] -translate-x-1/2 items-center rounded-full border border-white/10 bg-[#26232e]/95 px-2 py-1 shadow-xl backdrop-blur-xl transition-transform duration-200 ease-out motion-reduce:transition-none md:hidden ${isOpen ? "translate-y-0" : "-translate-y-[calc(100%+10px)]"}`}
       >
         <GooeyNav
           items={iconOnlyItems}
