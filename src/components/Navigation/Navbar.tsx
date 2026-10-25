@@ -80,12 +80,12 @@ const items = [
 
 export default function Navbar() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 isolate">
-      <div className="relative mx-auto h-0 max-w-[1800px] md:flex md:h-[76px] md:items-center md:justify-between md:gap-4 md:px-5 lg:px-7">
+    <header className="fixed inset-x-0 top-0 z-50 isolate pointer-events-none">
+      <div className="relative mx-auto flex h-[76px] max-w-[1800px] items-center justify-between gap-4 pl-4 pr-[10px] md:px-5 lg:px-7">
         <a
           href="#top"
           aria-label="Home"
-          className="absolute left-4 top-[23px] flex shrink-0 items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5100] md:static"
+          className="pointer-events-auto flex shrink-0 items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5100]"
         >
           <Image
             src="/at-logo-light.png"
@@ -96,7 +96,7 @@ export default function Navbar() {
           />
         </a>
 
-        <div className="hidden md:absolute md:left-1/2 md:top-1/2 md:block md:-translate-x-1/2 md:-translate-y-1/2">
+        <div className="pointer-events-auto absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 md:block">
           <GooeyNav
             items={items}
             initialActiveIndex={0}
@@ -105,7 +105,7 @@ export default function Navbar() {
             frame
             particleCount={15}
             spread={56}
-            animationTime={600}
+            animationTime={200}
             timeVariance={300}
             gooeyness={0.5}
             wobble={0.5}

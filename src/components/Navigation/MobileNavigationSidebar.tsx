@@ -45,7 +45,7 @@ export default function MobileNavigationSidebar({ items }: MobileNavigationSideb
         aria-expanded={isOpen}
         aria-controls="mobile-navigation-sidebar"
         onClick={() => (isOpen ? closeMenu() : setIsOpen(true))}
-        className={`fixed right-[10px] top-[21px] z-[80] flex h-9 w-9 items-center justify-center bg-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5100] md:hidden ${isOpen ? "text-white" : "text-[#060607]"}`}
+        className={`pointer-events-auto z-[80] flex h-9 w-9 shrink-0 items-center justify-center bg-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5100] md:hidden ${isOpen ? "text-white" : "text-[#060607]"}`}
       >
         <span className="relative h-5 w-5" aria-hidden="true">
           <span className={`absolute left-0 top-1/2 h-px w-full bg-current transition-[rotate,translate] duration-200 ${isOpen ? "rotate-45" : "-translate-y-[6px]"}`} />
@@ -56,7 +56,7 @@ export default function MobileNavigationSidebar({ items }: MobileNavigationSideb
 
       <div
         aria-hidden="true"
-        className={`fixed inset-0 z-[60] cursor-default bg-[#060607]/35 backdrop-blur-[2px] transition-opacity duration-400 ease-out md:hidden ${isOpen ? "opacity-100" : "pointer-events-none opacity-0"}`}
+        className={`fixed inset-0 z-[60] cursor-default bg-[#060607]/35 backdrop-blur-[2px] transition-opacity duration-400 ease-out md:hidden ${isOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}
       />
 
       <aside
@@ -64,7 +64,7 @@ export default function MobileNavigationSidebar({ items }: MobileNavigationSideb
         aria-label="Mobile navigation"
         aria-hidden={!isOpen}
         inert={!isOpen}
-        className={`fixed left-[10px] right-[70px] top-[10px] z-[70] flex items-center rounded-full border border-white/10 bg-[#26232e]/95 px-2 py-1.5 shadow-xl backdrop-blur-xl transition-transform duration-500 ease-out motion-reduce:transition-none md:hidden ${isOpen ? "translate-y-0" : "-translate-y-[calc(100%+10px)]"}`}
+        className={`pointer-events-auto fixed left-[10px] right-[70px] top-[10px] z-[70] flex items-center rounded-full border border-white/10 bg-[#26232e]/95 px-2 py-1.5 shadow-xl backdrop-blur-xl transition-transform duration-500 ease-out motion-reduce:transition-none md:hidden ${isOpen ? "translate-y-0" : "-translate-y-[calc(100%+10px)]"}`}
       >
         <GooeyNav
           items={iconOnlyItems}
