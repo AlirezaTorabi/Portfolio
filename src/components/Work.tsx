@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { GlyphBackground } from "@/components/animate-ui/backgrounds/glyph";
 import { workProjects } from "@/data/workProjects";
 
 function getValidProjectUrl(value?: string): string | undefined {
@@ -93,9 +94,16 @@ export default function Work() {
     <section
       id="work"
       aria-labelledby="work-title"
-      className="scroll-mt-20 bg-[#111113] text-[#F8F9FA]"
+      className="relative isolate scroll-mt-20 overflow-hidden bg-[#111113] text-[#F8F9FA]"
     >
-      <div className="mx-auto max-w-6xl px-6 py-24 sm:px-8 sm:py-28 lg:px-10 lg:py-32">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0"
+      >
+        <GlyphBackground interactive={false} />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-6xl px-6 py-24 sm:px-8 sm:py-28 lg:px-10 lg:py-32">
         <div className="flex items-center justify-between gap-6 border-b border-white/15 pb-5">
           <p className="text-[0.65rem] font-medium uppercase text-white/60">
             Selected Work
