@@ -32,120 +32,14 @@ body {
   letter-spacing: -0.02em;
 }
 
-.nav-minimal-link {
-  position: relative;
-  display: inline-flex;
-  min-height: 2.75rem;
-  align-items: center;
-  padding-left: 0.85rem;
-  color: rgba(6, 6, 7, 0.7);
-  font-size: 0.58rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  transition: color 180ms ease;
-}
-
-.nav-minimal-link::before {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 0.48rem;
-  height: 2px;
-  background: var(--accent);
-  content: "";
-  transform: translateY(-50%) scaleX(0);
-  transform-origin: right;
-  transition: transform 220ms ease;
-}
-
-.nav-minimal-link:hover,
-.nav-minimal-link.is-active {
-  color: #060607;
-}
-
-.nav-minimal-link:hover::before,
-.nav-minimal-link.is-active::before {
-  transform: translateY(-50%) scaleX(1);
-}
-
-.nav-minimal-link:focus-visible {
-  outline: 2px solid rgba(255, 81, 0, 0.7);
-  outline-offset: 4px;
-}
-
-.hero-glass-content > *,
-.hero-topline,
-.hero-glass > div:last-child {
-  position: relative;
-  z-index: 10;
-}
-
-.hero-glass {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  min-height: min(740px, calc(100svh - 6rem));
-}
-
-.hero-glass-content {
-  position: relative;
-  z-index: 1;
-}
-
-.hero-copy,
-.hero-aside {
-  animation: hero-enter 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
-}
-
-.hero-aside {
-  animation-delay: 120ms;
-}
-
-.work-project-enter {
-  animation: hero-enter 650ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
-}
-
-@keyframes hero-enter {
-  from {
-    transform: translateY(12px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  .hero-copy,
-  .hero-aside,
-  .work-project-enter {
-    animation: none;
   }
 }
 
 * {
   box-sizing: border-box;
-}
-
-.aero-shard {
-  position: absolute;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  transform-origin: center;
-  animation: aeroDrift 12s ease-in-out infinite alternate;
-  will-change: transform, opacity;
-}
-
-.aero-beam {
-  position: absolute;
-  border-radius: 999px;
-  animation: beamPulse 12s ease-in-out infinite alternate;
-  will-change: transform, opacity;
 }
 
 .architecture-page {
@@ -318,36 +212,4 @@ body {
   .architecture-footer span:last-child {
     display: none;
   }
-}
-
-@keyframes aeroDrift {
-  0% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
-  }
-  50% {
-    transform: translate3d(18px, -12px, 0) rotate(12deg);
-  }
-  100% {
-    transform: translate3d(-12px, 16px, 0) rotate(-10deg);
-  }
-}
-
-@keyframes beamPulse {
-  0% {
-    transform: scale(0.96) translate3d(0, 0, 0);
-    opacity: 0.45;
-  }
-  50% {
-    transform: scale(1.08) translate3d(14px, -12px, 0);
-    opacity: 0.8;
-  }
-  100% {
-    transform: scale(0.98) translate3d(-10px, 10px, 0);
-    opacity: 0.6;
-  }
-}
-
-::selection {
-  background: rgba(201, 75, 75, 0.35);
-  color: #f5f5f2;
 }

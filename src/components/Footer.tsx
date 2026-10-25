@@ -100,12 +100,12 @@ export default function Footer() {
             <p className="text-[0.65rem] font-medium uppercase tracking-[0.12em] text-white/50">
               Navigation
             </p>
-            <ul className="mt-5 space-y-3">
+            <ul className="mt-4 space-y-1">
               {navigation.map((item) => (
                 <li key={item.label}>
                   <a
                     href={item.href}
-                    className={`group inline-flex items-center gap-3 text-sm text-white/65 transition-colors duration-200 hover:text-[#F8F9FA] ${focusRing}`}
+                    className={`group -mx-2 inline-flex min-h-11 items-center gap-3 px-2 text-sm text-white/65 transition-colors duration-200 hover:text-[#F8F9FA] ${focusRing}`}
                   >
                     <span
                       aria-hidden="true"
@@ -146,7 +146,7 @@ export default function Footer() {
           </p>
           <a
             href="#top"
-            className={`group inline-flex items-center gap-2 self-start border border-white/10 px-3.5 py-2 text-[0.65rem] font-medium uppercase tracking-[0.12em] text-white/60 transition-colors duration-200 hover:border-[#FF7133]/50 hover:text-[#F8F9FA] sm:self-auto ${focusRing}`}
+            className={`group inline-flex min-h-11 items-center gap-2 self-start border border-white/10 px-3.5 py-2 text-[0.65rem] font-medium uppercase tracking-[0.12em] text-white/60 transition-colors duration-200 hover:border-[#FF7133]/50 hover:text-[#F8F9FA] sm:self-auto ${focusRing}`}
           >
             Back to top
             <span

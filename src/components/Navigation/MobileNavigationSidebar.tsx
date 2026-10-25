@@ -1,20 +1,32 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import GooeyNav, { type GooeyNavItem } from "@/components/Navigation/GooeyNav";
 
 interface MobileNavigationSidebarProps {
   items: GooeyNavItem[];
+  activeIndex: number;
+  overDark: boolean;
+  onNavigate: (index: number) => void;
 }
 
-export default function MobileNavigationSidebar({ items }: MobileNavigationSidebarProps) {
+export default function MobileNavigationSidebar({
+  items,
+  activeIndex,
+  overDark,
+  onNavigate,
+}: MobileNavigationSidebarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
-  const iconOnlyItems = items.map((item) => ({
-    ...item,
-    ariaLabel: item.ariaLabel ?? item.label,
-    label: undefined,
-  }));
+  const iconOnlyItems = useMemo(
+    () =>
+      items.map((item) => ({
+        ...item,
+        ariaLabel: item.ariaLabel ?? item.label,
+        label: undefined,
+      })),
+    [items],
+  );
 
   function closeMenu() {
     setIsOpen(false);
@@ -36,6 +48,22 @@ export default function MobileNavigationSidebar({ items }: MobileNavigationSideb
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen]);
 
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const desktop = window.matchMedia("(min-width: 768px)");
+    const syncScrollLock = () => {
+      document.body.style.overflow = desktop.matches ? "" : "hidden";
+    };
+
+    syncScrollLock();
+    desktop.addEventListener("change", syncScrollLock);
+    return () => {
+      desktop.removeEventListener("change", syncScrollLock);
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   return (
     <>
       <button
@@ -45,7 +73,7 @@ export default function MobileNavigationSidebar({ items }: MobileNavigationSideb
         aria-expanded={isOpen}
         aria-controls="mobile-navigation-sidebar"
         onClick={() => (isOpen ? closeMenu() : setIsOpen(true))}
-        className={`pointer-events-auto z-[80] flex h-9 w-9 shrink-0 items-center justify-center bg-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5100] md:hidden ${isOpen ? "text-white" : "text-[#060607]"}`}
+        className={`pointer-events-auto z-[80] flex h-11 w-11 shrink-0 items-center justify-center bg-transparent transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5100] md:hidden ${isOpen || overDark ? "text-[#F8F9FA]" : "text-[#060607]"}`}
       >
         <span className="relative h-5 w-5" aria-hidden="true">
           <span className={`absolute left-0 top-1/2 h-px w-full bg-current transition-[rotate,translate] duration-200 ${isOpen ? "rotate-45" : "-translate-y-[6px]"}`} />
@@ -56,7 +84,8 @@ export default function MobileNavigationSidebar({ items }: MobileNavigationSideb
 
       <div
         aria-hidden="true"
-        className={`fixed inset-0 z-[60] cursor-default bg-[#060607]/35 backdrop-blur-[2px] transition-opacity duration-400 ease-out md:hidden ${isOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}
+        onClick={closeMenu}
+        className={`fixed inset-0 z-[60] cursor-default bg-[#060607]/35 backdrop-blur-[2px] transition-opacity duration-200 ease-out md:hidden ${isOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}
       />
 
       <aside
@@ -68,7 +97,7 @@ export default function MobileNavigationSidebar({ items }: MobileNavigationSideb
       >
         <GooeyNav
           items={iconOnlyItems}
-          initialActiveIndex={0}
+          activeIndex={activeIndex}
           theme="dark"
           size="sm"
           frame={false}
@@ -79,9 +108,12 @@ export default function MobileNavigationSidebar({ items }: MobileNavigationSideb
           gooeyness={0.5}
           wobble={0.5}
           hoverEffect={false}
-          onChange={(index, item) => console.log(index, item.ariaLabel)}
+          onChange={(index) => {
+            onNavigate(index);
+            closeMenu();
+          }}
           colors={["#ff5a1f", "#ff8a3a", "#ffb020"]}
-          className="w-full [&>div]:w-full [&_ul]:w-full [&_ul]:flex-row [&_ul]:flex-nowrap [&_ul]:items-center [&_ul]:justify-center [&_ul]:gap-3 max-[400px]:[&_ul]:gap-2 [&_li]:w-auto [&_a]:h-11 [&_a]:w-16 [&_a]:justify-center [&_a]:gap-0 [&_a]:px-0 [&_a]:py-0 [&_li>span]:h-11 [&_li>span]:w-16 [&_li>span]:justify-center [&_li>span]:px-0 [&_li>span]:py-0 max-[400px]:[&_a]:h-10 max-[400px]:[&_a]:w-11 max-[400px]:[&_li>span]:h-10 max-[400px]:[&_li>span]:w-11"
+          className="w-full [&>div]:w-full [&_ul]:w-full [&_ul]:flex-row [&_ul]:flex-nowrap [&_ul]:items-center [&_ul]:justify-center [&_ul]:gap-3 max-[400px]:[&_ul]:gap-1 [&_li]:w-auto [&_a]:h-11 [&_a]:w-16 [&_a]:justify-center [&_a]:gap-0 [&_a]:px-0 [&_a]:py-0 [&_li>span]:h-11 [&_li>span]:w-16 [&_li>span]:justify-center [&_li>span]:px-0 [&_li>span]:py-0 max-[400px]:[&_a]:h-11 max-[400px]:[&_a]:w-11 max-[400px]:[&_li>span]:h-11 max-[400px]:[&_li>span]:w-11"
         />
       </aside>
     </>

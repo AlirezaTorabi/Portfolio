@@ -7,11 +7,11 @@ export default function Hero() {
       aria-labelledby="hero-title"
       className="relative w-full overflow-hidden bg-[#F8F9FA]"
     >
-      <div className="relative mx-auto grid min-h-screen w-full max-w-6xl gap-10 px-6 py-24 text-left sm:px-8 lg:grid-cols-[minmax(0,1fr)_260px] lg:items-center lg:gap-20 lg:px-10 lg:py-16">
+      <div className="relative mx-auto grid min-h-svh w-full max-w-6xl gap-10 px-6 py-24 text-left sm:px-8 lg:grid-cols-[minmax(0,1fr)_260px] lg:items-center lg:gap-20 lg:px-10 lg:py-16">
         <div>
           <h1
             id="hero-title"
-            className="mt-6 max-w-[900px] font-sans text-[clamp(1.7rem,8.5vw,6rem)] font-medium leading-[1.02] text-[#060607] lg:text-[6rem]"
+            className="mt-6 max-w-[900px] font-sans text-[clamp(1.7rem,8.5vw,6rem)] font-medium leading-[1.02] text-[#060607] lg:text-[clamp(3.25rem,6.5vw,5.25rem)]"
           >
             <span className="italic">Better Design,</span>
             <br />

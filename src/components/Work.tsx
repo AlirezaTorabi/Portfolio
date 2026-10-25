@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { GlyphBackground } from "@/components/animate-ui/backgrounds/glyph";
+import Reveal from "@/components/ui/Reveal";
 import { workProjects } from "@/data/workProjects";
 
 function getValidProjectUrl(value?: string): string | undefined {
@@ -29,11 +30,16 @@ function ProjectEntry({
   const projectNumber = String(index + 1).padStart(2, "0");
 
   return (
-    <li
-      className="work-project-enter grid grid-cols-[2.5rem_minmax(0,1fr)] gap-x-4 gap-y-5 border-t border-white/15 px-1 py-8 transition-colors duration-300 hover:bg-white/[0.025] sm:grid-cols-[4rem_minmax(0,1fr)] sm:gap-x-7 sm:py-10 lg:grid-cols-[4rem_minmax(0,1fr)_minmax(13rem,0.65fr)] lg:gap-x-10"
-      style={{ animationDelay: `${index * 90}ms` }}
+    <Reveal
+      as="li"
+      delay={index * 0.08}
+      className={`grid grid-cols-[2.5rem_minmax(0,1fr)] gap-x-4 gap-y-5 border-t border-white/15 px-1 py-8 sm:grid-cols-[4rem_minmax(0,1fr)] sm:gap-x-7 sm:py-10 lg:grid-cols-[4rem_minmax(0,1fr)_minmax(13rem,0.65fr)] lg:gap-x-10 ${
+        projectUrl ? "transition-colors duration-300 hover:bg-white/[0.025]" : ""
+      }`}
     >
-      <span className="pt-1 font-mono text-xs text-[#FF7133]">{projectNumber}</span>
+      <span className="pt-1 font-mono text-xs text-[#FF7133]">
+        {projectNumber}
+      </span>
 
       <article className="min-w-0">
         <p className="text-[0.65rem] font-medium uppercase text-white/50">
@@ -44,7 +50,11 @@ function ProjectEntry({
             <a
               href={projectUrl}
               target={/^https?:\/\//i.test(projectUrl) ? "_blank" : undefined}
-              rel={/^https?:\/\//i.test(projectUrl) ? "noreferrer" : undefined}
+              rel={
+                /^https?:\/\//i.test(projectUrl)
+                  ? "noopener noreferrer"
+                  : undefined
+              }
               className="group inline-flex items-baseline gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133]"
             >
               {project.title}
@@ -59,7 +69,7 @@ function ProjectEntry({
             project.title
           )}
         </h3>
-        <p className="mt-3 max-w-2xl text-sm leading-6 text-white/65 sm:text-base sm:leading-7">
+        <p className="mt-3 max-w-2xl text-pretty text-sm leading-6 text-white/65 sm:text-base sm:leading-7">
           {project.description}
         </p>
         {project.previewImagePath && (
@@ -83,7 +93,7 @@ function ProjectEntry({
           <li key={technology}>{technology}</li>
         ))}
       </ul>
-    </li>
+    </Reveal>
   );
 }
 
@@ -108,25 +118,27 @@ export default function Work() {
           <p className="text-[0.65rem] font-medium uppercase text-white/60">
             Selected Work
           </p>
-          <p
-            aria-label={`${workProjects.length} projects`}
-            className="flex shrink-0 items-center gap-2 font-mono text-xs text-white/65"
-          >
-            <span>01</span>
-            <span aria-hidden="true">—</span>
-            <span>{projectCount}</span>
+          <p className="flex shrink-0 items-center gap-2 font-mono text-xs text-white/65">
+            <span aria-hidden="true" className="flex items-center gap-2">
+              <span>01</span>
+              <span>—</span>
+              <span>{projectCount}</span>
+            </span>
+            <span className="sr-only">
+              {workProjects.length} selected projects
+            </span>
           </p>
         </div>
 
         <div className="grid gap-6 py-12 sm:py-16 md:grid-cols-[minmax(0,1fr)_minmax(16rem,0.55fr)] md:items-end md:gap-12 md:py-20">
           <h2
             id="work-title"
-            className="max-w-4xl text-4xl font-medium leading-[1.04] sm:text-5xl lg:text-7xl"
+            className="max-w-4xl text-balance text-4xl font-medium leading-[1.04] sm:text-5xl lg:text-6xl xl:text-7xl"
           >
             Ideas turned into{" "}
             <span className="text-[#FF7133]">digital experiences.</span>
           </h2>
-          <p className="max-w-md text-sm leading-7 text-white/65 sm:text-base sm:leading-8">
+          <p className="max-w-md text-pretty text-sm leading-7 text-white/65 sm:text-base sm:leading-8">
             A selection of projects focused on frontend development, web
             applications, and digital experiences.
           </p>

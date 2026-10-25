@@ -11,7 +11,7 @@ export default function Home() {
       <div className="relative z-10">
         <Navbar />
 
-        <main className="mx-auto min-h-screen w-full max-w-[1800px] pt-5 sm:pt-8">
+        <main className="mx-auto min-h-screen w-full pt-5 sm:pt-8">
           <Hero />
           <Work />
           <About />

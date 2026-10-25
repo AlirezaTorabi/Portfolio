@@ -1,9 +1,5 @@
-"use client";
-
 import type { ReactNode } from "react";
-import { MotionConfig, motion } from "motion/react";
-
-const EASE: [number, number, number, number] = [0.2, 0.7, 0.2, 1];
+import Reveal from "@/components/ui/Reveal";
 
 function PhoneIcon() {
   return (
@@ -115,135 +111,111 @@ const channels: ContactChannel[] = [
   },
 ];
 
-function Reveal({
-  children,
-  className,
-  delay = 0,
-}: {
-  children: ReactNode;
-  className?: string;
-  delay?: number;
-}) {
-  return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.6, ease: EASE, delay }}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
 export default function Contact() {
   return (
-    <MotionConfig reducedMotion="user">
-      <section
-        id="contact"
-        aria-labelledby="contact-title"
-        className="relative scroll-mt-20 overflow-hidden border-t border-white/10 bg-[#111113] text-[#F8F9FA]"
+    <section
+      id="contact"
+      aria-labelledby="contact-title"
+      className="relative scroll-mt-20 overflow-hidden border-t border-white/10 bg-[#111113] text-[#F8F9FA]"
+    >
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 overflow-hidden"
       >
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 overflow-hidden"
-        >
-          <div className="absolute -bottom-32 -left-24 size-[24rem] rounded-full bg-[#FF7133]/[0.045] blur-3xl" />
-        </div>
+        <div className="absolute -bottom-32 -left-24 size-[24rem] rounded-full bg-[#FF7133]/[0.045] blur-3xl" />
+      </div>
 
-        <div className="relative mx-auto max-w-6xl px-6 py-24 sm:px-8 sm:py-28 lg:px-10 lg:py-32">
+      <div className="relative mx-auto max-w-6xl px-6 py-24 sm:px-8 sm:py-28 lg:px-10 lg:py-32">
+        <Reveal>
+          <div className="flex items-center justify-between gap-6 border-b border-white/15 pb-5">
+            <p className="text-[0.65rem] font-medium uppercase text-white/60">
+              Get in Touch
+            </p>
+            <p className="hidden font-mono text-xs text-white/55 sm:block">
+              Front-End Developer / UI Designer
+            </p>
+          </div>
+        </Reveal>
+
+        <div className="grid gap-12 py-12 sm:py-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-start lg:gap-20 lg:py-20">
           <Reveal>
-            <div className="flex items-center justify-between gap-6 border-b border-white/15 pb-5">
-              <p className="text-[0.65rem] font-medium uppercase text-white/60">
-                Get in Touch
-              </p>
-              <p className="hidden font-mono text-xs text-white/55 sm:block">
-                Front-End Developer / UI Designer
-              </p>
+            <h2
+              id="contact-title"
+              className="max-w-2xl text-balance text-4xl font-medium leading-[1.04] sm:text-5xl lg:text-6xl"
+            >
+              Let&apos;s build something{" "}
+              <span className="text-[#FF7133]">great together.</span>
+            </h2>
+            <p className="mt-8 max-w-xl text-pretty text-sm leading-7 text-white/65 sm:text-base sm:leading-8">
+              Have a project in mind or an opportunity to discuss? I&apos;d love
+              to hear from you. Feel free to reach out through any of the
+              channels below.
+            </p>
+            <div className="mt-10">
+              <a
+                href="https://t.me/AlirezaToorabi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex min-h-12 items-center gap-4 border border-[#FF7133] bg-[#FF7133] px-6 text-xs font-medium text-[#111113] transition-colors duration-200 hover:border-[#FF5A1F] hover:bg-[#FF5A1F] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133] focus-visible:ring-offset-2 focus-visible:ring-offset-[#111113]"
+              >
+                <span>Start a Conversation</span>
+                <span
+                  aria-hidden="true"
+                  className="text-base transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                >
+                  ↗
+                </span>
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
             </div>
           </Reveal>
 
-          <div className="grid gap-12 py-12 sm:py-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-start lg:gap-20 lg:py-20">
-            <Reveal>
-              <h2
-                id="contact-title"
-                className="max-w-2xl text-4xl font-medium leading-[1.04] sm:text-5xl lg:text-6xl"
-              >
-                Let&apos;s build something{" "}
-                <span className="text-[#FF7133]">great together.</span>
-              </h2>
-              <p className="mt-8 max-w-xl text-sm leading-7 text-white/65 sm:text-base sm:leading-8">
-                Have a project in mind or an opportunity to discuss? I&apos;d
-                love to hear from you. Feel free to reach out through any of the
-                channels below.
-              </p>
-              <div className="mt-10">
-                <a
-                  href="https://t.me/AlirezaToorabi"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group inline-flex min-h-12 items-center gap-4 border border-[#FF7133] bg-[#FF7133] px-6 text-xs font-medium text-[#111113] transition-colors duration-200 hover:border-[#FF5A1F] hover:bg-[#FF5A1F] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133] focus-visible:ring-offset-2 focus-visible:ring-offset-[#111113]"
-                >
-                  <span>Start a Conversation</span>
-                  <span
-                    aria-hidden="true"
-                    className="text-base transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          <Reveal delay={0.12}>
+            <p className="mb-3 text-[0.65rem] font-medium uppercase text-white/50">
+              Direct channels
+            </p>
+            <ul
+              aria-label="Contact methods"
+              className="m-0 list-none border-t border-white/10 p-0"
+            >
+              {channels.map((channel) => (
+                <li key={channel.label}>
+                  <a
+                    href={channel.href}
+                    {...(channel.external
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
+                    className="group flex items-center justify-between gap-4 border-b border-white/10 px-1 py-4 transition-colors duration-200 hover:border-[#FF7133]/40 hover:bg-white/[0.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133] focus-visible:ring-offset-2 focus-visible:ring-offset-[#111113] sm:py-5"
                   >
-                    ↗
-                  </span>
-                  <span className="sr-only"> (opens in a new tab)</span>
-                </a>
-              </div>
-            </Reveal>
-
-            <Reveal delay={0.12}>
-              <p className="mb-3 text-[0.65rem] font-medium uppercase text-white/50">
-                Direct channels
-              </p>
-              <ul
-                aria-label="Contact methods"
-                className="m-0 list-none border-t border-white/10 p-0"
-              >
-                {channels.map((channel) => (
-                  <li key={channel.label}>
-                    <a
-                      href={channel.href}
-                      {...(channel.external
-                        ? { target: "_blank", rel: "noopener noreferrer" }
-                        : {})}
-                      className="group flex items-center justify-between gap-4 border-b border-white/10 px-1 py-4 transition-colors duration-200 hover:border-[#FF7133]/40 hover:bg-white/[0.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133] focus-visible:ring-offset-2 focus-visible:ring-offset-[#111113] sm:py-5"
+                    <span className="flex min-w-0 items-center gap-4">
+                      <span className="grid size-10 shrink-0 place-items-center border border-white/10 text-white/60 transition-colors duration-200 group-hover:border-[#FF7133]/50 group-hover:text-[#FF7133]">
+                        {channel.icon}
+                      </span>
+                      <span className="flex min-w-0 flex-col">
+                        <span className="text-[0.6rem] font-medium uppercase tracking-[0.12em] text-white/50">
+                          {channel.label}
+                        </span>
+                        <span className="mt-1 truncate text-sm text-[#F8F9FA] sm:text-base">
+                          {channel.value}
+                        </span>
+                      </span>
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="text-base text-white/25 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#FF7133]"
                     >
-                      <span className="flex min-w-0 items-center gap-4">
-                        <span className="grid size-10 shrink-0 place-items-center border border-white/10 text-white/60 transition-colors duration-200 group-hover:border-[#FF7133]/50 group-hover:text-[#FF7133]">
-                          {channel.icon}
-                        </span>
-                        <span className="flex min-w-0 flex-col">
-                          <span className="text-[0.6rem] font-medium uppercase tracking-[0.12em] text-white/50">
-                            {channel.label}
-                          </span>
-                          <span className="mt-1 truncate text-sm text-[#F8F9FA] sm:text-base">
-                            {channel.value}
-                          </span>
-                        </span>
-                      </span>
-                      <span
-                        aria-hidden="true"
-                        className="text-base text-white/25 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#FF7133]"
-                      >
-                        {channel.external ? "↗" : "→"}
-                      </span>
-                      {channel.external && (
-                        <span className="sr-only"> (opens in a new tab)</span>
-                      )}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          </div>
+                      {channel.external ? "↗" : "→"}
+                    </span>
+                    {channel.external && (
+                      <span className="sr-only"> (opens in a new tab)</span>
+                    )}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         </div>
-      </section>
-    </MotionConfig>
+      </div>
+    </section>
   );
 }
