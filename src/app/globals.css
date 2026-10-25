@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #111111;
-  --foreground: #f5f5f2;
-  --muted: #9a9a96;
-  --border: rgba(255, 255, 255, 0.1);
-  --grid: rgba(255, 255, 255, 0.045);
+  --background: #F8F9FA;
+  --foreground: #060607;
+  --muted: #5c5c5a;
+  --accent: #FF5100;
+  --border: rgba(6, 6, 7, 0.08);
+  --grid: rgba(6, 6, 7, 0.04);
 }
 
 @theme inline {
@@ -27,7 +28,8 @@ body {
     var(--background);
   background-size: 120px 120px, 120px 120px, auto;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  letter-spacing: -0.02em;
 }
 
 .nav-minimal-link {
@@ -36,7 +38,7 @@ body {
   min-height: 2.75rem;
   align-items: center;
   padding-left: 0.85rem;
-  color: rgba(245, 245, 242, 0.64);
+  color: rgba(6, 6, 7, 0.7);
   font-size: 0.58rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -49,7 +51,7 @@ body {
   top: 50%;
   width: 0.48rem;
   height: 2px;
-  background: #f28b2c;
+  background: var(--accent);
   content: "";
   transform: translateY(-50%) scaleX(0);
   transform-origin: right;
@@ -58,7 +60,7 @@ body {
 
 .nav-minimal-link:hover,
 .nav-minimal-link.is-active {
-  color: #f5f5f2;
+  color: #060607;
 }
 
 .nav-minimal-link:hover::before,
@@ -67,7 +69,7 @@ body {
 }
 
 .nav-minimal-link:focus-visible {
-  outline: 2px solid rgba(242, 139, 44, 0.7);
+  outline: 2px solid rgba(255, 81, 0, 0.7);
   outline-offset: 4px;
 }
 
@@ -99,6 +101,10 @@ body {
   animation-delay: 120ms;
 }
 
+.work-project-enter {
+  animation: hero-enter 650ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
 @keyframes hero-enter {
   from {
     transform: translateY(12px);
@@ -112,7 +118,8 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .hero-copy,
-  .hero-aside {
+  .hero-aside,
+  .work-project-enter {
     animation: none;
   }
 }
@@ -140,7 +147,7 @@ body {
 .architecture-page {
   min-height: 100svh;
   padding: 30px clamp(16px, 3vw, 48px) 18px;
-  background: #111210;
+  background: #060607;
   color: #f5f5f2;
 }
 
@@ -164,7 +171,7 @@ body {
 
 .architecture-kicker span {
   padding: 0 8px;
-  color: #f28b2c;
+  color: var(--accent);
 }
 
 .architecture-header h1 {
@@ -202,14 +209,14 @@ body {
   margin-top: 18px;
   overflow: hidden;
   border: 1px solid rgba(245, 245, 242, 0.11);
-  background: #141512;
+  background: #060607;
 }
 
 .architecture-node {
   width: 238px;
   padding: 16px 18px 18px;
   border: 1px solid;
-  background: #1b1c19;
+  background: #060607;
   color: #f5f5f2;
 }
 
@@ -248,7 +255,7 @@ body {
 .architecture-handle {
   width: 7px;
   height: 7px;
-  border: 1px solid #141512;
+  border: 1px solid #060607;
 }
 
 .architecture-canvas .react-flow__controls {
@@ -260,7 +267,7 @@ body {
 
 .architecture-canvas .react-flow__controls-button {
   border-bottom-color: rgba(245, 245, 242, 0.12);
-  background: #1b1c19;
+  background: #060607;
   fill: #f5f5f2;
 }
 
@@ -271,7 +278,7 @@ body {
 .architecture-canvas .react-flow__minimap {
   border: 1px solid rgba(245, 245, 242, 0.16);
   border-radius: 0;
-  background: #1b1c19;
+  background: #060607;
 }
 
 .architecture-footer {

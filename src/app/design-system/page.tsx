@@ -44,7 +44,7 @@ const nodes: ArchitectureNode[] = [
     id: "workspace",
     type: "architecture",
     position: { x: 500, y: 0 },
-    data: { category: "WORKSPACE", title: "Alireza Toorabi", detail: "Portfolio · Next.js 16", accent: "#F28B2C" },
+    data: { category: "WORKSPACE", title: "Alireza Toorabi", detail: "Portfolio · Next.js 16", accent: "#FF5100" },
   },
   {
     id: "app-router",
@@ -68,7 +68,7 @@ const nodes: ArchitectureNode[] = [
     id: "design-route",
     type: "architecture",
     position: { x: 820, y: 520 },
-    data: { category: "ROUTE /DESIGN-SYSTEM", title: "Project map", detail: "Interactive architecture view", accent: "#F28B2C" },
+    data: { category: "ROUTE /DESIGN-SYSTEM", title: "Project map", detail: "Interactive architecture view", accent: "#FF5100" },
   },
   {
     id: "global-styles",
@@ -80,7 +80,7 @@ const nodes: ArchitectureNode[] = [
     id: "navbar",
     type: "architecture",
     position: { x: 30, y: 740 },
-    data: { category: "SHARED UI", title: "Navbar", detail: "Minimal navigation · active marker", accent: "#F28B2C" },
+    data: { category: "SHARED UI", title: "Navbar", detail: "Minimal navigation · active marker", accent: "#FF5100" },
   },
   {
     id: "hero",
@@ -98,7 +98,7 @@ const nodes: ArchitectureNode[] = [
     id: "hero-button",
     type: "architecture",
     position: { x: 300, y: 950 },
-    data: { category: "UI COMPONENT", title: "HeroButton", detail: "Dither-backed primary action", accent: "#F28B2C" },
+    data: { category: "UI COMPONENT", title: "HeroButton", detail: "Dither-backed primary action", accent: "#FF5100" },
   },
   {
     id: "dither",
@@ -116,7 +116,7 @@ const nodes: ArchitectureNode[] = [
     id: "favicon",
     type: "architecture",
     position: { x: 1150, y: 520 },
-    data: { category: "APP ASSET", title: "AT favicon", detail: "src/app/favicon.ico", accent: "#F28B2C" },
+    data: { category: "APP ASSET", title: "AT favicon", detail: "src/app/favicon.ico", accent: "#FF5100" },
   },
 ];
 
