@@ -1,3 +1,4 @@
+import About from "@/components/About";
 import Hero from "@/components/hero/hero";
 import Navbar from "@/components/Navigation/Navbar";
 import Work from "@/components/Work";
@@ -11,6 +12,7 @@ export default function Home() {
         <main className="mx-auto min-h-screen w-full max-w-[1800px] pb-8 pt-5 sm:pt-8">
           <Hero />
           <Work />
+          <About />
         </main>
       </div>
     </div>

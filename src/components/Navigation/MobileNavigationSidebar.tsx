@@ -56,7 +56,7 @@ export default function MobileNavigationSidebar({ items }: MobileNavigationSideb
 
       <div
         aria-hidden="true"
-        className={`fixed inset-0 z-[60] cursor-default bg-[#060607]/35 backdrop-blur-[2px] transition-opacity duration-300 ease-out md:hidden ${isOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}
+        className={`fixed inset-0 z-[60] cursor-default bg-[#060607]/35 backdrop-blur-[2px] transition-opacity duration-400 ease-out md:hidden ${isOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}
       />
 
       <aside
