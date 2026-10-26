@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import GooeyNav from "@/components/Navigation/GooeyNav";
@@ -101,6 +102,7 @@ export default function Navbar() {
   const [activeIndex, setActiveIndex] = useState(0);
   const { resolvedTheme } = useTheme();
   const navTheme = resolvedTheme === "light" ? "light" : "dark";
+  const router = useRouter();
   const intentRef = useRef<NavigationIntent | null>(null);
   const intentTimeoutRef = useRef<number | null>(null);
   const scheduleRef = useRef<() => void>(() => {});
@@ -199,8 +201,20 @@ export default function Navbar() {
           href="/"
           aria-label="Home"
           onClick={(event) => {
-            if (window.location.pathname === "/") {
+            if (window.location.pathname !== "/") {
+              // Navigate to the homepage without a hash; Next.js scrolls to top.
               event.preventDefault();
+              router.push("/");
+              return;
+            }
+
+            // Already on the homepage: clear any lingering hash (e.g. #top) and
+            // scroll to the top without adding a hash to the URL.
+            event.preventDefault();
+            if (window.location.hash) {
+              window.history.replaceState(null, "", "/");
+            }
+            if (window.scrollY > 0) {
               window.scrollTo({ top: 0, behavior: "smooth" });
             }
           }}
