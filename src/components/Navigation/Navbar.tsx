@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import GooeyNav from "@/components/Navigation/GooeyNav";
@@ -81,16 +81,59 @@ const items = [
 ];
 
 const SECTION_IDS = ["top", "work", "about", "contact"];
-const NAV_OFFSET = 80;
+// Every section uses `scroll-mt-20` (80px). The activation line sits just
+// below that so a section still counts as active after an anchor scroll
+// settles, even if the browser rounds the final position by a fraction.
+const NAV_OFFSET = 84;
+
+// How long the clicked item is protected from the scroll spy while the
+// browser smooth-scrolls to its section. `scrollend` clears it sooner.
+const NAV_INTENT_TIMEOUT = 2000;
+
+interface NavigationIntent {
+  index: number;
+  expiresAt: number;
+}
 
 export default function Navbar() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const intentRef = useRef<NavigationIntent | null>(null);
+  const intentTimeoutRef = useRef<number | null>(null);
+  const scheduleRef = useRef<() => void>(() => {});
+
+  const handleNavigate = useCallback((index: number) => {
+    // Highlight the clicked link immediately. The intent below keeps the
+    // scroll spy from pulling the indicator back to the previous section
+    // while the browser is still animating towards the new one.
+    intentRef.current = {
+      index,
+      expiresAt: performance.now() + NAV_INTENT_TIMEOUT,
+    };
+    setActiveIndex(index);
+
+    if (intentTimeoutRef.current !== null) {
+      window.clearTimeout(intentTimeoutRef.current);
+    }
+    intentTimeoutRef.current = window.setTimeout(() => {
+      intentTimeoutRef.current = null;
+      if (!intentRef.current) return;
+      intentRef.current = null;
+      scheduleRef.current();
+    }, NAV_INTENT_TIMEOUT);
+  }, []);
 
   useEffect(() => {
     let frame = 0;
 
     const update = () => {
       frame = 0;
+
+      const intent = intentRef.current;
+      if (intent) {
+        if (performance.now() < intent.expiresAt) return;
+        intentRef.current = null;
+      }
+
       let next = 0;
 
       SECTION_IDS.forEach((id, index) => {
@@ -107,14 +150,39 @@ export default function Navbar() {
       if (!frame) frame = window.requestAnimationFrame(update);
     };
 
+    scheduleRef.current = schedule;
+
+    // Manual scrolling or the end of the smooth scroll releases the intent so
+    // the scroll spy becomes the authority on the active item again.
+    const releaseIntent = () => {
+      if (!intentRef.current) return;
+      intentRef.current = null;
+      if (intentTimeoutRef.current !== null) {
+        window.clearTimeout(intentTimeoutRef.current);
+        intentTimeoutRef.current = null;
+      }
+      schedule();
+    };
+
     update();
     window.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("resize", schedule);
+    window.addEventListener("scrollend", releaseIntent);
+    window.addEventListener("wheel", releaseIntent, { passive: true });
+    window.addEventListener("touchmove", releaseIntent, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);
+      window.removeEventListener("scrollend", releaseIntent);
+      window.removeEventListener("wheel", releaseIntent);
+      window.removeEventListener("touchmove", releaseIntent);
       if (frame) window.cancelAnimationFrame(frame);
+      if (intentTimeoutRef.current !== null) {
+        window.clearTimeout(intentTimeoutRef.current);
+        intentTimeoutRef.current = null;
+      }
+      scheduleRef.current = () => {};
     };
   }, []);
 
@@ -150,7 +218,7 @@ export default function Navbar() {
           <GooeyNav
             items={items}
             activeIndex={activeIndex}
-            onChange={(index) => setActiveIndex(index)}
+            onChange={handleNavigate}
             label="Primary navigation"
             theme="dark"
             size="sm"
@@ -169,7 +237,7 @@ export default function Navbar() {
         <MobileNavigationSidebar
           items={items}
           activeIndex={activeIndex}
-          onNavigate={setActiveIndex}
+          onNavigate={handleNavigate}
         />
       </div>
     </header>
