@@ -23,16 +23,46 @@ const principles = [
   },
 ] as const;
 
-const technologies = [
-  "HTML",
-  "CSS",
-  "JavaScript",
-  "TypeScript",
-  "React",
-  "Next.js",
-  "Tailwind CSS",
-  "Git",
-] as const;
+interface Technology {
+  name: string;
+  /** Devicon class names verified against devicon@2.18.0. */
+  icon: string;
+  /** The Next.js mark is black by default; the dark theme uses its white variant. */
+  iconColor?: string;
+}
+
+const technologies: Technology[] = [
+  { name: "HTML", icon: "devicon-html5-plain colored" },
+  { name: "CSS", icon: "devicon-css3-plain colored" },
+  { name: "JavaScript", icon: "devicon-javascript-plain colored" },
+  { name: "TypeScript", icon: "devicon-typescript-original colored" },
+  { name: "React", icon: "devicon-react-original colored" },
+  {
+    name: "Next.js",
+    icon: "devicon-nextjs-plain",
+    iconColor: "text-[#F8F9FA]",
+  },
+  { name: "Tailwind CSS", icon: "devicon-tailwindcss-original colored" },
+  { name: "Git", icon: "devicon-git-plain colored" },
+];
+
+function TechnologyBadge({ technology }: { technology: Technology }) {
+  const iconClassName = [technology.icon, technology.iconColor]
+    .filter(Boolean)
+    .join(" ");
+
+  return (
+    <span className="group inline-flex items-center gap-2 border border-white/10 px-3 py-1.5 transition-colors duration-200 hover:border-[#FF7133]/50 hover:bg-white/[0.03]">
+      <i
+        aria-hidden="true"
+        className={`${iconClassName} inline-flex items-center justify-center text-base leading-none transition-transform duration-200 group-hover:scale-110 motion-reduce:transition-none motion-reduce:group-hover:scale-100`}
+      />
+      <span className="font-mono text-[0.65rem] uppercase tracking-[0.08em] text-white/55 transition-colors duration-200 group-hover:text-[#F8F9FA]">
+        {technology.name}
+      </span>
+    </span>
+  );
+}
 
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -150,10 +180,8 @@ export default function About() {
               className="flex min-w-0 flex-wrap gap-2.5"
             >
               {technologies.map((technology) => (
-                <li key={technology}>
-                  <span className="inline-flex border border-white/10 px-3 py-1.5 font-mono text-[0.65rem] uppercase tracking-[0.08em] text-white/55 transition-colors duration-200 hover:border-[#FF7133]/50 hover:bg-white/[0.03] hover:text-[#F8F9FA]">
-                    {technology}
-                  </span>
+                <li key={technology.name}>
+                  <TechnologyBadge technology={technology} />
                 </li>
               ))}
             </ul>
