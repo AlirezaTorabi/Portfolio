@@ -7,7 +7,6 @@
   --muted: rgba(248, 249, 250, 0.6);
   --accent: #ff7133;
   --border: rgba(248, 249, 250, 0.1);
-  --grid: rgba(248, 249, 250, 0.035);
 }
 
 @theme inline {
@@ -26,11 +25,7 @@ html {
 
 body {
   min-height: 100dvh;
-  background:
-    linear-gradient(to right, var(--grid) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--grid) 1px, transparent 1px),
-    var(--background);
-  background-size: 120px 120px, 120px 120px, auto;
+  background: transparent;
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   letter-spacing: -0.02em;

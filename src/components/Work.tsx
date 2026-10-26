@@ -1,4 +1,3 @@
-import { GlyphBackground } from "@/components/animate-ui/backgrounds/glyph";
 import Reveal from "@/components/ui/Reveal";
 import AnimatedHeading from "@/components/ui/AnimatedHeading";
 import ProjectGallery from "@/components/work/ProjectGallery";
@@ -13,13 +12,6 @@ export default function Work() {
       aria-labelledby="work-title"
       className="relative isolate scroll-mt-20 border-t border-white/10 pb-16 sm:pb-20"
     >
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 h-[min(86svh,48rem)] overflow-hidden [mask-image:linear-gradient(to_bottom,black_45%,transparent)]"
-      >
-        <GlyphBackground interactive={false} />
-      </div>
-
       <div className="relative mx-auto max-w-6xl px-6 pt-24 sm:px-8 sm:pt-28 lg:px-10 lg:pt-32">
         <Reveal>
           <div className="flex items-center justify-between gap-6 border-b border-white/15 pb-5">
