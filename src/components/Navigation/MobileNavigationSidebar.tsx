@@ -6,14 +6,12 @@ import GooeyNav, { type GooeyNavItem } from "@/components/Navigation/GooeyNav";
 interface MobileNavigationSidebarProps {
   items: GooeyNavItem[];
   activeIndex: number;
-  overDark: boolean;
   onNavigate: (index: number) => void;
 }
 
 export default function MobileNavigationSidebar({
   items,
   activeIndex,
-  overDark,
   onNavigate,
 }: MobileNavigationSidebarProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -73,7 +71,7 @@ export default function MobileNavigationSidebar({
         aria-expanded={isOpen}
         aria-controls="mobile-navigation-sidebar"
         onClick={() => (isOpen ? closeMenu() : setIsOpen(true))}
-        className={`pointer-events-auto z-[80] flex h-11 w-11 shrink-0 items-center justify-center bg-transparent transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5100] md:hidden ${isOpen || overDark ? "text-[#F8F9FA]" : "text-[#060607]"}`}
+        className="pointer-events-auto z-[80] flex h-11 w-11 shrink-0 items-center justify-center bg-transparent text-[#F8F9FA] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133] md:hidden"
       >
         <span className="relative h-5 w-5" aria-hidden="true">
           <span className={`absolute left-0 top-1/2 h-px w-full bg-current transition-[rotate,translate] duration-200 ${isOpen ? "rotate-45" : "-translate-y-[6px]"}`} />

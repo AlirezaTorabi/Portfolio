@@ -117,31 +117,22 @@ export default function Navbar() {
     };
   }, []);
 
-  const overDark = activeIndex > 0;
-
   return (
     <header className="fixed inset-x-0 top-0 z-50 isolate pointer-events-none">
       <div className="relative mx-auto flex h-[76px] max-w-[1800px] items-center justify-between gap-4 pl-4 pr-[10px] md:px-5 lg:px-7">
         <a
           href="#top"
           aria-label="Home"
-          className="pointer-events-auto -m-1.5 flex shrink-0 items-center p-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5100]"
+          className="pointer-events-auto -m-1.5 flex shrink-0 items-center p-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133]"
         >
           <span className="relative block h-8 w-8 shrink-0 md:h-9 md:w-9">
             <Image
-              src="/at-logo-light.png"
-              alt=""
-              fill
-              sizes="36px"
-              className={`object-contain transition-opacity duration-200 motion-reduce:transition-none ${overDark ? "opacity-0" : "opacity-100"}`}
-            />
-            <Image
               src="/at-logo-dark.png"
               alt=""
-              aria-hidden="true"
               fill
               sizes="36px"
-              className={`object-contain transition-opacity duration-200 motion-reduce:transition-none ${overDark ? "opacity-100" : "opacity-0"}`}
+              loading="eager"
+              className="object-contain"
             />
           </span>
         </a>
@@ -169,7 +160,6 @@ export default function Navbar() {
           items={items}
           activeIndex={activeIndex}
           onNavigate={setActiveIndex}
-          overDark={overDark}
         />
       </div>
     </header>

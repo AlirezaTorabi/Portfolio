@@ -1,3 +1,5 @@
+import Reveal from "@/components/ui/Reveal";
+
 function GitHubIcon() {
   return (
     <svg
@@ -83,64 +85,79 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative border-t border-white/10 bg-[#111113] text-[#F8F9FA]">
-      <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8 sm:py-20 lg:px-10">
-        <div className="grid gap-12 md:grid-cols-[minmax(0,1.5fr)_minmax(0,0.9fr)_auto] md:gap-14 lg:gap-20">
-          <div>
-            <p className="text-lg font-medium">Alireza Toorabi</p>
-            <p className="mt-2 text-[0.65rem] font-medium uppercase tracking-[0.12em] text-white/50">
-              Front-End Developer &amp; UI Designer
-            </p>
-            <p className="mt-6 max-w-xs text-sm leading-6 text-white/60">
-              Designing and building thoughtful digital experiences.
-            </p>
+    <footer className="relative overflow-hidden border-t border-white/10">
+      <div className="mx-auto max-w-6xl px-6 pt-16 sm:px-8 sm:pt-20 lg:px-10">
+        <Reveal>
+          <div className="grid gap-12 md:grid-cols-[minmax(0,1.5fr)_minmax(0,0.9fr)_auto] md:gap-14 lg:gap-20">
+            <div>
+              <p className="flex items-center gap-2.5 text-lg font-medium">
+                Alireza Toorabi
+                <span
+                  aria-hidden="true"
+                  className="mt-0.5 block size-1.5 shrink-0 bg-[#FF7133]"
+                />
+              </p>
+              <p className="mt-2 text-[0.65rem] font-medium uppercase tracking-[0.12em] text-white/50">
+                Front-End Developer &amp; UI Designer
+              </p>
+              <p className="mt-6 max-w-xs text-sm leading-6 text-white/60">
+                Designing and building thoughtful digital experiences.
+              </p>
+            </div>
+
+            <nav aria-label="Footer navigation">
+              <p className="text-[0.65rem] font-medium uppercase tracking-[0.12em] text-white/50">
+                Navigation
+              </p>
+              <ul className="mt-4 space-y-1">
+                {navigation.map((item) => (
+                  <li key={item.label}>
+                    <a
+                      href={item.href}
+                      className={`group -mx-2 inline-flex min-h-11 items-center gap-3 px-2 text-sm text-white/65 transition-colors duration-200 hover:text-[#F8F9FA] ${focusRing}`}
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="h-px w-4 bg-white/20 transition-all duration-200 group-hover:w-6 group-hover:bg-[#FF7133]"
+                      />
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <div>
+              <p className="text-[0.65rem] font-medium uppercase tracking-[0.12em] text-white/50">
+                Socials
+              </p>
+              <ul className="mt-5 flex gap-2.5">
+                {socials.map((social) => (
+                  <li key={social.label}>
+                    <a
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${social.label} (opens in a new tab)`}
+                      className={`grid size-11 place-items-center border border-white/10 text-white/60 transition-colors duration-200 hover:border-[#FF7133]/50 hover:bg-white/[0.03] hover:text-[#FF7133] ${focusRing}`}
+                    >
+                      {social.icon}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
+        </Reveal>
 
-          <nav aria-label="Footer navigation">
-            <p className="text-[0.65rem] font-medium uppercase tracking-[0.12em] text-white/50">
-              Navigation
-            </p>
-            <ul className="mt-4 space-y-1">
-              {navigation.map((item) => (
-                <li key={item.label}>
-                  <a
-                    href={item.href}
-                    className={`group -mx-2 inline-flex min-h-11 items-center gap-3 px-2 text-sm text-white/65 transition-colors duration-200 hover:text-[#F8F9FA] ${focusRing}`}
-                  >
-                    <span
-                      aria-hidden="true"
-                      className="h-px w-4 bg-white/20 transition-all duration-200 group-hover:w-6 group-hover:bg-[#FF7133]"
-                    />
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
+        <p
+          aria-hidden="true"
+          className="mt-14 select-none whitespace-nowrap text-[clamp(1.75rem,9.5vw,8rem)] font-medium leading-[0.8] tracking-[-0.05em] text-white/[0.055]"
+        >
+          ALIREZA TOORABI
+        </p>
 
-          <div>
-            <p className="text-[0.65rem] font-medium uppercase tracking-[0.12em] text-white/50">
-              Socials
-            </p>
-            <ul className="mt-5 flex gap-2.5">
-              {socials.map((social) => (
-                <li key={social.label}>
-                  <a
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${social.label} (opens in a new tab)`}
-                    className={`grid size-11 place-items-center border border-white/10 text-white/60 transition-colors duration-200 hover:border-[#FF7133]/50 hover:bg-white/[0.03] hover:text-[#FF7133] ${focusRing}`}
-                  >
-                    {social.icon}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-8 flex flex-col gap-4 border-t border-white/10 py-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-white/50">
             © {year} Alireza Toorabi. All rights reserved.
           </p>

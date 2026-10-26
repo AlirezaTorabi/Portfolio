@@ -1,23 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  --background: #F8F9FA;
-  --foreground: #060607;
-  --muted: #5c5c5a;
-  --accent: #FF5100;
-  --border: rgba(6, 6, 7, 0.08);
-  --grid: rgba(6, 6, 7, 0.04);
+  --background: #111113;
+  --foreground: #f8f9fa;
+  --muted: rgba(248, 249, 250, 0.6);
+  --accent: #ff7133;
+  --border: rgba(248, 249, 250, 0.1);
+  --grid: rgba(248, 249, 250, 0.035);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 html {
   scroll-behavior: smooth;
+  background: var(--background);
 }
 
 body {
@@ -32,14 +34,85 @@ body {
   letter-spacing: -0.02em;
 }
 
+::selection {
+  background: var(--accent);
+  color: #111113;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  /* Reveals and masked headings resolve immediately, without movement. */
+  [data-motion] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* The gallery becomes a static, readable stack instead of a pinned sequence. */
+  .gallery-track {
+    height: auto !important;
+  }
+
+  .gallery-pin {
+    position: static !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .gallery-row {
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    transform: none !important;
+  }
+
+  .gallery-card {
+    width: 100% !important;
+  }
+
+  .gallery-rail,
+  .gallery-hint {
+    display: none !important;
+  }
+}
+
+/* Keep content visible if scripts never run: reveals only enhance. */
+@media (scripting: none) {
+  [data-motion] {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 
 * {
   box-sizing: border-box;
+}
+
+@keyframes scroll-cue {
+  0%,
+  100% {
+    transform: scaleY(0.25);
+    transform-origin: top;
+    opacity: 0.35;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+    opacity: 1;
+  }
+}
+
+.scroll-cue-line {
+  animation: scroll-cue 2.6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue-line {
+    animation: none;
+    opacity: 0.5;
+    transform: none;
+  }
 }
 
 .architecture-page {
