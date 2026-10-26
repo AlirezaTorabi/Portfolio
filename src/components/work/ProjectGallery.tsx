@@ -57,10 +57,10 @@ function ProjectCard({
     <li className="gallery-card w-[86vw] shrink-0 snap-center sm:w-[78vw] md:w-[min(74vw,640px)] lg:w-[min(68vw,780px)]">
       <article
         aria-labelledby={`project-${index}-title`}
-        className={`group relative flex h-full min-h-[25rem] flex-col justify-between overflow-hidden border bg-[#151517] p-6 transition-colors duration-500 sm:p-8 lg:min-h-[58svh] lg:p-10 ${
+        className={`group relative flex h-full min-h-[25rem] flex-col justify-between overflow-hidden border bg-card p-6 transition-colors duration-500 sm:p-8 lg:min-h-[58svh] lg:p-10 ${
           active
             ? "border-[#FF7133]/40"
-            : "border-white/12 hover:border-white/25"
+            : "border-foreground/12 hover:border-foreground/25"
         }`}
       >
         <span
@@ -72,7 +72,7 @@ function ProjectCard({
 
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute right-3 top-1/2 hidden -translate-y-1/2 select-none text-[11rem] font-medium leading-none tracking-[-0.06em] text-white/[0.05] lg:block lg:text-[13rem]"
+          className="pointer-events-none absolute right-3 top-1/2 hidden -translate-y-1/2 select-none text-[11rem] font-medium leading-none tracking-[-0.06em] text-foreground/[0.05] lg:block lg:text-[13rem]"
         >
           {number}
         </span>
@@ -80,13 +80,13 @@ function ProjectCard({
         <div className="relative">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[0.6rem] uppercase tracking-[0.14em]">
             <span className="text-[#FF7133]">{number}</span>
-            <span className="h-px w-6 bg-white/20" aria-hidden="true" />
-            <span className="text-white/55">{project.category}</span>
+            <span className="h-px w-6 bg-foreground/20" aria-hidden="true" />
+            <span className="text-foreground/55">{project.category}</span>
           </div>
 
           <h3
             id={`project-${index}-title`}
-            className="mt-8 max-w-[24ch] text-3xl font-medium leading-[1.06] text-[#F8F9FA] sm:text-4xl lg:text-[clamp(2.4rem,3.4vw,3.4rem)]"
+            className="mt-8 max-w-[24ch] text-3xl font-medium leading-[1.06] text-foreground sm:text-4xl lg:text-[clamp(2.4rem,3.4vw,3.4rem)]"
           >
             {projectUrl ? (
               <a
@@ -111,24 +111,24 @@ function ProjectCard({
             )}
           </h3>
 
-          <p className="mt-5 max-w-md text-pretty text-sm leading-7 text-white/60 sm:text-base">
+          <p className="mt-5 max-w-md text-pretty text-sm leading-7 text-foreground/60 sm:text-base">
             {project.description}
           </p>
         </div>
 
         <div className="relative mt-10">
-          <div className="h-px w-full bg-white/10" aria-hidden="true" />
+          <div className="h-px w-full bg-foreground/10" aria-hidden="true" />
           <div className="mt-5 flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
             <ul
               aria-label={`${project.title} technologies`}
-              className="flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-[0.6rem] uppercase tracking-[0.08em] text-white/55"
+              className="flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-[0.6rem] uppercase tracking-[0.08em] text-foreground/55"
             >
               {project.technologies.map((technology, technologyIndex) => (
                 <li key={technology} className="flex items-center gap-3">
                   {technologyIndex > 0 ? (
                     <span
                       aria-hidden="true"
-                      className="h-3 w-px bg-white/15"
+                      className="h-3 w-px bg-foreground/15"
                     />
                   ) : null}
                   {technology}
@@ -137,7 +137,7 @@ function ProjectCard({
             </ul>
             <span
               aria-hidden="true"
-              className="font-mono text-[0.6rem] uppercase tracking-[0.12em] text-white/30"
+              className="font-mono text-[0.6rem] uppercase tracking-[0.12em] text-foreground/30"
             >
               {number} / {String(total).padStart(2, "0")}
             </span>
@@ -263,16 +263,16 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
             <span className="font-mono text-[0.65rem] text-[#FF7133]">
               {String(active + 1).padStart(2, "0")}
             </span>
-            <span className="relative h-px flex-1 overflow-hidden bg-white/12">
+            <span className="relative h-px flex-1 overflow-hidden bg-foreground/12">
               <motion.span
                 className="absolute inset-y-0 left-0 w-full origin-left bg-[#FF7133]"
                 style={{ scaleX: scrollYProgress }}
               />
             </span>
-            <span className="font-mono text-[0.65rem] text-white/40">
+            <span className="font-mono text-[0.65rem] text-foreground/40">
               {String(projects.length).padStart(2, "0")}
             </span>
-            <span className="ml-4 hidden font-mono text-[0.58rem] uppercase tracking-[0.16em] text-white/30 xl:block">
+            <span className="ml-4 hidden font-mono text-[0.58rem] uppercase tracking-[0.16em] text-foreground/30 xl:block">
               Scroll to explore
             </span>
           </div>
@@ -281,10 +281,10 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
 
       {!pinned ? (
         <div className="gallery-hint mt-6 flex items-center justify-between gap-6 px-6 sm:px-8 lg:hidden">
-          <span className="font-mono text-[0.58rem] uppercase tracking-[0.16em] text-white/50">
+          <span className="font-mono text-[0.58rem] uppercase tracking-[0.16em] text-foreground/50">
             Swipe to explore
           </span>
-          <span className="font-mono text-[0.6rem] text-white/40">
+          <span className="font-mono text-[0.6rem] text-foreground/40">
             {String(projects.length).padStart(2, "0")} projects
           </span>
         </div>

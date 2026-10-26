@@ -129,7 +129,7 @@ export default function Contact() {
       ref={sectionRef}
       id="contact"
       aria-labelledby="contact-title"
-      className="relative scroll-mt-20 border-t border-white/10"
+      className="relative scroll-mt-20 border-t border-foreground/10"
     >
       <div
         aria-hidden="true"
@@ -144,11 +144,11 @@ export default function Contact() {
 
       <div className="relative mx-auto max-w-6xl px-6 py-24 sm:px-8 sm:py-28 lg:px-10 lg:py-32">
         <Reveal>
-          <div className="flex items-center justify-between gap-6 border-b border-white/15 pb-5">
-            <p className="text-[0.65rem] font-medium uppercase text-white/60">
+          <div className="flex items-center justify-between gap-6 border-b border-foreground/15 pb-5">
+            <p className="text-[0.65rem] font-medium uppercase text-foreground/60">
               Get in Touch
             </p>
-            <p className="hidden font-mono text-xs text-white/55 sm:block">
+            <p className="hidden font-mono text-xs text-foreground/55 sm:block">
               Front-End Developer / UI Designer
             </p>
           </div>
@@ -165,7 +165,7 @@ export default function Contact() {
               className="max-w-2xl text-4xl font-medium leading-[1.04] sm:text-5xl lg:text-6xl"
             />
             <Reveal delay={0.1}>
-              <p className="mt-8 max-w-xl text-pretty text-sm leading-7 text-white/65 sm:text-base sm:leading-8">
+              <p className="mt-8 max-w-xl text-pretty text-sm leading-7 text-foreground/65 sm:text-base sm:leading-8">
                 Have a project in mind or an opportunity to discuss? I&apos;d
                 love to hear from you. Feel free to reach out through any of the
                 channels below.
@@ -178,7 +178,7 @@ export default function Contact() {
                     href="https://t.me/AlirezaToorabi"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex min-h-12 items-center gap-4 bg-[#FF7133] px-6 text-xs font-medium text-[#111113] transition-colors duration-300 hover:bg-[#FF8A55] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133] focus-visible:ring-offset-2 focus-visible:ring-offset-[#111113]"
+                    className="group inline-flex min-h-12 items-center gap-4 bg-[#FF7133] px-6 text-xs font-medium text-[#111113] transition-colors duration-300 hover:bg-[#FF8A55] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                   >
                     <span>Start a Conversation</span>
                     <span
@@ -196,13 +196,13 @@ export default function Contact() {
 
           <div>
             <Reveal delay={0.08}>
-              <p className="mb-3 text-[0.65rem] font-medium uppercase text-white/50">
+              <p className="mb-3 text-[0.65rem] font-medium uppercase text-foreground/50">
                 Direct channels
               </p>
             </Reveal>
             <ul
               aria-label="Contact methods"
-              className="m-0 list-none border-t border-white/10 p-0"
+              className="m-0 list-none border-t border-foreground/10 p-0"
             >
               {channels.map((channel, index) => (
                 <Reveal
@@ -215,24 +215,24 @@ export default function Contact() {
                     {...(channel.external
                       ? { target: "_blank", rel: "noopener noreferrer" }
                       : {})}
-                    className="group flex items-center justify-between gap-4 border-b border-white/10 px-1 py-4 transition-colors duration-200 hover:border-[#FF7133]/40 hover:bg-white/[0.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133] focus-visible:ring-offset-2 focus-visible:ring-offset-[#111113] sm:py-5"
+                    className="group flex items-center justify-between gap-4 border-b border-foreground/10 px-1 py-4 transition-colors duration-200 hover:border-[#FF7133]/40 hover:bg-foreground/[0.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133] focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:py-5"
                   >
                     <span className="flex min-w-0 items-center gap-4">
-                      <span className="grid size-10 shrink-0 place-items-center border border-white/10 text-white/60 transition-colors duration-200 group-hover:border-[#FF7133]/50 group-hover:text-[#FF7133]">
+                      <span className="grid size-10 shrink-0 place-items-center border border-foreground/10 text-foreground/60 transition-colors duration-200 group-hover:border-[#FF7133]/50 group-hover:text-[#FF7133]">
                         {channel.icon}
                       </span>
                       <span className="flex min-w-0 flex-col">
-                        <span className="text-[0.6rem] font-medium uppercase tracking-[0.12em] text-white/50">
+                        <span className="text-[0.6rem] font-medium uppercase tracking-[0.12em] text-foreground/50">
                           {channel.label}
                         </span>
-                        <span className="mt-1 truncate text-sm text-[#F8F9FA] sm:text-base">
+                        <span className="mt-1 truncate text-sm text-foreground sm:text-base">
                           {channel.value}
                         </span>
                       </span>
                     </span>
                     <span
                       aria-hidden="true"
-                      className="text-base text-white/25 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#FF7133]"
+                      className="text-base text-foreground/25 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#FF7133]"
                     >
                       {channel.external ? "↗" : "→"}
                     </span>

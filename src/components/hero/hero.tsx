@@ -37,8 +37,8 @@ export default function Hero() {
     >
       <div className="relative mx-auto flex w-full max-w-6xl flex-1 flex-col px-6 pb-8 pt-28 sm:px-8 sm:pb-10 sm:pt-32 lg:px-10 lg:pb-10 lg:pt-36">
         <Reveal>
-          <div className="flex items-center justify-between gap-6 border-b border-white/10 pb-4">
-            <p className="flex min-w-0 items-center gap-3 text-[0.625rem] font-medium uppercase tracking-[0.14em] text-white/70 sm:text-[0.66rem] sm:tracking-[0.18em]">
+          <div className="flex items-center justify-between gap-6 border-b border-foreground/10 pb-4">
+            <p className="flex min-w-0 items-center gap-3 text-[0.625rem] font-medium uppercase tracking-[0.14em] text-foreground/70 sm:text-[0.66rem] sm:tracking-[0.18em]">
               <span
                 aria-hidden="true"
                 className="size-1.5 shrink-0 bg-[#FF7133]"
@@ -47,7 +47,7 @@ export default function Hero() {
                 Frontend Developer &amp; UI Designer
               </span>
             </p>
-            <p className="hidden shrink-0 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-white/50 sm:block">
+            <p className="hidden shrink-0 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-foreground/50 sm:block">
               Portfolio / 2026
             </p>
           </div>
@@ -61,7 +61,7 @@ export default function Hero() {
               mode="line"
               start="load"
               delay={0.18}
-              className="text-[clamp(3.5rem,12vw,9rem)] font-medium leading-[0.92] tracking-[-0.045em] text-[#F8F9FA]"
+              className="text-[clamp(3.5rem,12vw,9rem)] font-medium leading-[0.92] tracking-[-0.045em] text-foreground"
               lines={[
                 { text: "Alireza" },
                 {
@@ -73,7 +73,7 @@ export default function Hero() {
             />
 
             <Reveal delay={0.4}>
-              <p className="mt-6 max-w-[34rem] text-pretty text-sm leading-7 text-white/65 sm:mt-8 sm:text-base sm:leading-8">
+              <p className="mt-6 max-w-[34rem] text-pretty text-sm leading-7 text-foreground/65 sm:mt-8 sm:text-base sm:leading-8">
                 I design and build refined, responsive web experiences, with a
                 focus on clear hierarchy, purposeful motion, and maintainable
                 frontend code.
@@ -87,7 +87,7 @@ export default function Hero() {
                 </Magnetic>
                 <a
                   href="#contact"
-                  className="group relative inline-flex min-h-12 items-center px-5 text-xs font-medium text-white/75 transition-colors hover:text-[#F8F9FA] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133] focus-visible:ring-offset-2 focus-visible:ring-offset-[#111113]"
+                  className="group relative inline-flex min-h-12 items-center px-5 text-xs font-medium text-foreground/75 transition-colors hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
                   Contact me
                   <span
@@ -102,35 +102,35 @@ export default function Hero() {
           <Reveal delay={0.58} className="min-w-0 lg:self-stretch">
             <aside
               aria-label="Practice index"
-              className="border-t border-white/10 pt-7 sm:pt-8 lg:flex lg:h-full lg:flex-col lg:justify-center lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0"
+              className="border-t border-foreground/10 pt-7 sm:pt-8 lg:flex lg:h-full lg:flex-col lg:justify-center lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0"
             >
               <div className="flex items-baseline justify-between gap-4">
-                <p className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-white/60">
+                <p className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-foreground/60">
                   Practice index
                 </p>
                 <p
                   aria-hidden="true"
-                  className="font-mono text-[0.65rem] text-white/40"
+                  className="font-mono text-[0.65rem] text-foreground/40"
                 >
                   01—03
                 </p>
               </div>
 
-              <ul className="mt-5 grid grid-cols-3 gap-4 lg:mt-6 lg:grid-cols-1 lg:gap-0 lg:border-t lg:border-white/10">
+              <ul className="mt-5 grid grid-cols-3 gap-4 lg:mt-6 lg:grid-cols-1 lg:gap-0 lg:border-t lg:border-foreground/10">
                 {practiceAreas.map((area, index) => (
                   <li
                     key={area.title}
-                    className="group/index min-w-0 border-t border-white/10 pt-3 lg:flex lg:gap-4 lg:border-b lg:border-t-0 lg:py-4"
+                    className="group/index min-w-0 border-t border-foreground/10 pt-3 lg:flex lg:gap-4 lg:border-b lg:border-t-0 lg:py-4"
                   >
                     <span className="font-mono text-[0.65rem] text-[#FF7133]">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <div className="mt-2 min-w-0 lg:mt-0">
-                      <p className="text-[0.8125rem] leading-5 text-white/80 transition-colors duration-200 group-hover/index:text-[#F8F9FA] lg:text-sm">
+                      <p className="text-[0.8125rem] leading-5 text-foreground/80 transition-colors duration-200 group-hover/index:text-foreground lg:text-sm">
                         <span className="lg:hidden">{area.short}</span>
                         <span className="hidden lg:inline">{area.title}</span>
                       </p>
-                      <p className="mt-1 hidden text-[0.7rem] leading-5 text-white/55 lg:block">
+                      <p className="mt-1 hidden text-[0.7rem] leading-5 text-foreground/55 lg:block">
                         {area.detail}
                       </p>
                     </div>
@@ -138,11 +138,11 @@ export default function Hero() {
                 ))}
               </ul>
 
-              <div className="mt-7 border-t border-white/10 pt-4 lg:mt-8 lg:border-t-0 lg:pt-0">
-                <p className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-white/60">
+              <div className="mt-7 border-t border-foreground/10 pt-4 lg:mt-8 lg:border-t-0 lg:pt-0">
+                <p className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-foreground/60">
                   Toolkit
                 </p>
-                <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1 font-mono text-[0.68rem] leading-5 text-white/60">
+                <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1 font-mono text-[0.68rem] leading-5 text-foreground/60">
                   {toolkit.map((tool) => (
                     <li key={tool}>{tool}</li>
                   ))}
@@ -153,15 +153,15 @@ export default function Hero() {
         </div>
 
         <Reveal delay={0.66}>
-          <div className="flex items-center justify-between gap-6 border-t border-white/10 pt-5">
+          <div className="flex items-center justify-between gap-6 border-t border-foreground/10 pt-5">
             <a
               href="#work"
-              className="group inline-flex items-center gap-3 text-[0.625rem] font-medium uppercase tracking-[0.24em] text-white/60 transition-colors hover:text-white/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133] focus-visible:ring-offset-4 focus-visible:ring-offset-[#111113]"
+              className="group inline-flex items-center gap-3 text-[0.625rem] font-medium uppercase tracking-[0.24em] text-foreground/60 transition-colors hover:text-foreground/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133] focus-visible:ring-offset-4 focus-visible:ring-offset-background"
             >
               <span>Scroll</span>
               <span
                 aria-hidden="true"
-                className="relative block h-7 w-px overflow-hidden bg-white/15"
+                className="relative block h-7 w-px overflow-hidden bg-foreground/15"
               >
                 <span className="scroll-cue-line absolute inset-0 bg-[#FF7133]" />
               </span>
@@ -170,7 +170,7 @@ export default function Hero() {
 
             <p
               aria-hidden="true"
-              className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-white/40"
+              className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-foreground/40"
             >
               AT / 001
             </p>

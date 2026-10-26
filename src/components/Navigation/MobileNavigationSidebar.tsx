@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useTheme } from "next-themes";
 import GooeyNav, { type GooeyNavItem } from "@/components/Navigation/GooeyNav";
 
 interface MobileNavigationSidebarProps {
@@ -15,6 +16,8 @@ export default function MobileNavigationSidebar({
   onNavigate,
 }: MobileNavigationSidebarProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const { resolvedTheme } = useTheme();
+  const navTheme = resolvedTheme === "light" ? "light" : "dark";
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const sidebarRef = useRef<HTMLElement>(null);
   const iconOnlyItems = useMemo(
@@ -102,7 +105,7 @@ export default function MobileNavigationSidebar({
         aria-expanded={isOpen}
         aria-controls="mobile-navigation-sidebar"
         onClick={() => (isOpen ? closeMenu() : setIsOpen(true))}
-        className="pointer-events-auto z-[80] flex h-11 w-11 shrink-0 items-center justify-center bg-transparent text-[#F8F9FA] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133] md:hidden"
+        className="pointer-events-auto z-[80] flex h-11 w-11 shrink-0 items-center justify-center bg-transparent text-foreground transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133] md:hidden"
       >
         <span className="relative h-5 w-5" aria-hidden="true">
           <span className={`absolute left-0 top-1/2 h-px w-full bg-current transition-[rotate,translate] duration-200 ${isOpen ? "rotate-45" : "-translate-y-[6px]"}`} />
@@ -123,13 +126,13 @@ export default function MobileNavigationSidebar({
         aria-label="Mobile navigation"
         aria-hidden={!isOpen}
         inert={!isOpen}
-        className={`pointer-events-auto fixed left-1/2 top-[10px] z-[70] flex w-fit max-w-[calc(100%-70px)] -translate-x-1/2 items-center rounded-full border border-white/10 bg-[#26232e]/95 px-2 py-1 shadow-xl backdrop-blur-xl transition-transform duration-200 ease-out motion-reduce:transition-none md:hidden ${isOpen ? "translate-y-0" : "-translate-y-[calc(100%+10px)]"}`}
+        className={`pointer-events-auto fixed left-1/2 top-[10px] z-[70] flex w-fit max-w-[calc(100%-70px)] -translate-x-1/2 items-center rounded-full border border-foreground/10 bg-background/95 px-2 py-1 shadow-xl backdrop-blur-xl transition-transform duration-200 ease-out motion-reduce:transition-none md:hidden ${isOpen ? "translate-y-0" : "-translate-y-[calc(100%+10px)]"}`}
       >
         <GooeyNav
           items={iconOnlyItems}
           activeIndex={activeIndex}
           label="Mobile navigation links"
-          theme="dark"
+          theme={navTheme}
           size="sm"
           frame={false}
           particleCount={15}

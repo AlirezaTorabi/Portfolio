@@ -885,6 +885,7 @@ const GooeyNav = ({
   return (
     <nav
       aria-label={label}
+      suppressHydrationWarning
       className={`${ROOT}${frame ? ` ${FRAMED}` : ''} ${className}`.trim()}
       style={
         {

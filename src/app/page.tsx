@@ -8,10 +8,10 @@ import Work from "@/components/Work";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen text-[#F8F9FA]">
+    <div className="relative min-h-screen text-foreground">
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:inline-flex focus:min-h-11 focus:items-center focus:bg-[#FF7133] focus:px-4 focus:text-xs focus:font-medium focus:text-[#111113] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F8F9FA]"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:inline-flex focus:min-h-11 focus:items-center focus:bg-[#FF7133] focus:px-4 focus:text-xs focus:font-medium focus:text-[#111113] focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground"
       >
         Skip to content
       </a>

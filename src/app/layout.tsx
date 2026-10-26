@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { ThemeProvider } from "@/components/theme-provider";
 import { GlyphBackground } from "@/components/animate-ui/backgrounds/glyph";
 import "./globals.css";
 
@@ -16,28 +17,35 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Alireza Torabi | Frontend Developer & UI Designer",
   description:
-    "Portfolio of Alireza Torabi, Frontend Developer and UI Designer."
+    "Portfolio of Alireza Torabi, Frontend Developer and UI Designer.",
 };
 
 export const viewport: Viewport = {
-  themeColor: "#111113",
-  colorScheme: "dark",
+  themeColor: "#fafafa",
+  colorScheme: "light dark",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none fixed inset-0 -z-10"
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
         >
-          <GlyphBackground interactive={false} />
-        </div>
-        {children}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none fixed inset-0 -z-10 text-foreground"
+          >
+            <GlyphBackground interactive={false} />
+          </div>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

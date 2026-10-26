@@ -79,13 +79,13 @@ const socials = [
 ];
 
 const focusRing =
-  "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133] focus-visible:ring-offset-2 focus-visible:ring-offset-[#111113]";
+  "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133] focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden border-t border-white/10">
+    <footer className="relative overflow-hidden border-t border-foreground/10">
       <div className="mx-auto max-w-6xl px-6 pt-16 sm:px-8 sm:pt-20 lg:px-10">
         <Reveal>
           <div className="grid gap-12 md:grid-cols-[minmax(0,1.5fr)_minmax(0,0.9fr)_auto] md:gap-14 lg:gap-20">
@@ -97,16 +97,16 @@ export default function Footer() {
                   className="mt-0.5 block size-1.5 shrink-0 bg-[#FF7133]"
                 />
               </p>
-              <p className="mt-2 text-[0.65rem] font-medium uppercase tracking-[0.12em] text-white/50">
+              <p className="mt-2 text-[0.65rem] font-medium uppercase tracking-[0.12em] text-foreground/50">
                 Front-End Developer &amp; UI Designer
               </p>
-              <p className="mt-6 max-w-xs text-sm leading-6 text-white/60">
+              <p className="mt-6 max-w-xs text-sm leading-6 text-foreground/60">
                 Designing and building thoughtful digital experiences.
               </p>
             </div>
 
             <nav aria-label="Footer navigation">
-              <p className="text-[0.65rem] font-medium uppercase tracking-[0.12em] text-white/50">
+              <p className="text-[0.65rem] font-medium uppercase tracking-[0.12em] text-foreground/50">
                 Navigation
               </p>
               <ul className="mt-4 space-y-1">
@@ -114,11 +114,11 @@ export default function Footer() {
                   <li key={item.label}>
                     <a
                       href={item.href}
-                      className={`group -mx-2 inline-flex min-h-11 items-center gap-3 px-2 text-sm text-white/65 transition-colors duration-200 hover:text-[#F8F9FA] ${focusRing}`}
+                      className={`group -mx-2 inline-flex min-h-11 items-center gap-3 px-2 text-sm text-foreground/65 transition-colors duration-200 hover:text-foreground ${focusRing}`}
                     >
                       <span
                         aria-hidden="true"
-                        className="h-px w-4 bg-white/20 transition-all duration-200 group-hover:w-6 group-hover:bg-[#FF7133]"
+                        className="h-px w-4 bg-foreground/20 transition-all duration-200 group-hover:w-6 group-hover:bg-[#FF7133]"
                       />
                       {item.label}
                     </a>
@@ -128,7 +128,7 @@ export default function Footer() {
             </nav>
 
             <div>
-              <p className="text-[0.65rem] font-medium uppercase tracking-[0.12em] text-white/50">
+              <p className="text-[0.65rem] font-medium uppercase tracking-[0.12em] text-foreground/50">
                 Socials
               </p>
               <ul className="mt-5 flex gap-2.5">
@@ -139,7 +139,7 @@ export default function Footer() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${social.label} (opens in a new tab)`}
-                      className={`grid size-11 place-items-center border border-white/10 text-white/60 transition-colors duration-200 hover:border-[#FF7133]/50 hover:bg-white/[0.03] hover:text-[#FF7133] ${focusRing}`}
+                      className={`grid size-11 place-items-center border border-foreground/10 text-foreground/60 transition-colors duration-200 hover:border-[#FF7133]/50 hover:bg-foreground/[0.03] hover:text-[#FF7133] ${focusRing}`}
                     >
                       {social.icon}
                     </a>
@@ -152,18 +152,18 @@ export default function Footer() {
 
         <p
           aria-hidden="true"
-          className="mt-14 select-none whitespace-nowrap text-[clamp(1.75rem,9.5vw,8rem)] font-medium leading-[0.8] tracking-[-0.05em] text-white/[0.055]"
+          className="mt-14 select-none whitespace-nowrap text-[clamp(1.75rem,9.5vw,8rem)] font-medium leading-[0.8] tracking-[-0.05em] text-foreground/[0.055]"
         >
           ALIREZA TORABI
         </p>
 
-        <div className="mt-8 flex flex-col gap-4 border-t border-white/10 py-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-white/50">
+        <div className="mt-8 flex flex-col gap-4 border-t border-foreground/10 py-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs text-foreground/50">
             © {year} Alireza Torabi. All rights reserved.
           </p>
           <a
             href="#top"
-            className={`group inline-flex min-h-11 items-center gap-2 self-start border border-white/10 px-3.5 py-2 text-[0.65rem] font-medium uppercase tracking-[0.12em] text-white/60 transition-colors duration-200 hover:border-[#FF7133]/50 hover:text-[#F8F9FA] sm:self-auto ${focusRing}`}
+            className={`group inline-flex min-h-11 items-center gap-2 self-start border border-foreground/10 px-3.5 py-2 text-[0.65rem] font-medium uppercase tracking-[0.12em] text-foreground/60 transition-colors duration-200 hover:border-[#FF7133]/50 hover:text-foreground sm:self-auto ${focusRing}`}
           >
             Back to top
             <span

@@ -1,9 +1,11 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useTheme } from "next-themes";
 import Link from "next/link";
 import Image from "next/image";
 import GooeyNav from "@/components/Navigation/GooeyNav";
 import MobileNavigationSidebar from "@/components/Navigation/MobileNavigationSidebar";
+import { ThemeSwitcher } from "@/components/theme-switcher";
 
 const items = [
   {
@@ -97,6 +99,8 @@ interface NavigationIntent {
 
 export default function Navbar() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const { resolvedTheme } = useTheme();
+  const navTheme = resolvedTheme === "light" ? "light" : "dark";
   const intentRef = useRef<NavigationIntent | null>(null);
   const intentTimeoutRef = useRef<number | null>(null);
   const scheduleRef = useRef<() => void>(() => {});
@@ -209,7 +213,14 @@ export default function Navbar() {
               fill
               sizes="36px"
               priority
-              className="object-contain"
+              className="object-contain dark:block hidden"
+            />
+            <Image
+              src="/at-logo-light.png"
+              alt=""
+              fill
+              sizes="36px"
+              className="object-contain dark:hidden block"
             />
           </span>
         </Link>
@@ -220,7 +231,7 @@ export default function Navbar() {
             activeIndex={activeIndex}
             onChange={handleNavigate}
             label="Primary navigation"
-            theme="dark"
+            theme={navTheme}
             size="sm"
             frame
             particleCount={15}
@@ -234,11 +245,14 @@ export default function Navbar() {
             className="shrink-0 [&_ul]:flex-nowrap"
           />
         </div>
-        <MobileNavigationSidebar
-          items={items}
-          activeIndex={activeIndex}
-          onNavigate={handleNavigate}
-        />
+        <div className="pointer-events-auto flex items-center gap-2">
+          <ThemeSwitcher />
+          <MobileNavigationSidebar
+            items={items}
+            activeIndex={activeIndex}
+            onNavigate={handleNavigate}
+          />
+        </div>
       </div>
     </header>
   );
