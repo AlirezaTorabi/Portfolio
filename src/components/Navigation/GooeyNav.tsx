@@ -376,6 +376,7 @@ const GooeyNav = ({
   const select = (index: number) => {
     if (activeIndex === undefined) setInnerIndex(index);
     onChange?.(index, items[index]);
+    engineRef.current?.go(index);
   };
 
   useIsomorphicLayoutEffect(() => {

@@ -12,6 +12,10 @@ import type { WorkProject } from "@/data/workProjects";
 const useIsomorphicLayoutEffect =
   typeof window === "undefined" ? useEffect : useLayoutEffect;
 
+function prefersReducedMotion() {
+  return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
 interface ProjectGalleryProps {
   projects: WorkProject[];
 }
@@ -209,7 +213,9 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
   });
 
   const trackHeight =
-    pinned && travel > 0 ? `calc(100svh + ${travel}px)` : undefined;
+    prefersReducedMotion() || !pinned || travel === 0
+      ? undefined
+      : `calc(100svh + ${travel}px)`;
 
   return (
     <div

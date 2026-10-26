@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import GooeyNav from "@/components/Navigation/GooeyNav";
 import MobileNavigationSidebar from "@/components/Navigation/MobileNavigationSidebar";
@@ -80,11 +81,10 @@ const items = [
 ];
 
 const SECTION_IDS = ["top", "work", "about", "contact"];
-const NAV_OFFSET = 84;
+const NAV_OFFSET = 80;
 
 export default function Navbar() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     let frame = 0;
@@ -101,9 +101,6 @@ export default function Navbar() {
       });
 
       setActiveIndex((current) => (current === next ? current : next));
-
-      const isScrolled = window.scrollY > 16;
-      setScrolled((current) => (current === isScrolled ? current : isScrolled));
     };
 
     const schedule = () => {
@@ -123,16 +120,18 @@ export default function Navbar() {
 
   return (
     <header
-      className={`pointer-events-none fixed inset-x-0 top-0 z-50 isolate transition-[background-color,backdrop-filter] duration-300 motion-reduce:transition-none ${
-        scrolled
-          ? "bg-[#111113]/85 backdrop-blur-md"
-          : "bg-transparent backdrop-blur-none"
-      }`}
+      className="pointer-events-none fixed inset-x-0 top-0 z-50 isolate bg-transparent backdrop-blur-none"
     >
       <div className="relative mx-auto flex h-[76px] max-w-[1800px] items-center justify-between gap-4 pl-4 pr-[10px] md:px-5 lg:px-7">
-        <a
-          href="#top"
+        <Link
+          href="/"
           aria-label="Home"
+          onClick={(event) => {
+            if (window.location.pathname === "/") {
+              event.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
           className="pointer-events-auto -m-1.5 flex shrink-0 items-center p-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133]"
         >
           <span className="relative block h-8 w-8 shrink-0 md:h-9 md:w-9">
@@ -145,7 +144,7 @@ export default function Navbar() {
               className="object-contain"
             />
           </span>
-        </a>
+        </Link>
 
         <div className="pointer-events-auto absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 md:block">
           <GooeyNav
