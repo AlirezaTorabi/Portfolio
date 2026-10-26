@@ -137,11 +137,11 @@ export default function Navbar() {
         >
           <span className="relative block h-8 w-8 shrink-0 md:h-9 md:w-9">
             <Image
-              src="/at-logo-dark.png"
-              alt=""
+              src={`${process.env.NODE_ENV === "production" ? "/Portfolio" : ""}/at-logo-dark.png`}
+              alt="Alireza Toorabi Logo"
               fill
               sizes="36px"
-              loading="eager"
+              priority
               className="object-contain"
             />
           </span>
