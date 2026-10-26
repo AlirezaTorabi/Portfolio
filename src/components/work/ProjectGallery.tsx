@@ -156,12 +156,10 @@ function ProjectCard({
 export default function ProjectGallery({ projects }: ProjectGalleryProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const rowRef = useRef<HTMLUListElement>(null);
-  const [pinned, setPinned] = useState(false);
   const [travel, setTravel] = useState(0);
   const [active, setActive] = useState(0);
 
   useIsomorphicLayoutEffect(() => {
-    const desktop = window.matchMedia("(min-width: 1024px)");
     const row = rowRef.current;
     if (!row) return;
 
@@ -178,10 +176,7 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
         gap * (cards.length - 1) +
         padding;
 
-      setPinned(desktop.matches);
-      setTravel(
-        desktop.matches ? Math.max(0, Math.round(contentWidth - window.innerWidth)) : 0,
-      );
+      setTravel(Math.max(0, Math.round(contentWidth - window.innerWidth)));
     };
 
     measure();
@@ -204,7 +199,6 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
   const x = useTransform(scrollYProgress, [0, 1], [0, travel > 0 ? -travel : 0]);
 
   useMotionValueEvent(scrollYProgress, "change", (value) => {
-    if (!pinned || projects.length < 2) return;
     const next = Math.min(
       projects.length - 1,
       Math.max(0, Math.round(value * (projects.length - 1))),
@@ -212,10 +206,7 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
     setActive((current) => (current === next ? current : next));
   });
 
-  const trackHeight =
-    prefersReducedMotion() || !pinned || travel === 0
-      ? undefined
-      : `calc(100svh + ${travel}px)`;
+  const trackHeight = `calc(100svh + ${travel}px)`;
 
   return (
     <div
@@ -224,23 +215,17 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
       style={{ height: trackHeight }}
     >
       <div
-        className={`gallery-pin ${
-          pinned
-            ? "lg:sticky lg:top-0 lg:flex lg:h-svh lg:flex-col lg:justify-center lg:overflow-hidden"
-            : ""
-        }`}
+        className="gallery-pin sticky top-0 flex h-svh flex-col justify-center overflow-hidden"
       >
         <div
           role="region"
           aria-label="Selected project gallery"
-          tabIndex={pinned ? -1 : 0}
-          className={`w-full snap-x snap-mandatory overflow-x-auto scroll-px-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#FF7133] sm:scroll-px-8 ${
-            pinned ? "lg:overflow-visible" : ""
-          }`}
+          tabIndex={0}
+          className="w-full snap-x snap-mandatory overflow-visible scroll-px-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#FF7133] sm:scroll-px-8"
         >
           <motion.ul
             ref={rowRef}
-            style={{ x: pinned ? x : 0 }}
+            style={{ x }}
             className="gallery-row m-0 flex list-none gap-4 px-6 pb-4 sm:gap-6 sm:px-8 lg:gap-8 lg:px-[max(2.5rem,calc((100vw-72rem)/2+2.5rem))] lg:pb-0"
           >
             {projects.map((project, index) => (
@@ -249,46 +234,34 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
                 project={project}
                 index={index}
                 total={projects.length}
-                active={pinned && active === index}
+                active={active === index}
               />
             ))}
           </motion.ul>
         </div>
 
-        {pinned ? (
-          <div
-            aria-hidden="true"
-            className="gallery-rail mx-auto mt-8 flex w-full max-w-6xl items-center gap-6 px-10"
-          >
-            <span className="font-mono text-[0.65rem] text-[#FF7133]">
-              {String(active + 1).padStart(2, "0")}
-            </span>
-            <span className="relative h-px flex-1 overflow-hidden bg-foreground/12">
-              <motion.span
-                className="absolute inset-y-0 left-0 w-full origin-left bg-[#FF7133]"
-                style={{ scaleX: scrollYProgress }}
-              />
-            </span>
-            <span className="font-mono text-[0.65rem] text-foreground/40">
-              {String(projects.length).padStart(2, "0")}
-            </span>
-            <span className="ml-4 hidden font-mono text-[0.58rem] uppercase tracking-[0.16em] text-foreground/30 xl:block">
-              Scroll to explore
-            </span>
-          </div>
-        ) : null}
-      </div>
-
-      {!pinned ? (
-        <div className="gallery-hint mt-6 flex items-center justify-between gap-6 px-6 sm:px-8 lg:hidden">
-          <span className="font-mono text-[0.58rem] uppercase tracking-[0.16em] text-foreground/50">
-            Swipe to explore
+        <div
+          aria-hidden="true"
+          className="gallery-rail mx-auto mt-8 flex w-full max-w-6xl items-center gap-6 px-10"
+        >
+          <span className="font-mono text-[0.65rem] text-[#FF7133]">
+            {String(active + 1).padStart(2, "0")}
           </span>
-          <span className="font-mono text-[0.6rem] text-foreground/40">
-            {String(projects.length).padStart(2, "0")} projects
+          <span className="relative h-px flex-1 overflow-hidden bg-foreground/12">
+            <motion.span
+              className="absolute inset-y-0 left-0 w-full origin-left bg-[#FF7133]"
+              style={{ scaleX: scrollYProgress }}
+            />
+          </span>
+          <span className="font-mono text-[0.65rem] text-foreground/40">
+            {String(projects.length).padStart(2, "0")}
+          </span>
+          <span className="ml-4 hidden font-mono text-[0.58rem] uppercase tracking-[0.16em] text-foreground/30 xl:block">
+            Scroll to explore
           </span>
         </div>
-      ) : null}
+      </div>
+    );
     </div>
   );
 }
