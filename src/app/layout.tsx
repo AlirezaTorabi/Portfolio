@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Alireza Toorabi | Frontend Developer & UI Designer",
+  title: "Alireza Torabi | Frontend Developer & UI Designer",
   description:
-    "Portfolio of Alireza Toorabi, Frontend Developer and UI Designer.",
+    "Portfolio of Alireza Torabi, Frontend Developer and UI Designer."
 };
 
 export const viewport: Viewport = {

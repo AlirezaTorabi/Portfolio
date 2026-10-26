@@ -84,7 +84,7 @@ export default function About() {
             />
             <Reveal delay={0.1}>
               <p className="mt-8 max-w-xl text-pretty text-sm leading-7 text-white/65 sm:text-base sm:leading-8">
-                I&apos;m Alireza Toorabi, a front-end developer and UI designer.
+                I&apos;m Alireza Torabi, a front-end developer and UI designer.
                 I build modern, responsive web applications and shape
                 interfaces that feel intuitive, refined, and easy to use,
                 turning ideas into functional digital experiences with clean,

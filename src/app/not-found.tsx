@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Page not found | Alireza Toorabi",
-  description: "The requested page could not be found.",
+  title: "Page not found | Alireza Torabi",
+  description: "The requested page could not be found."
 };
 
 export default function NotFound() {

@@ -91,7 +91,7 @@ export default function Footer() {
           <div className="grid gap-12 md:grid-cols-[minmax(0,1.5fr)_minmax(0,0.9fr)_auto] md:gap-14 lg:gap-20">
             <div>
               <p className="flex items-center gap-2.5 text-lg font-medium">
-                Alireza Toorabi
+                Alireza Torabi
                 <span
                   aria-hidden="true"
                   className="mt-0.5 block size-1.5 shrink-0 bg-[#FF7133]"
@@ -154,12 +154,12 @@ export default function Footer() {
           aria-hidden="true"
           className="mt-14 select-none whitespace-nowrap text-[clamp(1.75rem,9.5vw,8rem)] font-medium leading-[0.8] tracking-[-0.05em] text-white/[0.055]"
         >
-          ALIREZA TOORABI
+          ALIREZA TORABI
         </p>
 
         <div className="mt-8 flex flex-col gap-4 border-t border-white/10 py-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-white/50">
-            © {year} Alireza Toorabi. All rights reserved.
+            © {year} Alireza Torabi. All rights reserved.
           </p>
           <a
             href="#top"

@@ -44,7 +44,7 @@ const nodes: ArchitectureNode[] = [
     id: "workspace",
     type: "architecture",
     position: { x: 500, y: 0 },
-    data: { category: "WORKSPACE", title: "Alireza Toorabi", detail: "Portfolio · Next.js 16", accent: "#FF5100" },
+    data: { category: "WORKSPACE", title: "Alireza Torabi", detail: "Portfolio · Next.js 16", accent: "#FF5100" },
   },
   {
     id: "app-router",
@@ -147,7 +147,7 @@ export default function DesignSystemPage() {
     <main className="architecture-page">
       <header className="architecture-header">
         <div>
-          <p className="architecture-kicker">ALIREZA TOORABI <span>/</span> WORKSPACE MAP</p>
+          <p className="architecture-kicker">ALIREZA TORABI <span>/</span> WORKSPACE MAP</p>
           <h1>Project architecture</h1>
         </div>
         <div className="architecture-summary" aria-label="Project summary">
