@@ -11,6 +11,9 @@
   --secondary: rgba(17, 17, 19, 0.06);
   --accent: #ff7133;
   --card: #ffffff;
+  --scrollbar-thumb: #144B5E;
+  --scrollbar-thumb-hover: #1E6F86;
+  --scrollbar-track: rgba(17, 17, 19, 0.04);
 }
 
 .dark {
@@ -22,6 +25,7 @@
   --accent: #ff7133;
   --border: rgba(248, 249, 250, 0.1);
   --card: #151517;
+  --scrollbar-track: rgba(248, 249, 250, 0.04);
 }
 
 @theme inline {
@@ -61,6 +65,37 @@ body {
 ::selection {
   background: var(--accent);
   color: #111113;
+}
+
+/* Premium minimalist scrollbar — light, dark, and system theme aware */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 }
 
 @media (prefers-reduced-motion: reduce) {
