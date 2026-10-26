@@ -41,6 +41,7 @@ interface GooeyNavProps {
   gooeyness?: number;
   wobble?: number;
   hoverEffect?: boolean;
+  label?: string;
   className?: string;
   style?: CSSProperties;
 }
@@ -333,6 +334,7 @@ const GooeyNav = ({
   gooeyness = 0.5,
   wobble = 0.5,
   hoverEffect = true,
+  label,
   className = '',
   style
 }: GooeyNavProps) => {
@@ -372,7 +374,6 @@ const GooeyNav = ({
   });
 
   const select = (index: number) => {
-    if (index === current) return;
     if (activeIndex === undefined) setInnerIndex(index);
     onChange?.(index, items[index]);
   };
@@ -882,6 +883,7 @@ const GooeyNav = ({
 
   return (
     <nav
+      aria-label={label}
       className={`${ROOT}${frame ? ` ${FRAMED}` : ''} ${className}`.trim()}
       style={
         {

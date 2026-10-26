@@ -84,7 +84,7 @@ export default function Hero() {
             aria-label="Areas of focus"
             className="border-t border-white/12 pt-7 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0"
           >
-            <p className="text-[0.62rem] font-medium uppercase tracking-[0.12em] text-white/45">
+            <p className="text-[0.62rem] font-medium uppercase tracking-[0.12em] text-white/60">
               Areas of focus
             </p>
             <ul className="mt-6 space-y-5">
@@ -108,7 +108,7 @@ export default function Hero() {
         href="#work"
         className="group absolute bottom-7 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-3 sm:flex"
       >
-        <span className="text-[0.58rem] font-medium uppercase tracking-[0.28em] text-white/35 transition-colors group-hover:text-white/70">
+        <span className="text-[0.58rem] font-medium uppercase tracking-[0.28em] text-white/50 transition-colors group-hover:text-white/75">
           Scroll
         </span>
         <span

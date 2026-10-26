@@ -84,6 +84,7 @@ const NAV_OFFSET = 84;
 
 export default function Navbar() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     let frame = 0;
@@ -100,6 +101,9 @@ export default function Navbar() {
       });
 
       setActiveIndex((current) => (current === next ? current : next));
+
+      const isScrolled = window.scrollY > 16;
+      setScrolled((current) => (current === isScrolled ? current : isScrolled));
     };
 
     const schedule = () => {
@@ -118,7 +122,13 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 isolate pointer-events-none">
+    <header
+      className={`pointer-events-none fixed inset-x-0 top-0 z-50 isolate transition-[background-color,backdrop-filter] duration-300 motion-reduce:transition-none ${
+        scrolled
+          ? "bg-[#111113]/85 backdrop-blur-md"
+          : "bg-transparent backdrop-blur-none"
+      }`}
+    >
       <div className="relative mx-auto flex h-[76px] max-w-[1800px] items-center justify-between gap-4 pl-4 pr-[10px] md:px-5 lg:px-7">
         <a
           href="#top"
@@ -142,6 +152,7 @@ export default function Navbar() {
             items={items}
             activeIndex={activeIndex}
             onChange={(index) => setActiveIndex(index)}
+            label="Primary navigation"
             theme="dark"
             size="sm"
             frame

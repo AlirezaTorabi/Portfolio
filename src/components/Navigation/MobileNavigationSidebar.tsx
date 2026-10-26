@@ -16,6 +16,7 @@ export default function MobileNavigationSidebar({
 }: MobileNavigationSidebarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const sidebarRef = useRef<HTMLElement>(null);
   const iconOnlyItems = useMemo(
     () =>
       items.map((item) => ({
@@ -28,6 +29,8 @@ export default function MobileNavigationSidebar({
 
   function closeMenu() {
     setIsOpen(false);
+    // Release the scroll lock before the link's default anchor navigation runs.
+    document.body.style.overflow = "";
     menuButtonRef.current?.focus();
   }
 
@@ -38,6 +41,30 @@ export default function MobileNavigationSidebar({
       if (event.key === "Escape") {
         setIsOpen(false);
         menuButtonRef.current?.focus();
+        return;
+      }
+
+      if (event.key !== "Tab" || !sidebarRef.current) return;
+
+      const focusable = [
+        menuButtonRef.current,
+        ...Array.from(
+          sidebarRef.current.querySelectorAll<HTMLElement>("a[href], button"),
+        ),
+      ].filter((element): element is HTMLElement => Boolean(element));
+
+      if (focusable.length < 2) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement;
+
+      if (event.shiftKey && active === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && active === last) {
+        event.preventDefault();
+        first.focus();
       }
     }
 
@@ -51,7 +78,11 @@ export default function MobileNavigationSidebar({
 
     const desktop = window.matchMedia("(min-width: 768px)");
     const syncScrollLock = () => {
-      document.body.style.overflow = desktop.matches ? "" : "hidden";
+      if (desktop.matches) {
+        setIsOpen(false);
+        return;
+      }
+      document.body.style.overflow = "hidden";
     };
 
     syncScrollLock();
@@ -87,6 +118,7 @@ export default function MobileNavigationSidebar({
       />
 
       <aside
+        ref={sidebarRef}
         id="mobile-navigation-sidebar"
         aria-label="Mobile navigation"
         aria-hidden={!isOpen}
@@ -96,6 +128,7 @@ export default function MobileNavigationSidebar({
         <GooeyNav
           items={iconOnlyItems}
           activeIndex={activeIndex}
+          label="Mobile navigation links"
           theme="dark"
           size="sm"
           frame={false}

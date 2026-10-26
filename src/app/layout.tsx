@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -16,6 +16,11 @@ export const metadata: Metadata = {
   title: "Alireza Toorabi | Frontend Developer & UI Designer",
   description:
     "Portfolio of Alireza Toorabi, Frontend Developer and UI Designer.",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#111113",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

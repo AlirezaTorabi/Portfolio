@@ -16,6 +16,22 @@ interface ProjectGalleryProps {
   projects: WorkProject[];
 }
 
+function getValidProjectUrl(value?: string): string | undefined {
+  const candidate = value?.trim();
+  if (!candidate || /\s/.test(candidate)) return undefined;
+
+  try {
+    const url = new URL(candidate);
+    return url.protocol === "https:" || url.protocol === "http:"
+      ? candidate
+      : undefined;
+  } catch {
+    return candidate.startsWith("/") && !candidate.startsWith("//")
+      ? candidate
+      : undefined;
+  }
+}
+
 function ProjectCard({
   project,
   index,
@@ -28,6 +44,10 @@ function ProjectCard({
   active: boolean;
 }) {
   const number = String(index + 1).padStart(2, "0");
+  const projectUrl = getValidProjectUrl(project.url);
+  const opensInNewTab = projectUrl
+    ? /^https?:\/\//i.test(projectUrl)
+    : false;
 
   return (
     <li className="gallery-card w-[86vw] shrink-0 snap-center sm:w-[78vw] md:w-[min(74vw,640px)] lg:w-[min(68vw,780px)]">
@@ -64,7 +84,27 @@ function ProjectCard({
             id={`project-${index}-title`}
             className="mt-8 max-w-[24ch] text-3xl font-medium leading-[1.06] text-[#F8F9FA] sm:text-4xl lg:text-[clamp(2.4rem,3.4vw,3.4rem)]"
           >
-            {project.title}
+            {projectUrl ? (
+              <a
+                href={projectUrl}
+                target={opensInNewTab ? "_blank" : undefined}
+                rel={opensInNewTab ? "noopener noreferrer" : undefined}
+                className="group/title inline-flex items-baseline gap-2 transition-colors duration-300 hover:text-[#FF7133] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133] focus-visible:ring-offset-4 focus-visible:ring-offset-[#151517]"
+              >
+                {project.title}
+                <span
+                  aria-hidden="true"
+                  className="text-sm text-[#FF7133] transition-transform duration-300 group-hover/title:-translate-y-0.5 group-hover/title:translate-x-0.5"
+                >
+                  ↗
+                </span>
+                {opensInNewTab ? (
+                  <span className="sr-only"> (opens in a new tab)</span>
+                ) : null}
+              </a>
+            ) : (
+              project.title
+            )}
           </h3>
 
           <p className="mt-5 max-w-md text-pretty text-sm leading-7 text-white/60 sm:text-base">
@@ -188,7 +228,7 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
           role="region"
           aria-label="Selected project gallery"
           tabIndex={pinned ? -1 : 0}
-          className={`w-full snap-x snap-mandatory overflow-x-auto scroll-px-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133] focus-visible:ring-offset-4 focus-visible:ring-offset-[#111113] sm:scroll-px-8 ${
+          className={`w-full snap-x snap-mandatory overflow-x-auto scroll-px-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#FF7133] sm:scroll-px-8 ${
             pinned ? "lg:overflow-visible" : ""
           }`}
         >
