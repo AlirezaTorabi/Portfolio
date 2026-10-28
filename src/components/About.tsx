@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import AnimatedHeading from "@/components/ui/AnimatedHeading";
 import Reveal from "@/components/ui/Reveal";
+import ToolkitTabs from "@/components/ToolkitTabs";
 
 const principles = [
   {
@@ -64,6 +65,7 @@ function TechnologyBadge({ technology }: { technology: Technology }) {
   );
 }
 
+export { technologies, type Technology };
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
@@ -175,16 +177,7 @@ export default function About() {
             <p className="text-[0.65rem] font-medium uppercase text-foreground/50">
               Toolkit
             </p>
-            <ul
-              aria-label="Technologies"
-              className="flex min-w-0 flex-wrap gap-2.5"
-            >
-              {technologies.map((technology) => (
-                <li key={technology.name}>
-                  <TechnologyBadge technology={technology} />
-                </li>
-              ))}
-            </ul>
+            <ToolkitTabs />
           </div>
         </Reveal>
       </div>
