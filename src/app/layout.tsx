@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://alito.ir"),
   title: "Alireza Torabi | Frontend Developer & UI Designer",
   description:
     "Portfolio of Alireza Torabi, Frontend Developer and UI Designer.",
