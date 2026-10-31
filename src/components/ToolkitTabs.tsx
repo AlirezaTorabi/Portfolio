@@ -54,14 +54,14 @@ function TechnologyChip({ technology }: { technology: Technology }) {
 
 export default function ToolkitTabs() {
   return (
-    <Tabs defaultValue="frontend" className="w-full">
+    <Tabs defaultValue="frontend" className="w-full min-w-0 max-w-[560px]">
       <TabsHighlight className="relative z-0 mx-auto flex w-full max-w-[560px] shrink-0 rounded-lg border border-transparent bg-transparent p-[3px] shadow-none dark:border-input/40">
         <TabsList className="flex items-center gap-[3px] rounded-lg bg-transparent p-1">
           {TABS.map((tab) => (
             <TabsHighlightItem key={tab.value} value={tab.value}>
               <TabsTrigger
                 value={tab.value}
-                className="inline-flex h-8 w-full items-center justify-center rounded-md px-3 text-xs font-medium whitespace-nowrap text-foreground/50 transition-colors duration-500 ease-in-out hover:text-foreground/80 data-[state=active]:text-foreground"
+                className="inline-flex h-8 w-full items-center justify-center rounded-md px-2 text-xs font-medium whitespace-nowrap text-foreground/50 transition-colors duration-500 ease-in-out hover:text-foreground/80 data-[state=active]:text-foreground sm:px-3"
                 aria-label={`Show ${tab.label} technologies`}
               >
                 {tab.label}
@@ -71,10 +71,10 @@ export default function ToolkitTabs() {
         </TabsList>
       </TabsHighlight>
 
-      <TabsContents className="mt-4 flex min-h-[120px] w-full flex-wrap items-start gap-2.5 rounded-xl bg-transparent ring-0">
+      <TabsContents className="mt-4 min-h-[120px] w-full rounded-xl bg-transparent ring-0">
         {TABS.map(({ value, label }) => (
           <TabsContent key={value} value={value} className="w-full">
-            <div className="contents" role="list" aria-label={`${label} technologies`}>
+            <div className="grid gap-2.5" role="list" aria-label={`${label} technologies`}>
               {TAB_SKILLS[value].map((technology) => (
                 <li key={technology.name}>
                   <TechnologyChip technology={technology} />
