@@ -158,6 +158,10 @@ const MAX_DROPS = 32;
 const MAX_PILLS = 4;
 const MARGIN = 72;
 
+const IS_TOUCH =
+  typeof window !== 'undefined' &&
+  ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+
 const VERTEX = `#version 300 es
 in vec2 aPosition;
 void main() {
@@ -328,7 +332,7 @@ const GooeyNav = ({
   size = 'md',
   frame = true,
   animationTime = 600,
-  particleCount = 15,
+  particleCount = IS_TOUCH ? 0 : 15,
   timeVariance = 300,
   spread = 56,
   gooeyness = 0.5,
@@ -388,7 +392,9 @@ const GooeyNav = ({
     if (!stage || !canvas || !list || !overlay || !fallback) return;
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const gl = canvas.getContext('webgl2', { alpha: true, premultipliedAlpha: true, antialias: false });
+    // Skip WebGL entirely on touch devices to avoid main-thread contention.
+    const useWebgl = !reduced && !IS_TOUCH;
+    const gl = useWebgl ? canvas.getContext('webgl2', { alpha: true, premultipliedAlpha: true, antialias: false }) : null;
     const pipeline = gl ? build(gl) : null;
     fallback.style.display = pipeline ? 'none' : 'block';
     canvas.style.display = pipeline ? 'block' : 'none';

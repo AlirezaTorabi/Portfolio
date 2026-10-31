@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { MotionConfig, motion } from "motion/react";
+import { motion } from "motion/react";
 
 const EASE: [number, number, number, number] = [0.2, 0.7, 0.2, 1];
 
@@ -28,17 +28,17 @@ export default function Reveal({
 }: RevealProps) {
   const props = motionProps(delay);
 
+  if (as === "li") {
+    return (
+      <motion.li className={className} {...props}>
+        {children}
+      </motion.li>
+    );
+  }
+
   return (
-    <MotionConfig reducedMotion="user">
-      {as === "li" ? (
-        <motion.li className={className} {...props}>
-          {children}
-        </motion.li>
-      ) : (
-        <motion.div className={className} {...props}>
-          {children}
-        </motion.div>
-      )}
-    </MotionConfig>
+    <motion.div className={className} {...props}>
+      {children}
+    </motion.div>
   );
 }

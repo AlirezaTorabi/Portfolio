@@ -12,10 +12,6 @@ import type { WorkProject } from "@/data/workProjects";
 const useIsomorphicLayoutEffect =
   typeof window === "undefined" ? useEffect : useLayoutEffect;
 
-function prefersReducedMotion() {
-  return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-}
-
 interface ProjectGalleryProps {
   projects: WorkProject[];
 }

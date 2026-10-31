@@ -41,7 +41,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           <div
             aria-hidden="true"
-            className="pointer-events-none fixed inset-0 -z-10 text-foreground"
+            className="pointer-events-none fixed inset-0 -z-10 bg-background"
           >
             <GlyphBackground interactive={false} />
           </div>

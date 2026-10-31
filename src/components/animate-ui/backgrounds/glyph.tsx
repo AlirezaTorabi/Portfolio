@@ -1,14 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import {
-  animate,
-  cancelFrame,
-  frame,
-  motionValue,
-  useInView,
-  type MotionValue,
-} from 'motion/react';
+import { useInView } from 'motion/react';
 
 import {
   ReducedMotionConfig,
@@ -30,6 +23,12 @@ const WAVE_EDGE = 10;
 const WAVE_TAIL = 30;
 const DRIFT = [-30, 12] as const;
 const ACTIVITY_DECAY = 900;
+
+const IS_MOBILE =
+  typeof navigator !== 'undefined' &&
+  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent || '',
+  );
 
 const VERTEX = `
 attribute vec2 position;
@@ -148,7 +147,7 @@ type Wave = {
   kind: number;
   phase: number;
   strength: number;
-  age: MotionValue<number>;
+  age: { value: number; target: number };
 };
 
 type GlyphBackgroundProps = React.ComponentProps<'div'> & {
@@ -336,16 +335,9 @@ function GlyphBackgroundContent({
         kind,
         phase,
         strength,
-        age: motionValue(0),
+        age: { value: -delay, target: WAVE_LIFE },
       };
       wavesRef.current = [...wavesRef.current.slice(1 - MAX_WAVES), wave];
-      animate(wave.age, WAVE_LIFE, {
-        duration: WAVE_LIFE,
-        delay,
-        ease: 'linear',
-      }).then(() => {
-        wavesRef.current = wavesRef.current.filter((w) => w !== wave);
-      });
     }
   };
 
@@ -376,7 +368,7 @@ function GlyphBackgroundContent({
       const rect = container.getBoundingClientRect();
       width = rect.width;
       height = rect.height;
-      dpr = Math.max(1, Math.min(window.devicePixelRatio || 1, 2));
+      dpr = Math.max(1, Math.min(window.devicePixelRatio || 1, IS_MOBILE ? 1 : 2));
       canvas.width = Math.max(1, Math.round(width * dpr));
       canvas.height = Math.max(1, Math.round(height * dpr));
       canvas.style.width = `${width}px`;
@@ -395,18 +387,25 @@ function GlyphBackgroundContent({
     const draw = (time: number, looping = false) => {
       if (width === 0 || height === 0) return;
       const { glowColor, shapeColor } = optionsRef.current;
-      if (!looping || frames++ % 30 === 0) {
-        const text = getComputedStyle(container).color || '#e5e5e5';
-        const key = `${glowColor ?? text}|${shapeColor ?? text}`;
+      if (!looping || frames++ % 60 === 0) {
+        const key = `${glowColor ?? ''}|${shapeColor ?? ''}`;
         if (key !== colorKey) {
           colorKey = key;
-          color = toRgb(glowColor ?? text);
-          accent = toRgb(shapeColor ?? text);
+          color = toRgb(glowColor ?? '#e5e5e5');
+          accent = toRgb(shapeColor ?? '#e5e5e5');
         }
       }
       waves.fill(0);
       wavesRef.current.forEach((wave, i) => {
-        const age = wave.age.get();
+        let age = wave.age.value + (looping ? 1 / 60 : 0);
+        if (age < wave.age.target) {
+          age = wave.age.target;
+        }
+        if (age > WAVE_LIFE) {
+          wavesRef.current = wavesRef.current.filter((w) => w !== wave);
+          return;
+        }
+        wave.age.value = age;
         if (age <= 0) return;
         const radius = (WAVE_SPEED * age) / (1 + WAVE_SLOWDOWN * age);
         const fade =
@@ -478,12 +477,23 @@ function GlyphBackgroundContent({
 
   React.useEffect(() => {
     if (!playing) return;
-    const tick = ({ delta }: { delta: number }) => {
-      timeRef.current += Math.min(delta, 64);
+    let raf = 0;
+    let last = performance.now();
+    const tick = () => {
+      raf = 0;
+      const now = performance.now();
+      const delta = Math.min(now - last, 64);
+      last = now;
+      timeRef.current += delta;
       drawRef.current(timeRef.current, true);
+      if (raf === 0) {
+        raf = requestAnimationFrame(tick);
+      }
     };
-    frame.render(tick, true);
-    return () => cancelFrame(tick);
+    raf = requestAnimationFrame(tick);
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, [playing]);
 
   const point = (event: React.PointerEvent<HTMLDivElement>) => {

@@ -106,12 +106,13 @@ export default function Hero() {
 
                 <div className="relative overflow-hidden">
                   <Image
-                    src="/hero-img/hero-img-cutout.png"
+                    src="/hero-img/hero-img.webp"
                     alt="Illustration of a frontend developer working on a laptop, surrounded by interface cards and a plant."
                     width={672}
                     height={572}
                     priority
-                    sizes="(max-width: 640px) 88vw, (max-width: 1024px) 76vw, 500px"
+                    fetchPriority="high"
+                    sizes="(max-width: 640px) 88vw, (max-width: 1024px) 76vw, (max-width: 1280px) 32vw, 500px"
                     className="h-auto w-full transition-transform duration-[600ms] ease-out group-hover:scale-[1.02] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                   />
                 </div>

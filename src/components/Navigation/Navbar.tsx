@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { useTheme } from "next-themes";
 import GooeyNav from "@/components/Navigation/GooeyNav";
 import MobileNavigationSidebar from "@/components/Navigation/MobileNavigationSidebar";
 import { ThemeSwitcher } from "@/components/theme-switcher";
@@ -99,18 +100,8 @@ interface NavigationIntent {
 
 export default function Navbar() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [navTheme, setNavTheme] = useState<'dark' | 'light' | undefined>(undefined);
-  useEffect(() => {
-    const html = document.documentElement;
-    const className = html.className || "";
-    // If className is already set (e.g. from next-themes on first mount),
-    // use it. Otherwise fall back to detecting.
-    if (className.includes("dark") && !className.includes("light")) {
-      setNavTheme("dark");
-    } else if (className.includes("light") && !className.includes("dark")) {
-      setNavTheme("light");
-    }
-  }, []);
+  const { resolvedTheme } = useTheme();
+  const navTheme = resolvedTheme === "light" ? "light" : "dark";
   const router = useRouter();
   const intentRef = useRef<NavigationIntent | null>(null);
   const intentTimeoutRef = useRef<number | null>(null);
