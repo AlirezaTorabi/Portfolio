@@ -148,6 +148,26 @@ html {
   box-sizing: border-box;
 }
 
+@keyframes plate-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.hero-plate {
+  animation: plate-float 9s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-plate {
+    animation: none;
+  }
+}
+
 @keyframes scroll-cue {
   0%,
   100% {

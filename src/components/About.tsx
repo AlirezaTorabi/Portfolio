@@ -47,24 +47,6 @@ const technologies: Technology[] = [
   { name: "Git", icon: "devicon-git-plain colored" },
 ];
 
-function TechnologyBadge({ technology }: { technology: Technology }) {
-  const iconClassName = [technology.icon, technology.iconColor]
-    .filter(Boolean)
-    .join(" ");
-
-  return (
-    <span className="group inline-flex items-center gap-2 border border-foreground/10 px-3 py-1.5 transition-colors duration-200 hover:border-[#FF7133]/50 hover:bg-foreground/[0.03]">
-      <i
-        aria-hidden="true"
-        className={`${iconClassName} inline-flex items-center justify-center text-base leading-none transition-transform duration-200 group-hover:scale-110 motion-reduce:transition-none motion-reduce:group-hover:scale-100`}
-      />
-      <span className="font-mono text-[0.65rem] uppercase tracking-[0.08em] text-foreground/55 transition-colors duration-200 group-hover:text-foreground">
-        {technology.name}
-      </span>
-    </span>
-  );
-}
-
 export { technologies, type Technology };
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
