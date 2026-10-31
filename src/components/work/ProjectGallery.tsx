@@ -78,7 +78,7 @@ function ProjectCard({
         </span>
 
         <div className="relative">
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[0.6rem] uppercase tracking-[0.14em]">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[0.625rem] text-foreground/55">
             <span className="text-[#FF7133]">{number}</span>
             <span className="h-px w-6 bg-foreground/20" aria-hidden="true" />
             <span className="text-foreground/55">{project.category}</span>
@@ -121,7 +121,7 @@ function ProjectCard({
           <div className="mt-5 flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
             <ul
               aria-label={`${project.title} technologies`}
-              className="flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-[0.6rem] uppercase tracking-[0.08em] text-foreground/55"
+              className="flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-[0.625rem] text-foreground/55"
             >
               {project.technologies.map((technology, technologyIndex) => (
                 <li key={technology} className="flex items-center gap-3">

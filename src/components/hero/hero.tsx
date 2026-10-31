@@ -51,9 +51,9 @@ export default function Hero() {
       </div>
 
       <div className="relative mx-auto flex w-full max-w-6xl flex-1 flex-col px-5 pb-8 pt-24 sm:px-8 sm:pb-10 sm:pt-28 lg:px-10 lg:pt-28">
-        <Reveal>
-          <div className="flex items-center justify-between gap-6 border-b border-foreground/10 pb-4">
-            <p className="flex min-w-0 items-center gap-3 text-[0.625rem] font-medium uppercase tracking-[0.14em] text-foreground/70 sm:text-[0.66rem] sm:tracking-[0.18em]">
+<Reveal>
+          <div className="flex items-center justify-between gap-6 border-b border-foreground/15 pb-4">
+            <p className="flex min-w-0 items-center gap-3 text-[0.6875rem] font-medium text-foreground/70 sm:text-sm">
               <span
                 aria-hidden="true"
                 className="size-1.5 shrink-0 bg-[#FF7133]"
@@ -62,8 +62,8 @@ export default function Hero() {
                 Frontend Developer &amp; UI Designer
               </span>
             </p>
-            <p className="hidden shrink-0 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-foreground/50 sm:block">
-              Portfolio / 2026
+            <p className="hidden shrink-0 font-mono text-[0.6875rem] text-foreground/50 sm:block">
+              Est. 2026
             </p>
           </div>
         </Reveal>
@@ -82,7 +82,7 @@ export default function Hero() {
                 {
                   text: "Torabi",
                   className:
-                    "pl-[0.08em] text-[#FF7133] sm:pl-[0.12em] lg:pl-[0.16em]",
+                    "pl-[0.08em] sm:pl-[0.12em] lg:pl-[0.16em]",
                 },
               ]}
             />
@@ -159,21 +159,21 @@ export default function Hero() {
         <Reveal delay={0.58}>
           <div className="border-t border-foreground/10 pt-5">
             <div className="flex items-baseline justify-between gap-4">
-              <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-foreground/55">
-                Practice index
+              <p className="font-mono text-[0.6875rem] text-foreground/55">
+                Practice areas
               </p>
               <p
                 aria-hidden="true"
-                className="font-mono text-[0.625rem] text-foreground/40"
+                className="font-mono text-[0.6875rem] text-foreground/40"
               >
-                01—03
+                01 — 03
               </p>
             </div>
 
             <ul className="mt-4 grid grid-cols-3 gap-x-4 gap-y-3 sm:gap-x-8">
               {practiceAreas.map((area, index) => (
                 <li key={area.title} className="min-w-0">
-                  <span className="font-mono text-[0.65rem] text-[#FF7133]">
+                  <span className="font-mono text-[0.6875rem] text-[#FF7133]">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <p className="mt-1.5 text-[0.8125rem] leading-5 text-foreground/80 sm:mt-2 sm:text-sm">
@@ -193,9 +193,9 @@ export default function Hero() {
           <div className="mt-6 flex items-center justify-between gap-6 border-t border-foreground/10 pt-5">
             <a
               href="#work"
-              className="group inline-flex items-center gap-3 text-[0.625rem] font-medium uppercase tracking-[0.24em] text-foreground/60 transition-colors hover:text-foreground/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133] focus-visible:ring-offset-4 focus-visible:ring-offset-background"
+              className="group inline-flex items-center gap-3 text-[0.6875rem] font-medium text-foreground/60 transition-colors hover:text-foreground/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133] focus-visible:ring-offset-4 focus-visible:ring-offset-background"
             >
-              <span>Scroll</span>
+              <span>Scroll to work</span>
               <span
                 aria-hidden="true"
                 className="relative block h-7 w-px overflow-hidden bg-foreground/15"
@@ -205,7 +205,7 @@ export default function Hero() {
               <span className="sr-only">to selected work</span>
             </a>
 
-            <ul className="hidden items-center gap-4 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-foreground/40 sm:flex">
+            <ul className="hidden items-center gap-4 font-mono text-[0.6875rem] text-foreground/40 sm:flex">
               {toolkit.map((tool) => (
                 <li key={tool}>{tool}</li>
               ))}
@@ -213,7 +213,7 @@ export default function Hero() {
 
             <p
               aria-hidden="true"
-              className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-foreground/40"
+              className="font-mono text-[0.6875rem] text-foreground/40"
             >
               AT / 001
             </p>

@@ -97,7 +97,7 @@ export default function Footer() {
                   className="mt-0.5 block size-1.5 shrink-0 bg-[#FF7133]"
                 />
               </p>
-              <p className="mt-2 text-[0.65rem] font-medium uppercase tracking-[0.12em] text-foreground/50">
+              <p className="mt-2 text-[0.6875rem] font-medium text-foreground/50">
                 Front-End Developer &amp; UI Designer
               </p>
               <p className="mt-6 max-w-xs text-sm leading-6 text-foreground/60">
@@ -106,7 +106,7 @@ export default function Footer() {
             </div>
 
             <nav aria-label="Footer navigation">
-              <p className="text-[0.65rem] font-medium uppercase tracking-[0.12em] text-foreground/50">
+              <p className="text-[0.6875rem] font-medium text-foreground/50">
                 Navigation
               </p>
               <ul className="mt-4 space-y-1">
@@ -128,7 +128,7 @@ export default function Footer() {
             </nav>
 
             <div>
-              <p className="text-[0.65rem] font-medium uppercase tracking-[0.12em] text-foreground/50">
+              <p className="text-[0.6875rem] font-medium text-foreground/50">
                 Socials
               </p>
               <ul className="mt-5 flex gap-2.5">

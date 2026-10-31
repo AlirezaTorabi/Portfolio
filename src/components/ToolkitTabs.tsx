@@ -45,7 +45,7 @@ function TechnologyChip({ technology }: { technology: Technology }) {
         aria-hidden="true"
         className={`${iconClassName} inline-flex size-5 items-center justify-center text-base leading-none transition-transform duration-300 group-hover:scale-110 motion-reduce:transition-none motion-reduce:group-hover:scale-100`}
       />
-      <span className="font-mono text-[0.65rem] uppercase tracking-[0.08em] text-foreground/55 transition-colors duration-300 group-hover:text-foreground">
+      <span className="font-mono text-[0.6875rem] text-foreground/55 transition-colors duration-300 group-hover:text-foreground">
         {technology.name}
       </span>
     </div>

@@ -77,7 +77,7 @@ export default function About() {
       <div className="relative mx-auto max-w-6xl px-6 py-24 sm:px-8 sm:py-28 lg:px-10 lg:py-32">
         <Reveal>
           <div className="flex items-center justify-between gap-6 border-b border-foreground/15 pb-5">
-            <p className="text-[0.65rem] font-medium uppercase text-foreground/60">
+            <p className="text-[0.6875rem] font-medium text-foreground/60">
               About Me
             </p>
             <p className="hidden font-mono text-xs text-foreground/55 sm:block">
