@@ -1,120 +1,11 @@
 "use client";
 
-import { useRef, type ReactNode } from "react";
+import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
+import DynamicIsland from "@/components/smoothui/dynamic-island";
 import AnimatedHeading from "@/components/ui/AnimatedHeading";
 import Magnetic from "@/components/ui/Magnetic";
 import Reveal from "@/components/ui/Reveal";
-
-function PhoneIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      focusable="false"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="h-5 w-5"
-    >
-      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-    </svg>
-  );
-}
-
-function TelegramIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      focusable="false"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="h-5 w-5"
-    >
-      <path d="m22 2-7 20-4-9-9-4Z" />
-      <path d="M22 2 11 13" />
-    </svg>
-  );
-}
-
-function InstagramIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      focusable="false"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="h-5 w-5"
-    >
-      <rect x="2.5" y="2.5" width="19" height="19" rx="5" />
-      <circle cx="12" cy="12" r="4.2" />
-      <circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}
-
-function GitHubIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      focusable="false"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      className="h-[1.15rem] w-[1.15rem]"
-    >
-      <path d="M12 .5C5.73.5.9 5.33.9 11.6c0 4.9 3.17 9.05 7.57 10.52.55.1.75-.24.75-.53v-2.06c-3.08.67-3.73-1.3-3.73-1.3-.5-1.28-1.23-1.62-1.23-1.62-1-.68.08-.67.08-.67 1.11.08 1.7 1.14 1.7 1.14.98 1.68 2.57 1.2 3.2.92.1-.71.38-1.2.7-1.47-2.46-.28-5.05-1.23-5.05-5.47 0-1.21.43-2.2 1.14-2.97-.11-.28-.5-1.4.11-2.92 0 0 .93-.3 3.05 1.14a10.5 10.5 0 0 1 5.55 0c2.12-1.44 3.05-1.14 3.05-1.14.61 1.52.22 2.64.11 2.92.71.77 1.14 1.76 1.14 2.97 0 4.25-2.6 5.19-5.07 5.46.4.35.76 1.03.76 2.08v3.08c0 .29.2.64.76.53a11.1 11.1 0 0 0 7.56-10.52C23.1 5.33 18.27.5 12 .5Z" />
-    </svg>
-  );
-}
-
-type ContactChannel = {
-  label: string;
-  value: string;
-  href: string;
-  external: boolean;
-  icon: ReactNode;
-};
-
-const channels: ContactChannel[] = [
-  {
-    label: "Phone",
-    value: "+98 917 663 1858",
-    href: "tel:+989176631858",
-    external: false,
-    icon: <PhoneIcon />,
-  },
-  {
-    label: "Telegram",
-    value: "@AlirezaToorabi",
-    href: "https://t.me/AlirezaToorabi",
-    external: true,
-    icon: <TelegramIcon />,
-  },
-  {
-    label: "Instagram",
-    value: "@AlirezaToorabi",
-    href: "https://www.instagram.com/AlirezaToorabi/",
-    external: true,
-    icon: <InstagramIcon />,
-  },
-  {
-    label: "GitHub",
-    value: "AlirezaTorabi",
-    href: "https://github.com/AlirezaTorabi",
-    external: true,
-    icon: <GitHubIcon />,
-  },
-];
 
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -200,49 +91,9 @@ export default function Contact() {
                 Direct channels
               </p>
             </Reveal>
-            <ul
-              aria-label="Contact methods"
-              className="m-0 list-none border-t border-foreground/10 p-0"
-            >
-              {channels.map((channel, index) => (
-                <Reveal
-                  as="li"
-                  key={channel.label}
-                  delay={0.1 + index * 0.06}
-                >
-                  <a
-                    href={channel.href}
-                    {...(channel.external
-                      ? { target: "_blank", rel: "noopener noreferrer" }
-                      : {})}
-                    className="group flex items-center justify-between gap-4 border-b border-foreground/10 px-1 py-4 transition-colors duration-200 hover:border-[#FF7133]/40 hover:bg-foreground/[0.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133] focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:py-5"
-                  >
-                    <span className="flex min-w-0 items-center gap-4">
-                      <span className="grid size-10 shrink-0 place-items-center border border-foreground/10 text-foreground/60 transition-colors duration-200 group-hover:border-[#FF7133]/50 group-hover:text-[#FF7133]">
-                        {channel.icon}
-                      </span>
-                      <span className="flex min-w-0 flex-col">
-                        <span className="text-[0.6rem] font-medium uppercase tracking-[0.12em] text-foreground/50">
-                          {channel.label}
-                        </span>
-                        <span className="mt-1 truncate text-sm text-foreground sm:text-base">
-                          {channel.value}
-                        </span>
-                      </span>
-                    </span>
-                    <span
-                      aria-hidden="true"
-                      className="text-base text-foreground/25 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#FF7133]"
-                    >
-                      {channel.external ? "↗" : "→"}
-                    </span>
-                    {channel.external && (
-                      <span className="sr-only"> (opens in a new tab)</span>
-                    )}
-                  </a>
-                </Reveal>
-              ))}
-            </ul>
+            <Reveal delay={0.1}>
+              <DynamicIsland />
+            </Reveal>
           </div>
         </div>
       </div>
