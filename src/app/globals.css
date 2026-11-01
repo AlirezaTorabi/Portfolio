@@ -16,7 +16,6 @@
   --scrollbar-thumb: #3f3f46;
   --scrollbar-thumb-hover: #2563eb;
   --scrollbar-track: #e8ecf0;
-  --grid-color: rgba(9, 9, 11, 0.055);
 }
 
 .dark {
@@ -30,7 +29,6 @@
   --border: rgba(248, 249, 250, 0.1);
   --card: #17191e;
   --scrollbar-track: rgba(248, 249, 250, 0.04);
-  --grid-color: rgba(248, 249, 250, 0.06);
 }
 
 @theme inline {
@@ -52,7 +50,6 @@ html {
   scroll-behavior: smooth;
   background: var(--background);
   overflow-x: hidden;
-  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 html.light .nav-theme-pending {
@@ -72,18 +69,6 @@ body {
   font-family: var(--font-quicksand), sans-serif;
   letter-spacing: 0;
   line-height: 1.6;
-}
-
-body::before {
-  position: fixed;
-  z-index: -1;
-  inset: 0;
-  background-image:
-    linear-gradient(var(--grid-color) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-  background-size: 4rem 4rem;
-  content: "";
-  pointer-events: none;
 }
 
 h1, h2, h3, h4, h5, h6 {

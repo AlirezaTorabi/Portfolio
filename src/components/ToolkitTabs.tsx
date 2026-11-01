@@ -50,7 +50,7 @@ function TechnologyCard({ technology }: { technology: Technology }) {
           aria-hidden="true"
           className={`${iconClassName} inline-flex size-5 shrink-0 items-center justify-center text-base leading-none transition-transform duration-200 group-hover:scale-110 motion-reduce:transition-none motion-reduce:group-hover:scale-100`}
         />
-        <span className="min-w-0 text-sm font-medium leading-5 text-foreground/75 transition-colors duration-200 group-hover:text-foreground">
+        <span className="min-w-0 text-base font-medium leading-5 text-foreground/75 transition-colors duration-200 group-hover:text-foreground">
           {technology.name}
         </span>
       </div>
@@ -71,7 +71,7 @@ export default function ToolkitTabs() {
             >
               <TabsTrigger
                 value={tab.value}
-                className="inline-flex min-h-11 w-full items-center justify-center px-2 text-xs font-medium text-foreground/55 transition-colors duration-200 hover:text-foreground data-[state=active]:text-foreground sm:px-3"
+                className="inline-flex min-h-11 w-full items-center justify-center px-2 text-sm font-medium text-foreground/55 transition-colors duration-200 hover:text-foreground data-[state=active]:text-foreground sm:px-3"
                 aria-label={`Show ${tab.label} technologies`}
               >
                 {tab.label}
@@ -86,8 +86,8 @@ export default function ToolkitTabs() {
           <TabsContent key={value} value={value} className="w-full p-4 sm:p-5">
             <div className="flex flex-wrap items-start justify-between gap-3 border-b border-foreground/10 pb-4">
               <div className="min-w-0">
-                <p className="text-sm font-semibold text-foreground">{label}</p>
-                <p className="mt-1 max-w-md text-xs leading-5 text-foreground/55">
+                <p className="text-base font-semibold text-foreground">{label}</p>
+                <p className="mt-1 max-w-md text-sm leading-6 text-foreground/55">
                   {TAB_DESCRIPTIONS[value]}
                 </p>
               </div>

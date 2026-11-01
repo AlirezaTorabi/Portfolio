@@ -44,7 +44,7 @@ export default function Work() {
             className="max-w-4xl text-4xl font-medium leading-[1.04] sm:text-5xl lg:text-6xl xl:text-7xl"
           />
           <Reveal delay={0.12}>
-            <p className="max-w-md text-pretty text-sm leading-7 text-foreground/65 sm:text-base sm:leading-8">
+            <p className="max-w-md text-pretty text-base leading-7 text-foreground/65 sm:leading-8">
               A selection of projects focused on frontend development, web
               applications, and digital experiences.
             </p>

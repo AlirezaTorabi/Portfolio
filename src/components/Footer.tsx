@@ -101,7 +101,7 @@ export default function Footer() {
               <p className="mt-2 text-[0.6875rem] font-medium text-foreground/50">
                 Front-End Developer &amp; UI Designer
               </p>
-              <p className="mt-6 max-w-xs text-sm leading-6 text-foreground/60">
+              <p className="mt-6 max-w-xs text-base leading-7 text-foreground/60">
                 Designing and building thoughtful digital experiences.
               </p>
               <Image
@@ -123,7 +123,7 @@ export default function Footer() {
                   <li key={item.label}>
                     <a
                       href={item.href}
-                      className={`group -mx-2 inline-flex min-h-11 items-center gap-3 px-2 text-sm text-foreground/65 transition-colors duration-200 hover:text-foreground ${focusRing}`}
+                      className={`group -mx-2 inline-flex min-h-11 items-center gap-3 px-2 text-base text-foreground/65 transition-colors duration-200 hover:text-foreground ${focusRing}`}
                     >
                       <span
                         aria-hidden="true"

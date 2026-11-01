@@ -1,14 +1,12 @@
 "use client";
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useTheme } from "next-themes";
 import Link from "next/link";
 import Image from "next/image";
 import GooeyNav from "@/components/Navigation/GooeyNav";
 import MobileNavigationSidebar from "@/components/Navigation/MobileNavigationSidebar";
 import { ThemeSwitcher } from "@/components/theme-switcher";
-
-const useIsomorphicLayoutEffect =
-  typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 const items = [
   {
@@ -102,31 +100,12 @@ interface NavigationIntent {
 
 export default function Navbar() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [navTheme, setNavTheme] = useState<"light" | "dark">("dark");
-  const [navThemeReady, setNavThemeReady] = useState(false);
+  const { theme } = useTheme();
+  const navTheme = theme === "dark" ? "dark" : "light";
   const router = useRouter();
   const intentRef = useRef<NavigationIntent | null>(null);
   const intentTimeoutRef = useRef<number | null>(null);
   const scheduleRef = useRef<() => void>(() => {});
-
-  useIsomorphicLayoutEffect(() => {
-    const syncTheme = () => {
-      const nextTheme = document.documentElement.classList.contains("dark")
-        ? "dark"
-        : "light";
-      setNavTheme((current) => (current === nextTheme ? current : nextTheme));
-      setNavThemeReady(true);
-    };
-
-    syncTheme();
-    const observer = new MutationObserver(syncTheme);
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-
-    return () => observer.disconnect();
-  }, []);
 
   const handleNavigate = useCallback((index: number) => {
     // Highlight the clicked link immediately. The intent below keeps the
@@ -243,26 +222,17 @@ export default function Navbar() {
         >
           <span className="relative block h-8 w-8 shrink-0 md:h-9 md:w-9">
             <Image
-              src="/at-logo-dark.png"
+              src="/at-logo-light.png"
               alt="Alireza Torabi Logo"
               fill
               sizes="36px"
-              priority
-              className="object-contain dark:block hidden"
-            />
-            <Image
-              src="/at-logo-light.png"
-              alt=""
-              fill
-              sizes="36px"
-              className="object-contain dark:hidden block"
+              loading="eager"
+              className="object-contain dark:brightness-0 dark:invert"
             />
           </span>
         </Link>
 
-        <div
-          className={`pointer-events-auto absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 md:block ${navThemeReady ? "" : "nav-theme-pending"}`}
-        >
+        <div className="pointer-events-auto absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 md:block">
           <GooeyNav
             items={items}
             activeIndex={activeIndex}
@@ -285,9 +255,7 @@ export default function Navbar() {
           />
         </div>
         <div className="pointer-events-auto flex items-center gap-2">
-          <div className="hidden md:block">
-            <ThemeSwitcher />
-          </div>
+          <ThemeSwitcher />
           <MobileNavigationSidebar
             items={items}
             activeIndex={activeIndex}

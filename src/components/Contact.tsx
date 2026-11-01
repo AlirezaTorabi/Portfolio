@@ -36,7 +36,7 @@ export default function Contact() {
               className="max-w-2xl text-4xl font-medium leading-[1.04] sm:text-5xl lg:text-6xl"
             />
             <Reveal delay={0.1}>
-              <p className="mt-8 max-w-xl text-pretty text-sm leading-7 text-foreground/65 sm:text-base sm:leading-8">
+              <p className="mt-8 max-w-xl text-pretty text-base leading-7 text-foreground/65 sm:leading-8">
                 Have a project in mind or an opportunity to discuss? I&apos;d
                 love to hear from you. Feel free to reach out through any of the
                 channels below.
@@ -49,7 +49,7 @@ export default function Contact() {
                     href="https://t.me/AlirezaToorabi"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex min-h-12 items-center gap-4 bg-accent px-6 text-xs font-semibold text-on-accent transition-colors duration-200 hover:bg-accent/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    className="group inline-flex min-h-12 items-center gap-4 bg-accent px-6 text-base font-semibold text-on-accent transition-colors duration-200 hover:bg-accent/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                   >
                     <span>Start a Conversation</span>
                     <span

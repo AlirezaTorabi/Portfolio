@@ -42,15 +42,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
+          enableSystem={false}
         >
-          <div
-            aria-hidden="true"
-            className="pointer-events-none fixed inset-0 -z-10 bg-background"
-          >
-            <div className="portfolio-grid absolute inset-0" />
-          </div>
           {children}
         </ThemeProvider>
       </body>

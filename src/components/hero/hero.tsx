@@ -83,8 +83,7 @@ export default function Hero() {
               alt=""
               width={1034}
               height={1002}
-              priority
-              fetchPriority="high"
+              preload
               sizes="(max-width: 640px) 42vw, (max-width: 1023px) 40vw, 48vw"
               className="h-auto w-full object-contain"
             />
@@ -92,7 +91,7 @@ export default function Hero() {
 
           <div className="order-3 col-span-2 min-w-0 lg:col-span-1 lg:col-start-1 lg:row-start-2 lg:self-start">
             <Reveal delay={0.42}>
-              <p className="max-w-[30rem] text-pretty text-sm leading-7 text-foreground/65 sm:text-base sm:leading-8">
+              <p className="max-w-[30rem] text-pretty text-base leading-7 text-foreground/65 sm:leading-8">
                 I design and build refined, responsive web experiences, with a
                 focus on clear hierarchy, purposeful motion, and maintainable
                 frontend code.
@@ -139,7 +138,7 @@ export default function Hero() {
                   <span className="font-mono text-[0.6875rem] text-accent">
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <p className="mt-1.5 text-[0.8125rem] leading-5 text-foreground/80 sm:mt-2 sm:text-sm">
+                  <p className="mt-1.5 text-base leading-6 text-foreground/80 sm:mt-2">
                     <span className="sm:hidden">{area.short}</span>
                     <span className="hidden sm:inline">{area.title}</span>
                   </p>

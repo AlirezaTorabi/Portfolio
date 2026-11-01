@@ -77,7 +77,7 @@ export default function About() {
               className="max-w-2xl text-4xl font-medium leading-[1.04] sm:text-5xl lg:text-6xl"
             />
             <Reveal delay={0.1}>
-              <p className="mt-8 max-w-xl text-pretty text-sm leading-7 text-foreground/65 sm:text-base sm:leading-8">
+              <p className="mt-8 max-w-xl text-pretty text-base leading-7 text-foreground/65 sm:leading-8">
                 I&apos;m Alireza Torabi, a front-end developer and UI designer.
                 I build modern, responsive web applications and shape
                 interfaces that feel intuitive, refined, and easy to use,
@@ -124,7 +124,7 @@ export default function About() {
                     <h3 className="text-lg font-medium leading-snug sm:text-xl">
                       {principle.title}
                     </h3>
-                    <p className="mt-3 max-w-md text-sm leading-6 text-foreground/55">
+                    <p className="mt-3 max-w-md text-base leading-6 text-foreground/55">
                       {principle.detail}
                     </p>
                   </div>

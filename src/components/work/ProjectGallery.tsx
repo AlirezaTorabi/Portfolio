@@ -53,7 +53,7 @@ function ProjectCard({
     <li className="gallery-card w-[86vw] shrink-0 snap-center sm:w-[78vw] md:w-[min(74vw,640px)] lg:w-[min(68vw,780px)]">
       <article
         aria-labelledby={`project-${index}-title`}
-        className={`group relative flex h-full min-h-[25rem] flex-col justify-between overflow-hidden border bg-card p-6 transition-colors duration-500 sm:p-8 lg:min-h-[58svh] lg:p-10 ${
+        className={`group relative flex h-full min-h-[23rem] flex-col justify-between overflow-hidden border bg-card p-6 transition-colors duration-500 sm:min-h-[25rem] sm:p-8 lg:min-h-[58svh] lg:p-10 ${
           active
             ? "border-accent/60"
             : "border-foreground/12 hover:border-foreground/25"
@@ -74,7 +74,7 @@ function ProjectCard({
         </span>
 
         <div className="relative">
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[0.625rem] text-foreground/55">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-xs text-foreground/55">
             <span className="text-accent">{number}</span>
             <span className="h-px w-6 bg-foreground/20" aria-hidden="true" />
             <span className="text-foreground/55">{project.category}</span>
@@ -107,7 +107,7 @@ function ProjectCard({
             )}
           </h3>
 
-          <p className="mt-5 max-w-md text-pretty text-sm leading-7 text-foreground/60 sm:text-base">
+          <p className="mt-5 max-w-md text-pretty text-base leading-7 text-foreground/60">
             {project.description}
           </p>
         </div>
@@ -117,7 +117,7 @@ function ProjectCard({
           <div className="mt-5 flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
             <ul
               aria-label={`${project.title} technologies`}
-              className="flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-[0.625rem] text-foreground/55"
+              className="flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-xs text-foreground/55"
             >
               {project.technologies.map((technology, technologyIndex) => (
                 <li key={technology} className="flex items-center gap-3">
