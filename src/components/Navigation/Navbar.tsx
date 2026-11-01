@@ -101,8 +101,8 @@ interface NavigationIntent {
 
 export default function Navbar({ locale = "en" }: { locale?: Locale }) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const { theme } = useTheme();
-  const navTheme = theme === "dark" ? "dark" : "light";
+  const { resolvedTheme } = useTheme();
+  const navTheme = resolvedTheme === "dark" ? "dark" : "light";
   const copy = translations[locale];
   const localizedItems = items.map((item, index) => ({
     ...item,

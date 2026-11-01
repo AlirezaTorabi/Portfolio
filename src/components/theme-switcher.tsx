@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 import { type Locale } from "@/lib/translations";
 
 export function ThemeSwitcher({ locale = "en" }: { locale?: Locale }) {
-  const { theme, setTheme } = useTheme();
-  const isDark = theme === "dark";
+  const { resolvedTheme, setTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
   const label = locale === "fa" ? "تغییر پوسته‌ی روشن و تیره" : "Toggle light and dark theme";
 
   return (
