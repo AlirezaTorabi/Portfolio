@@ -111,7 +111,7 @@ const THEMES: Record<Palette, Record<string, string>> = {
     '--gn-frame-highlight': 'rgba(255, 255, 255, 0.07)',
     '--gn-frame-shadow': '0 22px 44px -20px rgba(0, 0, 0, 0.8), 0 6px 16px -8px rgba(0, 0, 0, 0.5)',
     '--gn-ink': '#f4f4f5',
-    '--gn-hover-ink': '#09090b',
+    '--gn-hover-ink': '#111827',
     '--gn-muted': 'rgba(244, 244, 245, 0.62)'
   },
   light: {
@@ -126,7 +126,7 @@ const THEMES: Record<Palette, Record<string, string>> = {
 };
 
 const PILLS: Record<Palette, { color: string; hover: string; shadow: number }> = {
-  dark: { color: '#f4f4f5', hover: '#ffffff', shadow: 0.12 },
+  dark: { color: '#f4f4f5', hover: '#dfe7f2', shadow: 0.12 },
   light: { color: '#27272a', hover: 'rgba(24, 24, 27, 0.1)', shadow: 0.08 }
 };
 
@@ -144,7 +144,7 @@ const LIST = `relative ${LIST_BASE}`;
 const OVERLAY = `${LIST_BASE} pointer-events-none invisible absolute inset-0 text-[var(--gn-active-ink)] [clip-path:inset(100%)]`;
 const LINK_BASE =
   'inline-flex min-h-11 min-w-11 items-center justify-center gap-2 whitespace-nowrap rounded-full border-none bg-transparent px-[var(--gn-x)] py-[var(--gn-y)] [font-family:inherit] [font-size:inherit] [line-height:inherit] font-medium no-underline';
-const LINK = `${LINK_BASE} cursor-pointer text-[var(--gn-muted)] [-webkit-tap-highlight-color:transparent] group-data-[active]:text-[var(--gn-ink)] hover:text-[var(--gn-hover-ink)] group-data-[active]:hover:text-[var(--gn-ink)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--gn-ink)]`;
+const LINK = `${LINK_BASE} cursor-pointer text-[var(--gn-muted)] [-webkit-tap-highlight-color:transparent] group-data-[active]:text-[var(--gn-ink)] hover:text-[var(--gn-hover-ink)] dark:hover:text-[var(--gn-hover-ink)] group-data-[active]:hover:text-[var(--gn-ink)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--gn-ink)]`;
 const GHOST = `${LINK_BASE} text-inherit`;
 const ICON = 'inline-flex flex-none [&_svg]:h-[1.15em] [&_svg]:w-[1.15em]';
 const RIM =
@@ -354,7 +354,8 @@ const GooeyNav = ({
   const fallbackRef = useRef<HTMLSpanElement>(null);
   const engineRef = useRef<{ go: (index: number) => void; refresh: () => void } | null>(null);
   const indexRef = useRef(current);
-  const palette = theme === 'light' ? 'light' : 'dark';
+  const rootIsDark = typeof document !== 'undefined' && document.documentElement.classList.contains('dark');
+  const palette = rootIsDark || theme === 'dark' ? 'dark' : 'light';
   const pillColor = color || PILLS[palette].color;
   const pillRgb = parse(pillColor);
   const settings = {
@@ -866,6 +867,7 @@ const GooeyNav = ({
       const isActive = index === current;
       const shared = {
         className: `${LINK} ${isActive ? 'opacity-0' : ''}`.trim(),
+        style: isActive ? ({ color: 'var(--gn-ink)' } as CSSProperties) : undefined,
         'aria-label': item.ariaLabel ?? item.label,
         'aria-current': isActive ? ('page' as const) : undefined,
         onClick: (event: MouseEvent) => {

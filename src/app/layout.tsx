@@ -40,19 +40,34 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
+  const themeScript = `
+    (function() {
+      try {
+        const storedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = storedTheme || (prefersDark ? 'dark' : 'light');
+        const root = document.documentElement;
+        root.classList.toggle('dark', theme === 'dark');
+        root.style.colorScheme = theme;
+      } catch (e) {}
+    })();
+  `;
+
   return (
     <html
       lang="en"
       suppressHydrationWarning
       dir="ltr"
-          data-scroll-behavior="smooth"
+      data-scroll-behavior="smooth"
       className={`${quicksand.variable} ${caveat.variable} ${geistMono.variable} ${vazirmatn.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
-          enableSystem={false}
+          defaultTheme="system"
+          enableSystem={true}
+          disableTransitionOnChange
         >
           {children}
         </ThemeProvider>

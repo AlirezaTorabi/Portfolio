@@ -1,6 +1,5 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useTheme } from "next-themes";
 import Link from "next/link";
 import Image from "next/image";
 import GooeyNav from "@/components/Navigation/GooeyNav";
@@ -101,8 +100,24 @@ interface NavigationIntent {
 
 export default function Navbar({ locale = "en" }: { locale?: Locale }) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const { resolvedTheme } = useTheme();
-  const navTheme = resolvedTheme === "dark" ? "dark" : "light";
+  const [themeState, setThemeState] = useState<"light" | "dark">(() =>
+    typeof document !== "undefined" && document.documentElement.classList.contains("dark") ? "dark" : "light",
+  );
+
+  useEffect(() => {
+    const root = document.documentElement;
+    const updateThemeState = () => {
+      setThemeState(root.classList.contains("dark") ? "dark" : "light");
+    };
+
+    updateThemeState();
+    const observer = new MutationObserver(updateThemeState);
+    observer.observe(root, { attributes: true, attributeFilter: ["class"] });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const navTheme = themeState;
   const copy = translations[locale];
   const localizedItems = items.map((item, index) => ({
     ...item,

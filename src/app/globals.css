@@ -85,6 +85,19 @@ body {
   letter-spacing: 0;
 }
 
+html.dark nav[aria-label="Primary navigation"],
+html.dark nav[aria-label="Primary navigation"] * {
+  --gn-ink: #f4f4f5;
+  --gn-hover-ink: #ffffff;
+  --gn-muted: rgba(244, 244, 245, 0.62);
+}
+
+html.dark nav[aria-label="Primary navigation"] a,
+html.dark nav[aria-label="Primary navigation"] button,
+html.dark nav[aria-label="Primary navigation"] span {
+  color: var(--gn-ink) !important;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-caveat), cursive;
   line-height: 1.08;
