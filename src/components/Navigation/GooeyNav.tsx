@@ -126,8 +126,8 @@ const THEMES: Record<Palette, Record<string, string>> = {
 };
 
 const PILLS: Record<Palette, { color: string; hover: string; shadow: number }> = {
-  dark: { color: '#f4f4f5', hover: '#ffffff', shadow: 0.4 },
-  light: { color: '#27272a', hover: 'rgba(24, 24, 27, 0.1)', shadow: 0.2 }
+  dark: { color: '#f4f4f5', hover: '#ffffff', shadow: 0.12 },
+  light: { color: '#27272a', hover: 'rgba(24, 24, 27, 0.1)', shadow: 0.08 }
 };
 
 const SIZES: Record<Size, Record<string, string>> = {
@@ -818,6 +818,7 @@ const GooeyNav = ({
     engineRef.current = {
       go: index => go(index, true),
       refresh: () => {
+        measure();
         render();
         wake();
       }
@@ -843,7 +844,7 @@ const GooeyNav = ({
 
   useEffect(() => {
     engineRef.current?.refresh();
-  }, [pillColor, palette, gooeyness, size, frame]);
+  }, [items, pillColor, palette, gooeyness, size, frame]);
 
   const textColor = activeTextColor || contrastInk(pillRgb);
 
@@ -862,10 +863,11 @@ const GooeyNav = ({
           </li>
         );
       }
+      const isActive = index === current;
       const shared = {
-        className: LINK,
+        className: `${LINK} ${isActive ? 'opacity-0' : ''}`.trim(),
         'aria-label': item.ariaLabel ?? item.label,
-        'aria-current': index === current ? ('page' as const) : undefined,
+        'aria-current': isActive ? ('page' as const) : undefined,
         onClick: (event: MouseEvent) => {
           if (!item.href || item.href === '#') event.preventDefault();
           select(index);

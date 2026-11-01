@@ -24,6 +24,7 @@ export default function MobileNavigationSidebar({
   onNavigate,
 }: MobileNavigationSidebarProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const isRtl = locale === "fa";
   const copy = translations[locale];
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const sidebarRef = useRef<HTMLElement>(null);
@@ -130,6 +131,7 @@ export default function MobileNavigationSidebar({
 
         <div
           ref={controlsRef}
+          dir={isRtl ? "rtl" : "ltr"}
           data-mobile-controls
           aria-hidden={!isOpen}
           inert={!isOpen}
@@ -149,10 +151,11 @@ export default function MobileNavigationSidebar({
       <aside
         ref={sidebarRef}
         id="mobile-navigation-sidebar"
+        dir={isRtl ? "rtl" : "ltr"}
         aria-label={copy.navigation.mobile}
         aria-hidden={!isOpen}
         inert={!isOpen}
-          className={`pointer-events-auto fixed left-1/2 top-[10px] z-[70] flex w-fit max-w-[calc(100%-70px)] -translate-x-1/2 items-center rounded-full border border-foreground/20 bg-background px-2 py-1 shadow-xl transition-[translate] duration-200 ease-out will-change-translate motion-reduce:transition-none md:hidden ${isOpen ? "translate-y-0" : "-translate-y-[calc(100%+10px)]"}`}
+        className={`pointer-events-auto fixed left-1/2 top-[10px] z-[70] flex w-fit max-w-[calc(100%-70px)] -translate-x-1/2 items-center rounded-full border border-foreground/20 bg-background px-2 py-1 shadow-xl transition-[translate] duration-200 ease-out will-change-translate motion-reduce:transition-none md:hidden ${isOpen ? "translate-y-0" : "-translate-y-[calc(100%+10px)]"}`}
       >
         <GooeyNav
           items={iconOnlyItems}
@@ -175,7 +178,7 @@ export default function MobileNavigationSidebar({
             document.body.style.overflow = "";
           }}
           colors={["#2563eb", "#5b8ef0", "#8ab4ff"]}
-          className="w-full [&>div]:w-full [&_ul]:w-full [&_ul]:flex-row [&_ul]:flex-nowrap [&_ul]:items-center [&_ul]:justify-center [&_ul]:gap-3 max-[440px]:[&_ul]:gap-0 [&_li]:w-auto [&_a]:h-11 [&_a]:w-16 [&_a]:justify-center [&_a]:gap-0 [&_a]:px-0 [&_a]:py-0 [&_li>span]:h-11 [&_li>span]:w-16 [&_li>span]:justify-center [&_li>span]:px-0 [&_li>span]:py-0 max-[440px]:[&_a]:h-11 max-[440px]:[&_a]:w-11 max-[440px]:[&_li>span]:h-11 max-[440px]:[&_li>span]:w-11"
+          className={`w-full [&>div]:w-full [&_ul]:w-full [&_ul]:flex-nowrap [&_ul]:items-center [&_ul]:justify-center [&_ul]:gap-3 max-[440px]:[&_ul]:gap-0 [&_li]:w-auto [&_a]:h-11 [&_a]:w-16 [&_a]:justify-center [&_a]:gap-0 [&_a]:px-0 [&_a]:py-0 [&_li>span]:h-11 [&_li>span]:w-16 [&_li>span]:justify-center [&_li>span]:px-0 [&_li>span]:py-0 max-[440px]:[&_a]:h-11 max-[440px]:[&_a]:w-11 max-[440px]:[&_li>span]:h-11 max-[440px]:[&_li>span]:w-11 ${isRtl ? "[&_ul]:flex-row-reverse" : "[&_ul]:flex-row"}`}
         />
       </aside>
     </>

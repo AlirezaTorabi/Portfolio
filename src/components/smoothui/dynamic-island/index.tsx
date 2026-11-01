@@ -106,10 +106,12 @@ function IdleContent({ locale }: { locale: Locale }) {
 
 function ChannelContent({ channel, locale }: { channel: ContactChannel; locale: Locale }) {
   const { Icon } = channel;
+  const isRtl = locale === "fa";
 
   return (
     <a
       href={channel.href}
+      dir={isRtl ? "rtl" : "ltr"}
       {...(channel.external
         ? { target: "_blank", rel: "noopener noreferrer" }
         : {})}
@@ -131,9 +133,13 @@ function ChannelContent({ channel, locale }: { channel: ContactChannel; locale: 
       </span>
       <span
         aria-hidden="true"
-        className="shrink-0 text-sm text-white/40 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent motion-reduce:transform-none motion-reduce:transition-none"
+        className={`shrink-0 text-sm text-white/40 transition-all duration-200 ${
+          isRtl
+            ? "group-hover:-translate-x-0.5 group-hover:-translate-y-0.5"
+            : "group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+        } group-hover:text-accent motion-reduce:transform-none motion-reduce:transition-none`}
       >
-        {channel.external ? (locale === "fa" ? "↖" : "↗") : locale === "fa" ? "←" : "→"}
+        {channel.external ? (isRtl ? "↖" : "↗") : isRtl ? "←" : "→"}
       </span>
       {channel.external && (
         <span className="sr-only"> ({translations[locale].common.opensInNewTab})</span>
@@ -146,6 +152,7 @@ export default function DynamicIsland({ className = "", locale = "en" }: { class
   const [activeMethod, setActiveMethod] = useState<ContactMethod | null>(null);
   const shouldReduceMotion = useReducedMotion();
   const panelId = useId();
+  const isRtl = locale === "fa";
 
   const channels = CONTACT_CHANNELS.map((channel, index) => ({
     ...channel,
@@ -169,8 +176,9 @@ export default function DynamicIsland({ className = "", locale = "en" }: { class
   return (
     // The controls precede the panel in the DOM for keyboard users; the
     // reversed column keeps the island above the icon navigation visually.
-    <div className={`flex flex-col-reverse items-center gap-2 ${className}`}>
+    <div dir={isRtl ? "rtl" : "ltr"} className={`flex flex-col-reverse items-center gap-2 ${className}`}>
       <ButtonGroup
+        dir="ltr"
         aria-label={translations[locale].contact.selectMethod}
         className="items-center justify-center gap-1 rounded-full border border-white/15 bg-black/95 p-1 shadow-xl backdrop-blur-xl"
       >
