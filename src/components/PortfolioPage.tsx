@@ -1,6 +1,7 @@
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import DynamicIsland from "@/components/smoothui/dynamic-island";
 import Hero from "@/components/hero/hero";
 import Navbar from "@/components/Navigation/Navbar";
 import ScrollProgress from "@/components/ui/ScrollProgress";
@@ -14,7 +15,7 @@ export default function PortfolioPage({ locale }: { locale: Locale }) {
     <div
       lang={locale}
       dir={locale === "fa" ? "rtl" : "ltr"}
-      className={`locale-${locale} relative min-h-screen text-foreground`}
+      className={`locale-${locale} relative min-h-screen pb-24 text-foreground`}
     >
       <a
         href="#main-content"
@@ -38,6 +39,10 @@ export default function PortfolioPage({ locale }: { locale: Locale }) {
       </main>
 
       <Footer locale={locale} />
+
+      <div className="pointer-events-none fixed inset-x-0 bottom-[max(1rem,env(safe-area-inset-bottom))] z-[70] flex justify-center px-3 sm:bottom-[max(1.5rem,env(safe-area-inset-bottom))]">
+        <DynamicIsland locale={locale} className="pointer-events-auto" />
+      </div>
     </div>
   );
 }

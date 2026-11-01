@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import DynamicIsland from "@/components/smoothui/dynamic-island";
 import AnimatedHeading from "@/components/ui/AnimatedHeading";
 import Magnetic from "@/components/ui/Magnetic";
 import Reveal from "@/components/ui/Reveal";
@@ -65,14 +64,6 @@ export default function Contact({ locale = "en" }: { locale?: Locale }) {
               </div>
             </Reveal>
 
-            <Reveal delay={0.08}>
-              <p className="mb-3 mt-12 border-t border-foreground/10 pt-6 text-[0.65rem] font-medium uppercase text-foreground/50">
-                {copy.directChannels}
-              </p>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <DynamicIsland locale={locale} />
-            </Reveal>
           </div>
 
           <Reveal

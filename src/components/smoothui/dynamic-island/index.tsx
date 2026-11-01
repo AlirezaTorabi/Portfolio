@@ -111,11 +111,11 @@ function ChannelContent({ channel, locale }: { channel: ContactChannel; locale: 
       {...(channel.external
         ? { target: "_blank", rel: "noopener noreferrer" }
         : {})}
-      className="group flex max-w-full items-center gap-3 border border-white/10 px-4 py-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
+      className="group flex max-w-full items-center gap-3 px-4 py-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
     >
       <span
         aria-hidden="true"
-        className="grid size-8 shrink-0 place-items-center bg-white/10 text-accent transition-colors duration-200 group-hover:bg-accent group-hover:text-on-accent motion-reduce:transition-none"
+        className="grid size-8 shrink-0 place-items-center rounded-full bg-white/10 text-accent transition-colors duration-200 group-hover:bg-accent group-hover:text-on-accent motion-reduce:transition-none"
       >
         <Icon className="size-4" />
       </span>
@@ -167,11 +167,11 @@ export default function DynamicIsland({ className = "", locale = "en" }: { class
   return (
     // The controls precede the panel in the DOM for keyboard users; the
     // reversed column keeps the island above the icon navigation visually.
-    <div className={`flex flex-col-reverse items-start gap-5 ${className}`}>
+    <div className={`flex flex-col-reverse items-center gap-2 ${className}`}>
       <div
         role="group"
         aria-label={translations[locale].contact.selectMethod}
-        className="flex items-center justify-center gap-1 border border-white/15 bg-black p-1 shadow-sm"
+        className="flex items-center justify-center gap-1 rounded-full border border-white/15 bg-black/95 p-1 shadow-xl backdrop-blur-xl"
       >
         {channels.map(({ method, label, Icon }) => {
           const isActive = method === activeMethod;
@@ -184,7 +184,7 @@ export default function DynamicIsland({ className = "", locale = "en" }: { class
               aria-pressed={isActive}
               aria-controls={panelId}
               onClick={() => handleSelect(method)}
-              className={`flex size-11 cursor-pointer items-center justify-center transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black motion-reduce:transition-none lg:size-9 ${
+              className={`flex size-11 cursor-pointer items-center justify-center rounded-full transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black motion-reduce:transition-none lg:size-9 ${
                 isActive
                   ? "bg-accent text-on-accent"
                   : "text-white/60 hover:bg-white/10 hover:text-white"
@@ -200,7 +200,7 @@ export default function DynamicIsland({ className = "", locale = "en" }: { class
         id={panelId}
         layout
         transition={layoutTransition}
-        className="w-fit max-w-full overflow-hidden border border-white/15 bg-black"
+        className="w-fit max-w-full overflow-hidden rounded-full border border-white/15 bg-black/95 shadow-xl backdrop-blur-xl"
       >
         <AnimatePresence initial={false} mode="popLayout">
           <motion.div
