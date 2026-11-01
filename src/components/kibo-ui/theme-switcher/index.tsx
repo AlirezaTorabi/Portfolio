@@ -64,7 +64,7 @@ export const ThemeSwitcher = ({
   return (
     <div
       className={cn(
-        "relative isolate flex h-8 border border-foreground/20 bg-background p-1",
+        "relative isolate flex h-[52px] border border-foreground/20 bg-background p-[3px]",
         className
       )}
     >
@@ -74,7 +74,7 @@ export const ThemeSwitcher = ({
         return (
           <button
             aria-label={label}
-            className="relative h-6 w-6 cursor-pointer"
+            className="relative size-11 cursor-pointer"
             key={key}
             onClick={() => handleThemeClick(key as "light" | "dark" | "system")}
             type="button"

@@ -36,17 +36,6 @@ export default function Hero() {
       aria-labelledby="hero-title"
       className="relative isolate flex min-h-svh w-full flex-col overflow-hidden"
     >
-      <Image
-        src="/hero-img/hero-transparent.png"
-        alt=""
-        width={1160}
-        height={693}
-        priority
-        fetchPriority="high"
-        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 88vw, 48vw"
-        className="pointer-events-none absolute right-[-6rem] top-[29%] z-0 h-auto w-[min(105vw,40rem)] object-contain opacity-[0.08] dark:opacity-[0.14] sm:right-[-4rem] sm:top-[24%] sm:w-[min(88vw,46rem)] sm:opacity-[0.12] dark:sm:opacity-[0.2] lg:right-8 lg:top-1/2 lg:w-[min(48vw,42rem)] lg:-translate-y-1/2 lg:opacity-100"
-      />
-
       <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col px-5 pb-8 pt-24 sm:px-8 sm:pb-10 sm:pt-28 lg:px-10 lg:pt-28">
 <Reveal>
           <div className="flex items-center justify-between gap-6 border-b border-foreground/15 pb-4">
@@ -65,7 +54,7 @@ export default function Hero() {
           </div>
         </Reveal>
 
-        <div className="grid flex-1 content-center gap-y-8 py-8 sm:gap-y-10 sm:py-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:grid-rows-[auto_auto] lg:items-center lg:gap-x-12 lg:gap-y-8 lg:py-10 xl:gap-x-16">
+        <div className="grid flex-1 grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] content-center items-center gap-x-3 gap-y-6 py-8 sm:gap-x-6 sm:gap-y-8 sm:py-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:grid-rows-[auto_auto] lg:gap-x-12 lg:gap-y-8 lg:py-10 xl:gap-x-16">
           <div className="order-1 min-w-0 lg:col-start-1 lg:row-start-1 lg:self-end">
             <AnimatedHeading
               as="h1"
@@ -73,7 +62,7 @@ export default function Hero() {
               mode="line"
               start="load"
               delay={0.18}
-              className="text-[clamp(3rem,12vw,7rem)] font-medium leading-[0.9] tracking-[-0.045em] text-foreground"
+              className="text-[clamp(2.4rem,12vw,7rem)] font-medium leading-[0.9] tracking-[-0.045em] text-foreground"
               lines={[
                 { text: "Alireza" },
                 {
@@ -85,7 +74,23 @@ export default function Hero() {
             />
           </div>
 
-          <div className="order-3 min-w-0 lg:col-start-1 lg:row-start-2 lg:self-start">
+          <Reveal
+            delay={0.26}
+            className="order-2 min-w-0 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-center"
+          >
+            <Image
+              src="/hero-img/hero-new-transparent.png"
+              alt=""
+              width={1034}
+              height={1002}
+              priority
+              fetchPriority="high"
+              sizes="(max-width: 640px) 42vw, (max-width: 1023px) 40vw, 48vw"
+              className="h-auto w-full object-contain"
+            />
+          </Reveal>
+
+          <div className="order-3 col-span-2 min-w-0 lg:col-span-1 lg:col-start-1 lg:row-start-2 lg:self-start">
             <Reveal delay={0.42}>
               <p className="max-w-[30rem] text-pretty text-sm leading-7 text-foreground/65 sm:text-base sm:leading-8">
                 I design and build refined, responsive web experiences, with a
@@ -151,7 +156,7 @@ export default function Hero() {
           <div className="mt-6 flex items-center justify-between gap-6 border-t border-foreground/10 pt-5">
             <a
               href="#work"
-              className="group inline-flex items-center gap-3 text-[0.6875rem] font-medium text-foreground/60 transition-colors hover:text-foreground/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-background"
+              className="group inline-flex min-h-11 items-center gap-3 text-[0.6875rem] font-medium text-foreground/60 transition-colors hover:text-foreground/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-background"
             >
               <span>Scroll to work</span>
               <span

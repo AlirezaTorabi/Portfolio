@@ -55,6 +55,10 @@ html {
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
+html.light .nav-theme-pending {
+  visibility: hidden;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     transition: none;
@@ -170,6 +174,10 @@ html {
 
   .gallery-card {
     width: 100% !important;
+  }
+
+  .gallery-viewport {
+    overflow: visible !important;
   }
 
   .gallery-rail,

@@ -11,18 +11,9 @@ export default function Contact() {
     <section
       id="contact"
       aria-labelledby="contact-title"
-      className="relative isolate scroll-mt-20 overflow-hidden border-t border-foreground/10"
+      className="relative isolate scroll-mt-20 border-t border-foreground/10"
     >
-      <Image
-        src="/contact-img/contact-transparent.png"
-        alt=""
-        width={1234}
-        height={621}
-        sizes="(max-width: 640px) 100vw, 80vw"
-        className="pointer-events-none absolute bottom-0 right-0 z-0 h-auto w-[min(100vw,64rem)] object-contain opacity-[0.1] dark:opacity-[0.16]"
-      />
-
-      <div className="relative z-10 mx-auto max-w-6xl px-6 py-24 sm:px-8 sm:py-28 lg:px-10 lg:py-32">
+      <div className="mx-auto max-w-6xl px-6 py-24 sm:px-8 sm:py-28 lg:px-10 lg:py-32">
         <Reveal>
           <div className="flex items-center justify-between gap-6 border-b border-foreground/15 pb-5">
             <p className="text-[0.6875rem] font-medium text-foreground/60">
@@ -34,8 +25,8 @@ export default function Contact() {
           </div>
         </Reveal>
 
-        <div className="grid gap-12 py-12 sm:py-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-start lg:gap-20 lg:py-20">
-          <div>
+        <div className="grid gap-10 py-12 sm:py-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:items-center lg:gap-16 lg:py-20">
+          <div className="min-w-0">
             <AnimatedHeading
               id="contact-title"
               lines={[
@@ -72,11 +63,9 @@ export default function Contact() {
                 </Magnetic>
               </div>
             </Reveal>
-          </div>
 
-          <div>
             <Reveal delay={0.08}>
-              <p className="mb-3 text-[0.65rem] font-medium uppercase text-foreground/50">
+              <p className="mb-3 mt-12 border-t border-foreground/10 pt-6 text-[0.65rem] font-medium uppercase text-foreground/50">
                 Direct channels
               </p>
             </Reveal>
@@ -84,6 +73,20 @@ export default function Contact() {
               <DynamicIsland />
             </Reveal>
           </div>
+
+          <Reveal
+            delay={0.16}
+            className="flex min-w-0 items-center justify-center lg:justify-end"
+          >
+            <Image
+              src="/contact-img/contact-transparent.png"
+              alt=""
+              width={1234}
+              height={621}
+              sizes="(max-width: 1023px) 100vw, 45vw"
+              className="h-auto w-full max-w-[42rem] object-contain opacity-100"
+            />
+          </Reveal>
         </div>
       </div>
     </section>

@@ -180,7 +180,7 @@ export default function DynamicIsland({ className = "" }: { className?: string }
               aria-pressed={isActive}
               aria-controls={panelId}
               onClick={() => handleSelect(method)}
-              className={`flex size-9 cursor-pointer items-center justify-center transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black motion-reduce:transition-none ${
+              className={`flex size-11 cursor-pointer items-center justify-center transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black motion-reduce:transition-none lg:size-9 ${
                 isActive
                   ? "bg-accent text-on-accent"
                   : "text-white/60 hover:bg-white/10 hover:text-white"

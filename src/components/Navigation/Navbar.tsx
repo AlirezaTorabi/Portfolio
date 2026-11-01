@@ -1,12 +1,14 @@
 "use client";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { useTheme } from "next-themes";
 import GooeyNav from "@/components/Navigation/GooeyNav";
 import MobileNavigationSidebar from "@/components/Navigation/MobileNavigationSidebar";
 import { ThemeSwitcher } from "@/components/theme-switcher";
+
+const useIsomorphicLayoutEffect =
+  typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 const items = [
   {
@@ -100,12 +102,31 @@ interface NavigationIntent {
 
 export default function Navbar() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const { resolvedTheme } = useTheme();
-  const navTheme = resolvedTheme === "light" ? "light" : "dark";
+  const [navTheme, setNavTheme] = useState<"light" | "dark">("dark");
+  const [navThemeReady, setNavThemeReady] = useState(false);
   const router = useRouter();
   const intentRef = useRef<NavigationIntent | null>(null);
   const intentTimeoutRef = useRef<number | null>(null);
   const scheduleRef = useRef<() => void>(() => {});
+
+  useIsomorphicLayoutEffect(() => {
+    const syncTheme = () => {
+      const nextTheme = document.documentElement.classList.contains("dark")
+        ? "dark"
+        : "light";
+      setNavTheme((current) => (current === nextTheme ? current : nextTheme));
+      setNavThemeReady(true);
+    };
+
+    syncTheme();
+    const observer = new MutationObserver(syncTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   const handleNavigate = useCallback((index: number) => {
     // Highlight the clicked link immediately. The intent below keeps the
@@ -194,7 +215,7 @@ export default function Navbar() {
 
   return (
     <header
-      className="pointer-events-none fixed inset-x-0 top-0 z-50 isolate bg-transparent backdrop-blur-none"
+      className="pointer-events-none fixed inset-x-0 top-0 z-50 isolate border-b border-foreground/10 bg-background/90 backdrop-blur-md"
     >
       <div className="relative mx-auto flex h-[76px] max-w-[1800px] items-center justify-between gap-4 pl-4 pr-[10px] md:px-5 lg:px-7">
         <Link
@@ -239,13 +260,17 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <div className="pointer-events-auto absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 md:block">
+        <div
+          className={`pointer-events-auto absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 md:block ${navThemeReady ? "" : "nav-theme-pending"}`}
+        >
           <GooeyNav
             items={items}
             activeIndex={activeIndex}
             onChange={handleNavigate}
             label="Primary navigation"
             theme={navTheme}
+            color={navTheme === "light" ? "#2563eb" : "#8ab4ff"}
+            activeTextColor={navTheme === "light" ? "#ffffff" : "#111113"}
             size="sm"
             frame={false}
             particleCount={15}
@@ -260,10 +285,13 @@ export default function Navbar() {
           />
         </div>
         <div className="pointer-events-auto flex items-center gap-2">
-          <ThemeSwitcher />
+          <div className="hidden md:block">
+            <ThemeSwitcher />
+          </div>
           <MobileNavigationSidebar
             items={items}
             activeIndex={activeIndex}
+            theme={navTheme}
             onNavigate={handleNavigate}
           />
         </div>

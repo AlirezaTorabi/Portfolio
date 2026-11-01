@@ -1,23 +1,22 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useTheme } from "next-themes";
 import GooeyNav, { type GooeyNavItem } from "@/components/Navigation/GooeyNav";
 
 interface MobileNavigationSidebarProps {
   items: GooeyNavItem[];
   activeIndex: number;
+  theme: "light" | "dark";
   onNavigate: (index: number) => void;
 }
 
 export default function MobileNavigationSidebar({
   items,
   activeIndex,
+  theme,
   onNavigate,
 }: MobileNavigationSidebarProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const { resolvedTheme } = useTheme();
-  const navTheme = resolvedTheme === "light" ? "light" : "dark";
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const sidebarRef = useRef<HTMLElement>(null);
   const iconOnlyItems = useMemo(
@@ -117,7 +116,7 @@ export default function MobileNavigationSidebar({
       <div
         aria-hidden="true"
         onClick={closeMenu}
-        className={`fixed inset-0 z-[60] cursor-default bg-foreground/35 backdrop-blur-[2px] transition-opacity duration-200 ease-out md:hidden ${isOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}
+        className={`fixed inset-0 z-[60] cursor-default bg-transparent transition-opacity duration-200 ease-out md:hidden ${isOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}
       />
 
       <aside
@@ -126,13 +125,15 @@ export default function MobileNavigationSidebar({
         aria-label="Mobile navigation"
         aria-hidden={!isOpen}
         inert={!isOpen}
-        className={`pointer-events-auto fixed left-1/2 top-[10px] z-[70] flex w-fit max-w-[calc(100%-70px)] -translate-x-1/2 items-center border border-foreground/20 bg-background/95 px-2 py-1 shadow-xl backdrop-blur-xl transition-transform duration-200 ease-out motion-reduce:transition-none md:hidden ${isOpen ? "translate-y-0" : "-translate-y-[calc(100%+10px)]"}`}
+        className={`pointer-events-auto fixed left-1/2 top-[10px] z-[70] flex w-fit max-w-[calc(100%-70px)] -translate-x-1/2 items-center rounded-full border border-foreground/20 bg-background px-2 py-1 shadow-xl transition-transform duration-200 ease-out motion-reduce:transition-none md:hidden ${isOpen ? "translate-y-0" : "-translate-y-[calc(100%+10px)]"}`}
       >
         <GooeyNav
           items={iconOnlyItems}
           activeIndex={activeIndex}
           label="Mobile navigation links"
-          theme={navTheme}
+          theme={theme}
+          color={theme === "light" ? "#2563eb" : "#8ab4ff"}
+          activeTextColor={theme === "light" ? "#ffffff" : "#111113"}
           size="sm"
           frame={false}
           particleCount={15}
@@ -147,7 +148,7 @@ export default function MobileNavigationSidebar({
             closeMenu();
           }}
           colors={["#2563eb", "#5b8ef0", "#8ab4ff"]}
-          className="w-full [&>div]:w-full [&_ul]:w-full [&_ul]:flex-row [&_ul]:flex-nowrap [&_ul]:items-center [&_ul]:justify-center [&_ul]:gap-3 max-[400px]:[&_ul]:gap-1 [&_li]:w-auto [&_a]:h-11 [&_a]:w-16 [&_a]:justify-center [&_a]:gap-0 [&_a]:px-0 [&_a]:py-0 [&_li>span]:h-11 [&_li>span]:w-16 [&_li>span]:justify-center [&_li>span]:px-0 [&_li>span]:py-0 max-[400px]:[&_a]:h-11 max-[400px]:[&_a]:w-11 max-[400px]:[&_li>span]:h-11 max-[400px]:[&_li>span]:w-11"
+          className="w-full [&>div]:w-full [&_ul]:w-full [&_ul]:flex-row [&_ul]:flex-nowrap [&_ul]:items-center [&_ul]:justify-center [&_ul]:gap-3 max-[440px]:[&_ul]:gap-0 [&_li]:w-auto [&_a]:h-11 [&_a]:w-16 [&_a]:justify-center [&_a]:gap-0 [&_a]:px-0 [&_a]:py-0 [&_li>span]:h-11 [&_li>span]:w-16 [&_li>span]:justify-center [&_li>span]:px-0 [&_li>span]:py-0 max-[440px]:[&_a]:h-11 max-[440px]:[&_a]:w-11 max-[440px]:[&_li>span]:h-11 max-[440px]:[&_li>span]:w-11"
         />
       </aside>
     </>

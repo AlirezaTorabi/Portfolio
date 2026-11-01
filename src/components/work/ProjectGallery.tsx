@@ -145,8 +145,7 @@ function ProjectCard({
 }
 
 /**
- * Desktop: the gallery pins and translates horizontally with page scroll.
- * Tablet/mobile: a native horizontal swipe rail (no pinning, no scroll hijack).
+ * Normal motion: the gallery pins and translates horizontally with page scroll.
  * Reduced motion: a plain vertical stack of the same cards.
  */
 export default function ProjectGallery({ projects }: ProjectGalleryProps) {
@@ -171,8 +170,9 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
         cards.reduce((width, card) => width + card.offsetWidth, 0) +
         gap * (cards.length - 1) +
         padding;
+      const viewportWidth = row.parentElement?.clientWidth ?? window.innerWidth;
 
-      setTravel(Math.max(0, Math.round(contentWidth - window.innerWidth)));
+      setTravel(Math.max(0, Math.round(contentWidth - viewportWidth)));
     };
 
     measure();
@@ -217,7 +217,7 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
           role="region"
           aria-label="Selected project gallery"
           tabIndex={0}
-          className="w-full snap-x snap-mandatory overflow-visible scroll-px-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent sm:scroll-px-8"
+          className="gallery-viewport w-full overflow-visible focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
         >
           <motion.ul
             ref={rowRef}
@@ -238,7 +238,7 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
 
         <div
           aria-hidden="true"
-          className="gallery-rail mx-auto mt-8 flex w-full max-w-6xl items-center gap-6 px-10"
+          className="gallery-rail mx-auto mt-4 flex w-full max-w-6xl items-center gap-3 px-6 sm:mt-8 sm:gap-6 sm:px-8 lg:px-10"
         >
           <span className="font-mono text-[0.65rem] text-accent">
             {String(active + 1).padStart(2, "0")}

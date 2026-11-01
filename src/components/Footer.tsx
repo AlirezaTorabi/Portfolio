@@ -87,15 +87,6 @@ export default function Footer() {
 
   return (
     <footer className="relative isolate overflow-hidden border-t border-foreground/10">
-      <Image
-        src="/footer-img/footer-transparent.png"
-        alt=""
-        width={1291}
-        height={702}
-        sizes="(max-width: 640px) 100vw, 72vw"
-        className="pointer-events-none absolute right-[-5rem] top-0 z-0 h-auto w-[min(78vw,64rem)] opacity-[0.08] dark:opacity-[0.13] [mask-image:linear-gradient(to_bottom,black_72%,transparent_100%)]"
-      />
-
       <div className="relative z-10 mx-auto max-w-6xl px-6 pt-16 sm:px-8 sm:pt-20 lg:px-10">
         <Reveal>
           <div className="grid gap-12 md:grid-cols-[minmax(0,1.5fr)_minmax(0,0.9fr)_auto] md:gap-14 lg:gap-20">
@@ -113,6 +104,14 @@ export default function Footer() {
               <p className="mt-6 max-w-xs text-sm leading-6 text-foreground/60">
                 Designing and building thoughtful digital experiences.
               </p>
+              <Image
+                src="/footer-img/footer-transparent.png"
+                alt=""
+                width={1291}
+                height={702}
+                sizes="(max-width: 640px) 80vw, 320px"
+                className="mt-5 h-auto w-full max-w-[20rem] object-contain object-left"
+              />
             </div>
 
             <nav aria-label="Footer navigation">
@@ -162,7 +161,7 @@ export default function Footer() {
 
         <p
           aria-hidden="true"
-          className="mt-14 select-none whitespace-nowrap text-[clamp(1.75rem,9.5vw,8rem)] font-medium leading-[0.8] tracking-[-0.05em] text-foreground/[0.055]"
+          className="mt-14 max-w-full select-none text-2xl font-medium leading-none text-foreground/[0.055] sm:text-5xl lg:text-8xl"
         >
           ALIREZA TORABI
         </p>
