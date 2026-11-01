@@ -1,12 +1,13 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import Image from "next/image";
 import GooeyNav from "@/components/Navigation/GooeyNav";
+import LanguageSwitcher from "@/components/Navigation/LanguageSwitcher";
 import MobileNavigationSidebar from "@/components/Navigation/MobileNavigationSidebar";
 import { ThemeSwitcher } from "@/components/theme-switcher";
+import { translations, type Locale } from "@/lib/translations";
 
 const items = [
   {
@@ -98,14 +99,28 @@ interface NavigationIntent {
   expiresAt: number;
 }
 
-export default function Navbar() {
+export default function Navbar({ locale = "en" }: { locale?: Locale }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const { theme } = useTheme();
   const navTheme = theme === "dark" ? "dark" : "light";
-  const router = useRouter();
+  const copy = translations[locale];
+  const localizedItems = items.map((item, index) => ({
+    ...item,
+    label: [
+      copy.navigation.home,
+      copy.navigation.work,
+      copy.navigation.about,
+      copy.navigation.contact,
+    ][index],
+  }));
   const intentRef = useRef<NavigationIntent | null>(null);
   const intentTimeoutRef = useRef<number | null>(null);
   const scheduleRef = useRef<() => void>(() => {});
+
+  useEffect(() => {
+    document.documentElement.lang = locale;
+    document.documentElement.dir = locale === "fa" ? "rtl" : "ltr";
+  }, [locale]);
 
   const handleNavigate = useCallback((index: number) => {
     // Highlight the clicked link immediately. The intent below keeps the
@@ -196,17 +211,13 @@ export default function Navbar() {
     <header
       className="pointer-events-none fixed inset-x-0 top-0 z-50 isolate border-b border-foreground/10 bg-background/90 backdrop-blur-md"
     >
-      <div className="relative mx-auto flex h-[76px] max-w-[1800px] items-center justify-between gap-4 pl-4 pr-[10px] md:px-5 lg:px-7">
+      <div className="relative mx-auto flex h-[76px] max-w-[1800px] items-center justify-between gap-4 ps-4 pe-[10px] md:px-5 lg:px-7">
         <Link
-          href="/"
-          aria-label="Home"
+          href={locale === "fa" ? "/fa" : "/"}
+          aria-label={copy.navigation.home}
           onClick={(event) => {
-            if (window.location.pathname !== "/") {
-              // Navigate to the homepage without a hash; Next.js scrolls to top.
-              event.preventDefault();
-              router.push("/");
-              return;
-            }
+            const homePath = locale === "fa" ? "/fa" : "/";
+            if (window.location.pathname !== homePath) return;
 
             // Already on the homepage: clear any lingering hash (e.g. #top) and
             // scroll to the top without adding a hash to the URL.
@@ -234,10 +245,10 @@ export default function Navbar() {
 
         <div className="pointer-events-auto absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 md:block">
           <GooeyNav
-            items={items}
+            items={localizedItems}
             activeIndex={activeIndex}
             onChange={handleNavigate}
-            label="Primary navigation"
+            label={copy.navigation.primary}
             theme={navTheme}
             color={navTheme === "light" ? "#2563eb" : "#8ab4ff"}
             activeTextColor={navTheme === "light" ? "#ffffff" : "#111113"}
@@ -255,11 +266,15 @@ export default function Navbar() {
           />
         </div>
         <div className="pointer-events-auto flex items-center gap-2">
-          <ThemeSwitcher />
+          <div className="hidden items-center gap-2 md:flex">
+            <ThemeSwitcher locale={locale} />
+            <LanguageSwitcher locale={locale} />
+          </div>
           <MobileNavigationSidebar
-            items={items}
+            items={localizedItems}
             activeIndex={activeIndex}
             theme={navTheme}
+            locale={locale}
             onNavigate={handleNavigate}
           />
         </div>

@@ -2,13 +2,9 @@
 
 import { Tabs, TabsContent, TabsContents, TabsHighlight, TabsHighlightItem, TabsList, TabsTrigger } from "@animate-ui/react/primitives/tabs";
 import type { Technology } from "@/components/About";
+import { formatNumber, translations, type Locale } from "@/lib/translations";
 
-const TABS = [
-  { value: "frontend", label: "Frontend" },
-  { value: "frameworks", label: "Frameworks" },
-  { value: "styling", label: "Styling" },
-  { value: "tools", label: "Tools" },
-] as const;
+const TAB_VALUES = ["frontend", "frameworks", "styling", "tools"] as const;
 
 const TAB_SKILLS: Record<TabsTabValue, readonly Technology[]> = {
   frontend: [
@@ -29,14 +25,7 @@ const TAB_SKILLS: Record<TabsTabValue, readonly Technology[]> = {
   ],
 };
 
-type TabsTabValue = (typeof TABS)[number]["value"];
-
-const TAB_DESCRIPTIONS: Record<TabsTabValue, string> = {
-  frontend: "The core languages used to shape responsive interfaces.",
-  frameworks: "Libraries and frameworks for building modern web apps.",
-  styling: "Tools for creating consistent, maintainable UI systems.",
-  tools: "Workflow tools for collaboration and version control.",
-};
+type TabsTabValue = (typeof TAB_VALUES)[number];
 
 function TechnologyCard({ technology }: { technology: Technology }) {
   const iconClassName = [technology.icon, technology.iconColor]
@@ -50,7 +39,7 @@ function TechnologyCard({ technology }: { technology: Technology }) {
           aria-hidden="true"
           className={`${iconClassName} inline-flex size-5 shrink-0 items-center justify-center text-base leading-none transition-transform duration-200 group-hover:scale-110 motion-reduce:transition-none motion-reduce:group-hover:scale-100`}
         />
-        <span className="min-w-0 text-base font-medium leading-5 text-foreground/75 transition-colors duration-200 group-hover:text-foreground">
+        <span dir="auto" className="min-w-0 text-base font-medium leading-5 text-foreground/75 transition-colors duration-200 group-hover:text-foreground">
           {technology.name}
         </span>
       </div>
@@ -58,41 +47,50 @@ function TechnologyCard({ technology }: { technology: Technology }) {
   );
 }
 
-export default function ToolkitTabs() {
+export default function ToolkitTabs({ locale = "en" }: { locale?: Locale }) {
+  const copy = translations[locale].toolkit;
+
   return (
     <Tabs defaultValue="frontend" className="w-full min-w-0">
       <TabsHighlight className="relative z-0 w-full border border-foreground/15 bg-secondary/60 p-1">
         <TabsList className="grid w-full grid-cols-2 gap-1 sm:grid-cols-4">
-          {TABS.map((tab) => (
+          {TAB_VALUES.map((value, index) => {
+            const label = copy.tabs[index];
+
+            return (
             <TabsHighlightItem
-              key={tab.value}
-              value={tab.value}
+              key={value}
+              value={value}
               className="min-w-0"
             >
               <TabsTrigger
-                value={tab.value}
+                value={value}
                 className="inline-flex min-h-11 w-full items-center justify-center px-2 text-sm font-medium text-foreground/55 transition-colors duration-200 hover:text-foreground data-[state=active]:text-foreground sm:px-3"
-                aria-label={`Show ${tab.label} technologies`}
+                aria-label={copy.showTechnologies.replace("{name}", label)}
               >
-                {tab.label}
+                {label}
               </TabsTrigger>
             </TabsHighlightItem>
-          ))}
+            );
+          })}
         </TabsList>
       </TabsHighlight>
 
       <TabsContents className="mt-3 w-full border border-foreground/15 bg-card text-card-foreground">
-        {TABS.map(({ value, label }) => (
+        {TAB_VALUES.map((value, index) => {
+          const label = copy.tabs[index];
+
+          return (
           <TabsContent key={value} value={value} className="w-full p-4 sm:p-5">
             <div className="flex flex-wrap items-start justify-between gap-3 border-b border-foreground/10 pb-4">
               <div className="min-w-0">
                 <p className="text-base font-semibold text-foreground">{label}</p>
                 <p className="mt-1 max-w-md text-sm leading-6 text-foreground/55">
-                  {TAB_DESCRIPTIONS[value]}
+                  {copy.descriptions[index]}
                 </p>
               </div>
               <span className="shrink-0 font-mono text-[0.65rem] text-foreground/45">
-                {String(TAB_SKILLS[value].length).padStart(2, "0")} ITEMS
+                {formatNumber(TAB_SKILLS[value].length, locale, 2)} {copy.itemCount}
               </span>
             </div>
             <ul
@@ -104,7 +102,8 @@ export default function ToolkitTabs() {
               ))}
             </ul>
           </TabsContent>
-        ))}
+          );
+        })}
       </TabsContents>
     </Tabs>
   );

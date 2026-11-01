@@ -3,24 +3,7 @@ import AnimatedHeading from "@/components/ui/AnimatedHeading";
 import HeroButton from "@/components/ui/HeroButton";
 import Magnetic from "@/components/ui/Magnetic";
 import Reveal from "@/components/ui/Reveal";
-
-const practiceAreas = [
-  {
-    title: "Interface design",
-    short: "Interface",
-    detail: "Layout, hierarchy, and systems that make an interface feel effortless.",
-  },
-  {
-    title: "Frontend engineering",
-    short: "Frontend",
-    detail: "React, Next.js, and TypeScript shaped into clean, maintainable components.",
-  },
-  {
-    title: "Motion & interaction",
-    short: "Motion",
-    detail: "Purposeful transitions and feedback that guide attention.",
-  },
-] as const;
+import { formatNumber, translations, type Locale } from "@/lib/translations";
 
 const toolkit = [
   "React",
@@ -29,7 +12,9 @@ const toolkit = [
   "Tailwind CSS",
 ] as const;
 
-export default function Hero() {
+export default function Hero({ locale = "en" }: { locale?: Locale }) {
+  const copy = translations[locale].hero;
+
   return (
     <section
       id="top"
@@ -44,12 +29,10 @@ export default function Hero() {
                 aria-hidden="true"
                 className="size-1.5 shrink-0 bg-accent"
               />
-              <span className="min-w-0">
-                Frontend Developer &amp; UI Designer
-              </span>
+              <span className="min-w-0">{copy.role}</span>
             </p>
             <p className="hidden shrink-0 font-mono text-[0.6875rem] text-foreground/50 sm:block">
-              Est. 2026
+              {copy.established}
             </p>
           </div>
         </Reveal>
@@ -64,11 +47,11 @@ export default function Hero() {
               delay={0.18}
               className="text-[clamp(2.4rem,12vw,7rem)] font-medium leading-[0.9] tracking-[-0.045em] text-foreground"
               lines={[
-                { text: "Alireza" },
+                { text: copy.name[0] },
                 {
-                  text: "Torabi",
+                  text: copy.name[1],
                   className:
-                    "pl-[0.08em] sm:pl-[0.12em] lg:pl-[0.16em]",
+                    "ps-[0.08em] sm:ps-[0.12em] lg:ps-[0.16em]",
                 },
               ]}
             />
@@ -92,25 +75,23 @@ export default function Hero() {
           <div className="order-3 col-span-2 min-w-0 lg:col-span-1 lg:col-start-1 lg:row-start-2 lg:self-start">
             <Reveal delay={0.42}>
               <p className="max-w-[30rem] text-pretty text-base leading-7 text-foreground/65 sm:leading-8">
-                I design and build refined, responsive web experiences, with a
-                focus on clear hierarchy, purposeful motion, and maintainable
-                frontend code.
+                {copy.introduction}
               </p>
             </Reveal>
 
             <Reveal delay={0.52}>
               <div className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-2 sm:mt-8">
                 <Magnetic>
-                  <HeroButton href="#work">View selected work</HeroButton>
+                  <HeroButton href="#work" locale={locale}>{copy.viewWork}</HeroButton>
                 </Magnetic>
                 <a
                   href="#contact"
                   className="group relative inline-flex min-h-12 items-center px-5 text-xs font-medium text-foreground/75 transition-colors hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
-                  Contact me
+                  {copy.contactMe}
                   <span
                     aria-hidden="true"
-                    className="absolute inset-x-5 bottom-3 h-px origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100 motion-reduce:transition-none"
+                    className={`absolute inset-x-5 bottom-3 h-px ${locale === "fa" ? "origin-right" : "origin-left"} scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100 motion-reduce:transition-none`}
                   />
                 </a>
               </div>
@@ -122,28 +103,29 @@ export default function Hero() {
           <div className="border-t border-foreground/10 pt-5">
             <div className="flex items-baseline justify-between gap-4">
               <p className="font-mono text-[0.6875rem] text-foreground/55">
-                Practice areas
+                {copy.practice}
               </p>
               <p
                 aria-hidden="true"
+                dir="ltr"
                 className="font-mono text-[0.6875rem] text-foreground/40"
               >
-                01 — 03
+                {formatNumber(1, locale, 2)} — {formatNumber(3, locale, 2)}
               </p>
             </div>
 
             <ul className="mt-4 grid grid-cols-3 gap-x-4 gap-y-3 sm:gap-x-8">
-              {practiceAreas.map((area, index) => (
-                <li key={area.title} className="min-w-0">
+              {copy.areas.map((area, index) => (
+                <li key={area} className="min-w-0">
                   <span className="font-mono text-[0.6875rem] text-accent">
-                    {String(index + 1).padStart(2, "0")}
+                    {formatNumber(index + 1, locale, 2)}
                   </span>
                   <p className="mt-1.5 text-base leading-6 text-foreground/80 sm:mt-2">
-                    <span className="sm:hidden">{area.short}</span>
-                    <span className="hidden sm:inline">{area.title}</span>
+                    <span className="sm:hidden">{copy.shortAreas[index]}</span>
+                    <span className="hidden sm:inline">{area}</span>
                   </p>
                   <p className="mt-1 hidden text-[0.7rem] leading-5 text-foreground/55 lg:block">
-                    {area.detail}
+                    {copy.details[index]}
                   </p>
                 </li>
               ))}
@@ -157,14 +139,14 @@ export default function Hero() {
               href="#work"
               className="group inline-flex min-h-11 items-center gap-3 text-[0.6875rem] font-medium text-foreground/60 transition-colors hover:text-foreground/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-background"
             >
-              <span>Scroll to work</span>
+              <span>{copy.scrollToWork}</span>
               <span
                 aria-hidden="true"
                 className="relative block h-7 w-px overflow-hidden bg-foreground/15"
               >
                 <span className="scroll-cue-line absolute inset-0 bg-accent" />
               </span>
-              <span className="sr-only">to selected work</span>
+              <span className="sr-only">{copy.toSelectedWork}</span>
             </a>
 
             <ul className="hidden items-center gap-4 font-mono text-[0.6875rem] text-foreground/40 sm:flex">

@@ -8,12 +8,14 @@ import {
   useTransform,
 } from "motion/react";
 import type { WorkProject } from "@/data/workProjects";
+import { formatNumber, translations, type Locale } from "@/lib/translations";
 
 const useIsomorphicLayoutEffect =
   typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 interface ProjectGalleryProps {
   projects: WorkProject[];
+  locale?: Locale;
 }
 
 function getValidProjectUrl(value?: string): string | undefined {
@@ -37,13 +39,16 @@ function ProjectCard({
   index,
   total,
   active,
+  locale,
 }: {
   project: WorkProject;
   index: number;
   total: number;
   active: boolean;
+  locale: Locale;
 }) {
-  const number = String(index + 1).padStart(2, "0");
+  const number = formatNumber(index + 1, locale, 2);
+  const totalNumber = formatNumber(total, locale, 2);
   const projectUrl = getValidProjectUrl(project.url);
   const opensInNewTab = projectUrl
     ? /^https?:\/\//i.test(projectUrl)
@@ -68,7 +73,7 @@ function ProjectCard({
 
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute right-3 top-1/2 hidden -translate-y-1/2 select-none text-[11rem] font-medium leading-none tracking-[-0.06em] text-foreground/[0.05] lg:block lg:text-[13rem]"
+          className={`pointer-events-none absolute ${locale === "fa" ? "left-3" : "right-3"} top-1/2 hidden -translate-y-1/2 select-none text-[11rem] font-medium leading-none tracking-[-0.06em] text-foreground/[0.05] lg:block lg:text-[13rem]`}
         >
           {number}
         </span>
@@ -77,11 +82,12 @@ function ProjectCard({
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-xs text-foreground/55">
             <span className="text-accent">{number}</span>
             <span className="h-px w-6 bg-foreground/20" aria-hidden="true" />
-            <span className="text-foreground/55">{project.category}</span>
+            <span>{project.category}</span>
           </div>
 
           <h3
             id={`project-${index}-title`}
+            dir="auto"
             className="mt-8 max-w-[24ch] text-3xl font-medium leading-[1.06] text-foreground sm:text-4xl lg:text-[clamp(2.4rem,3.4vw,3.4rem)]"
           >
             {projectUrl ? (
@@ -94,12 +100,12 @@ function ProjectCard({
                 {project.title}
                 <span
                   aria-hidden="true"
-                  className="text-sm text-accent transition-transform duration-200 group-hover/title:-translate-y-0.5 group-hover/title:translate-x-0.5"
+                  className={`text-sm text-accent transition-transform duration-200 group-hover/title:-translate-y-0.5 group-hover/title:translate-x-0.5 ${locale === "fa" ? "-scale-x-100" : ""}`}
                 >
                   ↗
                 </span>
                 {opensInNewTab ? (
-                  <span className="sr-only"> (opens in a new tab)</span>
+                  <span className="sr-only"> ({translations[locale].common.opensInNewTab})</span>
                 ) : null}
               </a>
             ) : (
@@ -116,7 +122,7 @@ function ProjectCard({
           <div className="h-px w-full bg-foreground/10" aria-hidden="true" />
           <div className="mt-5 flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
             <ul
-              aria-label={`${project.title} technologies`}
+              aria-label={`${project.title} ${translations[locale].common.technologiesLabel}`}
               className="flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-xs text-foreground/55"
             >
               {project.technologies.map((technology, technologyIndex) => (
@@ -135,7 +141,7 @@ function ProjectCard({
               aria-hidden="true"
               className="font-mono text-[0.6rem] uppercase tracking-[0.12em] text-foreground/30"
             >
-              {number} / {String(total).padStart(2, "0")}
+              {number} / {totalNumber}
             </span>
           </div>
         </div>
@@ -148,7 +154,7 @@ function ProjectCard({
  * Normal motion: the gallery pins and translates horizontally with page scroll.
  * Reduced motion: a plain vertical stack of the same cards.
  */
-export default function ProjectGallery({ projects }: ProjectGalleryProps) {
+export default function ProjectGallery({ projects, locale = "en" }: ProjectGalleryProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const rowRef = useRef<HTMLUListElement>(null);
   const [travel, setTravel] = useState(0);
@@ -192,7 +198,11 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
     offset: ["start start", "end end"],
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], [0, travel > 0 ? -travel : 0]);
+  const x = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, travel > 0 ? (locale === "fa" ? travel : -travel) : 0],
+  );
 
   useMotionValueEvent(scrollYProgress, "change", (value) => {
     const next = Math.min(
@@ -207,7 +217,7 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
   return (
     <div
       ref={trackRef}
-      className="gallery-track relative"
+      className={`gallery-track relative ${locale === "fa" ? "gallery-track-rtl" : ""}`}
       style={{ height: trackHeight }}
     >
       <div
@@ -215,7 +225,7 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
       >
         <div
           role="region"
-          aria-label="Selected project gallery"
+          aria-label={translations[locale].work.galleryLabel}
           tabIndex={0}
           className="gallery-viewport w-full overflow-visible focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
         >
@@ -231,6 +241,7 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
                 index={index}
                 total={projects.length}
                 active={active === index}
+                locale={locale}
               />
             ))}
           </motion.ul>
@@ -241,19 +252,19 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
           className="gallery-rail mx-auto mt-4 flex w-full max-w-6xl items-center gap-3 px-6 sm:mt-8 sm:gap-6 sm:px-8 lg:px-10"
         >
           <span className="font-mono text-[0.65rem] text-accent">
-            {String(active + 1).padStart(2, "0")}
+            {formatNumber(active + 1, locale, 2)}
           </span>
           <span className="relative h-px flex-1 overflow-hidden bg-foreground/12">
             <motion.span
-              className="absolute inset-y-0 left-0 w-full origin-left bg-accent"
+              className={`absolute inset-y-0 ${locale === "fa" ? "right-0 origin-right" : "left-0 origin-left"} w-full bg-accent`}
               style={{ scaleX: scrollYProgress }}
             />
           </span>
           <span className="font-mono text-[0.65rem] text-foreground/40">
-            {String(projects.length).padStart(2, "0")}
+            {formatNumber(projects.length, locale, 2)}
           </span>
           <span className="ml-4 hidden font-mono text-[0.58rem] uppercase tracking-[0.16em] text-foreground/30 xl:block">
-            Scroll to explore
+            {translations[locale].work.scrollToExplore}
           </span>
         </div>
       </div>

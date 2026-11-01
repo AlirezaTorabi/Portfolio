@@ -4,24 +4,7 @@ import Image from "next/image";
 import AnimatedHeading from "@/components/ui/AnimatedHeading";
 import Reveal from "@/components/ui/Reveal";
 import ToolkitTabs from "@/components/ToolkitTabs";
-
-const principles = [
-  {
-    title: "Thoughtful Design",
-    detail:
-      "Clarity, hierarchy, and restraint guide every interface decision, so each detail has a reason to exist.",
-  },
-  {
-    title: "Clean Development",
-    detail:
-      "Semantic, maintainable frontend code built for responsiveness, performance, and the long run.",
-  },
-  {
-    title: "Continuous Learning",
-    detail:
-      "A steady practice of refining the craft and staying curious about better ways to build.",
-  },
-] as const;
+import { formatNumber, translations, type Locale } from "@/lib/translations";
 
 interface Technology {
   name: string;
@@ -47,7 +30,9 @@ const technologies: Technology[] = [
 ];
 
 export { technologies, type Technology };
-export default function About() {
+export default function About({ locale = "en" }: { locale?: Locale }) {
+  const copy = translations[locale].about;
+
   return (
     <section
       id="about"
@@ -58,10 +43,10 @@ export default function About() {
         <Reveal>
           <div className="flex items-center justify-between gap-6 border-b border-foreground/15 pb-5">
             <p className="text-[0.6875rem] font-medium text-foreground/60">
-              About Me
+              {copy.eyebrow}
             </p>
             <p className="hidden font-mono text-xs text-foreground/55 sm:block">
-              Front-End Developer / UI Designer
+              {copy.role}
             </p>
           </div>
         </Reveal>
@@ -70,19 +55,15 @@ export default function About() {
           <div className="lg:sticky lg:top-28 lg:self-start">
             <AnimatedHeading
               id="about-title"
-              lines={[
-                { text: "I build digital experiences" },
-                { text: "with purpose.", className: "text-accent" },
-              ]}
+              lines={copy.heading.map((text, index) => ({
+                text,
+                className: index === 1 ? "text-accent" : undefined,
+              }))}
               className="max-w-2xl text-4xl font-medium leading-[1.04] sm:text-5xl lg:text-6xl"
             />
             <Reveal delay={0.1}>
               <p className="mt-8 max-w-xl text-pretty text-base leading-7 text-foreground/65 sm:leading-8">
-                I&apos;m Alireza Torabi, a front-end developer and UI designer.
-                I build modern, responsive web applications and shape
-                interfaces that feel intuitive, refined, and easy to use,
-                turning ideas into functional digital experiences with clean,
-                maintainable code.
+                {copy.introduction}
               </p>
             </Reveal>
 
@@ -106,10 +87,10 @@ export default function About() {
           </div>
 
           <ol
-            aria-label="Working principles"
+            aria-label={copy.principlesLabel}
             className="m-0 list-none border-t border-foreground/15 p-0"
           >
-            {principles.map((principle, index) => (
+            {copy.principles.map((principle, index) => (
               <Reveal
                 as="li"
                 key={principle.title}
@@ -118,7 +99,7 @@ export default function About() {
               >
                 <div className="flex gap-5 sm:gap-8">
                   <span className="pt-1 font-mono text-xs text-accent">
-                    {String(index + 1).padStart(2, "0")}
+                    {formatNumber(index + 1, locale, 2)}
                   </span>
                   <div className="min-w-0">
                     <h3 className="text-lg font-medium leading-snug sm:text-xl">
@@ -138,7 +119,7 @@ export default function About() {
           <div className="grid gap-8 border-t border-foreground/15 pt-10 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] md:items-center md:gap-12 lg:gap-16">
             <Image
               src="/hero-img/hero-transparent.png"
-              alt="Illustration of a developer working with frontend technologies."
+              alt={copy.illustrationAlt}
               width={1160}
               height={693}
               sizes="(max-width: 767px) 75vw, 32vw"
@@ -146,9 +127,9 @@ export default function About() {
             />
             <div className="grid gap-4 lg:grid-cols-[8rem_minmax(0,1fr)] lg:items-start lg:gap-8">
               <p className="text-[0.65rem] font-medium uppercase text-foreground/50">
-                Toolkit
+                {copy.toolkit}
               </p>
-              <ToolkitTabs />
+              <ToolkitTabs locale={locale} />
             </div>
           </div>
         </Reveal>

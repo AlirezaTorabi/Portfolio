@@ -2,11 +2,15 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import GooeyNav, { type GooeyNavItem } from "@/components/Navigation/GooeyNav";
+import LanguageSwitcher from "@/components/Navigation/LanguageSwitcher";
+import { ThemeSwitcher } from "@/components/theme-switcher";
+import { translations, type Locale } from "@/lib/translations";
 
 interface MobileNavigationSidebarProps {
   items: GooeyNavItem[];
   activeIndex: number;
   theme: "light" | "dark";
+  locale: Locale;
   onNavigate: (index: number) => void;
 }
 
@@ -14,11 +18,14 @@ export default function MobileNavigationSidebar({
   items,
   activeIndex,
   theme,
+  locale,
   onNavigate,
 }: MobileNavigationSidebarProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const copy = translations[locale];
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const sidebarRef = useRef<HTMLElement>(null);
+  const controlsRef = useRef<HTMLDivElement>(null);
   const iconOnlyItems = useMemo(
     () =>
       items.map((item) => ({
@@ -52,6 +59,9 @@ export default function MobileNavigationSidebar({
         menuButtonRef.current,
         ...Array.from(
           sidebarRef.current.querySelectorAll<HTMLElement>("a[href], button"),
+        ),
+        ...Array.from(
+          controlsRef.current?.querySelectorAll<HTMLElement>("button") ?? [],
         ),
       ].filter((element): element is HTMLElement => Boolean(element));
 
@@ -97,21 +107,33 @@ export default function MobileNavigationSidebar({
 
   return (
     <>
-      <button
-        ref={menuButtonRef}
-        type="button"
-        aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
-        aria-expanded={isOpen}
-        aria-controls="mobile-navigation-sidebar"
-        onClick={() => (isOpen ? closeMenu() : setIsOpen(true))}
-        className="pointer-events-auto z-[80] flex h-11 w-11 shrink-0 items-center justify-center bg-transparent text-foreground transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent md:hidden"
-      >
-        <span className="relative h-5 w-5" aria-hidden="true">
-          <span className={`absolute left-0 top-1/2 h-px w-full bg-current transition-[rotate,translate] duration-200 ${isOpen ? "rotate-45" : "-translate-y-[6px]"}`} />
-          <span className={`absolute left-0 top-1/2 h-px w-full bg-current transition-opacity duration-150 ${isOpen ? "opacity-0" : "opacity-100"}`} />
-          <span className={`absolute left-0 top-1/2 h-px w-full bg-current transition-[rotate,translate] duration-200 ${isOpen ? "-rotate-45" : "translate-y-[6px]"}`} />
-        </span>
-      </button>
+      <div className="relative md:hidden">
+        <button
+          ref={menuButtonRef}
+          type="button"
+          aria-label={isOpen ? copy.navigation.close : copy.navigation.open}
+          aria-expanded={isOpen}
+          aria-controls="mobile-navigation-sidebar"
+          onClick={() => (isOpen ? closeMenu() : setIsOpen(true))}
+          className="pointer-events-auto z-[80] flex h-11 w-11 shrink-0 items-center justify-center bg-transparent text-foreground transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+        >
+          <span className="relative h-5 w-5" aria-hidden="true">
+            <span className={`absolute left-0 top-1/2 h-px w-full bg-current transition-[rotate,translate] duration-200 ${isOpen ? "rotate-45" : "-translate-y-[6px]"}`} />
+            <span className={`absolute left-0 top-1/2 h-px w-full bg-current transition-opacity duration-150 ${isOpen ? "opacity-0" : "opacity-100"}`} />
+            <span className={`absolute left-0 top-1/2 h-px w-full bg-current transition-[rotate,translate] duration-200 ${isOpen ? "-rotate-45" : "translate-y-[6px]"}`} />
+          </span>
+        </button>
+
+        <div
+          ref={controlsRef}
+          aria-hidden={!isOpen}
+          inert={!isOpen}
+          className={`pointer-events-auto absolute end-0 top-full z-[80] flex flex-col items-center gap-0 bg-background/90 backdrop-blur-md transition-[opacity,transform] duration-200 ${isOpen ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0"}`}
+        >
+          <ThemeSwitcher locale={locale} />
+          <LanguageSwitcher locale={locale} onNavigate={closeMenu} />
+        </div>
+      </div>
 
       <div
         aria-hidden="true"
@@ -122,7 +144,7 @@ export default function MobileNavigationSidebar({
       <aside
         ref={sidebarRef}
         id="mobile-navigation-sidebar"
-        aria-label="Mobile navigation"
+        aria-label={copy.navigation.mobile}
         aria-hidden={!isOpen}
         inert={!isOpen}
         className={`pointer-events-auto fixed left-1/2 top-[10px] z-[70] flex w-fit max-w-[calc(100%-70px)] -translate-x-1/2 items-center rounded-full border border-foreground/20 bg-background px-2 py-1 shadow-xl transition-transform duration-200 ease-out motion-reduce:transition-none md:hidden ${isOpen ? "translate-y-0" : "-translate-y-[calc(100%+10px)]"}`}
@@ -130,7 +152,7 @@ export default function MobileNavigationSidebar({
         <GooeyNav
           items={iconOnlyItems}
           activeIndex={activeIndex}
-          label="Mobile navigation links"
+          label={copy.navigation.mobile}
           theme={theme}
           color={theme === "light" ? "#2563eb" : "#8ab4ff"}
           activeTextColor={theme === "light" ? "#ffffff" : "#111113"}

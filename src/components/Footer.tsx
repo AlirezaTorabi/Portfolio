@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Reveal from "@/components/ui/Reveal";
+import { formatNumber, translations, type Locale } from "@/lib/translations";
 
 function GitHubIcon() {
   return (
@@ -54,36 +55,23 @@ function InstagramIcon() {
   );
 }
 
-const navigation = [
-  { label: "Home", href: "#top" },
-  { label: "About", href: "#about" },
-  { label: "Work", href: "#work" },
-  { label: "Contact", href: "#contact" },
-];
-
-const socials = [
-  {
-    label: "GitHub",
-    href: "https://github.com/AlirezaTorabi",
-    icon: <GitHubIcon />,
-  },
-  {
-    label: "Telegram",
-    href: "https://t.me/AlirezaToorabi",
-    icon: <TelegramIcon />,
-  },
-  {
-    label: "Instagram",
-    href: "https://www.instagram.com/AlirezaToorabi/",
-    icon: <InstagramIcon />,
-  },
-];
-
 const focusRing =
   "focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
-export default function Footer() {
+export default function Footer({ locale = "en" }: { locale?: Locale }) {
   const year = new Date().getFullYear();
+  const copy = translations[locale].footer;
+  const navigation = [
+    { label: translations[locale].navigation.home, href: "#top" },
+    { label: translations[locale].navigation.about, href: "#about" },
+    { label: translations[locale].navigation.work, href: "#work" },
+    { label: translations[locale].navigation.contact, href: "#contact" },
+  ];
+  const socials = [
+    { label: locale === "fa" ? "گیت‌هاب" : "GitHub", icon: <GitHubIcon />, href: "https://github.com/AlirezaTorabi" },
+    { label: locale === "fa" ? "تلگرام" : "Telegram", icon: <TelegramIcon />, href: "https://t.me/AlirezaToorabi" },
+    { label: locale === "fa" ? "اینستاگرام" : "Instagram", icon: <InstagramIcon />, href: "https://www.instagram.com/AlirezaToorabi/" },
+  ];
 
   return (
     <footer className="relative isolate overflow-hidden border-t border-foreground/10">
@@ -92,17 +80,17 @@ export default function Footer() {
           <div className="grid gap-12 md:grid-cols-[minmax(0,1.5fr)_minmax(0,0.9fr)_auto] md:gap-14 lg:gap-20">
             <div>
               <p className="flex items-center gap-2.5 text-lg font-medium">
-                Alireza Torabi
+                {locale === "fa" ? "علیرضا ترابی" : "Alireza Torabi"}
                 <span
                   aria-hidden="true"
                   className="mt-0.5 block size-1.5 shrink-0 bg-accent"
                 />
               </p>
               <p className="mt-2 text-[0.6875rem] font-medium text-foreground/50">
-                Front-End Developer &amp; UI Designer
+                {copy.role}
               </p>
               <p className="mt-6 max-w-xs text-base leading-7 text-foreground/60">
-                Designing and building thoughtful digital experiences.
+                {copy.tagline}
               </p>
               <Image
                 src="/footer-img/footer-transparent.png"
@@ -110,13 +98,13 @@ export default function Footer() {
                 width={1291}
                 height={702}
                 sizes="(max-width: 640px) 80vw, 320px"
-                className="mt-5 h-auto w-full max-w-[20rem] object-contain object-left"
+                className={`mt-5 h-auto w-full max-w-[20rem] object-contain ${locale === "fa" ? "object-right" : "object-left"}`}
               />
             </div>
 
-            <nav aria-label="Footer navigation">
+            <nav aria-label={copy.navigation}>
               <p className="text-[0.6875rem] font-medium text-foreground/50">
-                Navigation
+                {copy.navigation}
               </p>
               <ul className="mt-4 space-y-1">
                 {navigation.map((item) => (
@@ -138,7 +126,7 @@ export default function Footer() {
 
             <div>
               <p className="text-[0.6875rem] font-medium text-foreground/50">
-                Socials
+                {copy.socials}
               </p>
               <ul className="mt-5 flex gap-2.5">
                 {socials.map((social) => (
@@ -147,7 +135,7 @@ export default function Footer() {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label={`${social.label} (opens in a new tab)`}
+                      aria-label={`${social.label} (${translations[locale].common.opensInNewTab})`}
                       className={`grid size-11 place-items-center border border-foreground/15 text-foreground/60 transition-colors duration-200 hover:border-accent/50 hover:bg-accent/[0.06] hover:text-accent ${focusRing}`}
                     >
                       {social.icon}
@@ -163,18 +151,18 @@ export default function Footer() {
           aria-hidden="true"
           className="mt-14 max-w-full select-none text-2xl font-medium leading-none text-foreground/[0.055] sm:text-5xl lg:text-8xl"
         >
-          ALIREZA TORABI
+          {locale === "fa" ? "علیرضا ترابی" : "ALIREZA TORABI"}
         </p>
 
         <div className="mt-8 flex flex-col gap-4 border-t border-foreground/10 py-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-foreground/50">
-            © {year} Alireza Torabi. All rights reserved.
+            © {formatNumber(year, locale)} {locale === "fa" ? "علیرضا ترابی. " : "Alireza Torabi. "}{copy.copyright}
           </p>
           <a
             href="#top"
             className={`group inline-flex min-h-11 items-center gap-2 self-start border border-foreground/15 px-3.5 py-2 text-[0.65rem] font-medium uppercase tracking-[0.12em] text-foreground/60 transition-colors duration-200 hover:border-accent/50 hover:text-foreground sm:self-auto ${focusRing}`}
           >
-            Back to top
+            {copy.backToTop}
             <span
               aria-hidden="true"
               className="text-sm transition-transform duration-200 group-hover:-translate-y-0.5"

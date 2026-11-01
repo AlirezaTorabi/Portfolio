@@ -5,8 +5,11 @@ import DynamicIsland from "@/components/smoothui/dynamic-island";
 import AnimatedHeading from "@/components/ui/AnimatedHeading";
 import Magnetic from "@/components/ui/Magnetic";
 import Reveal from "@/components/ui/Reveal";
+import { translations, type Locale } from "@/lib/translations";
 
-export default function Contact() {
+export default function Contact({ locale = "en" }: { locale?: Locale }) {
+  const copy = translations[locale].contact;
+
   return (
     <section
       id="contact"
@@ -17,10 +20,10 @@ export default function Contact() {
         <Reveal>
           <div className="flex items-center justify-between gap-6 border-b border-foreground/15 pb-5">
             <p className="text-[0.6875rem] font-medium text-foreground/60">
-              Get in Touch
+              {copy.eyebrow}
             </p>
             <p className="hidden font-mono text-xs text-foreground/55 sm:block">
-              Front-End Developer / UI Designer
+              {copy.role}
             </p>
           </div>
         </Reveal>
@@ -29,17 +32,15 @@ export default function Contact() {
           <div className="min-w-0">
             <AnimatedHeading
               id="contact-title"
-              lines={[
-                { text: "Let's build something" },
-                { text: "great together.", className: "text-accent" },
-              ]}
+              lines={copy.heading.map((text, index) => ({
+                text,
+                className: index === 1 ? "text-accent" : undefined,
+              }))}
               className="max-w-2xl text-4xl font-medium leading-[1.04] sm:text-5xl lg:text-6xl"
             />
             <Reveal delay={0.1}>
               <p className="mt-8 max-w-xl text-pretty text-base leading-7 text-foreground/65 sm:leading-8">
-                Have a project in mind or an opportunity to discuss? I&apos;d
-                love to hear from you. Feel free to reach out through any of the
-                channels below.
+                {copy.introduction}
               </p>
             </Reveal>
             <Reveal delay={0.18}>
@@ -51,10 +52,10 @@ export default function Contact() {
                     rel="noopener noreferrer"
                     className="group inline-flex min-h-12 items-center gap-4 bg-accent px-6 text-base font-semibold text-on-accent transition-colors duration-200 hover:bg-accent/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                   >
-                    <span>Start a Conversation</span>
+                    <span>{copy.startConversation}</span>
                     <span
                       aria-hidden="true"
-                      className="text-base transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      className={`text-base transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${locale === "fa" ? "-scale-x-100" : ""}`}
                     >
                       ↗
                     </span>
@@ -66,11 +67,11 @@ export default function Contact() {
 
             <Reveal delay={0.08}>
               <p className="mb-3 mt-12 border-t border-foreground/10 pt-6 text-[0.65rem] font-medium uppercase text-foreground/50">
-                Direct channels
+                {copy.directChannels}
               </p>
             </Reveal>
             <Reveal delay={0.1}>
-              <DynamicIsland />
+              <DynamicIsland locale={locale} />
             </Reveal>
           </div>
 

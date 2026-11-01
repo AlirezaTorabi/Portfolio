@@ -1,11 +1,13 @@
 import type { ReactNode } from "react";
+import type { Locale } from "@/lib/translations";
 
 interface HeroButtonProps {
   href: string;
   children: ReactNode;
+  locale?: Locale;
 }
 
-export default function HeroButton({ href, children }: HeroButtonProps) {
+export default function HeroButton({ href, children, locale = "en" }: HeroButtonProps) {
   return (
     <a
       href={href}
@@ -13,13 +15,13 @@ export default function HeroButton({ href, children }: HeroButtonProps) {
     >
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-foreground/20 to-transparent transition-transform duration-700 group-hover:translate-x-full motion-reduce:hidden"
+        className={`pointer-events-none absolute inset-0 ${locale === "fa" ? "translate-x-full bg-gradient-to-l group-hover:-translate-x-full" : "-translate-x-full bg-gradient-to-r group-hover:translate-x-full"} from-transparent via-foreground/20 to-transparent transition-transform duration-700 motion-reduce:hidden`}
       />
       <span className="relative z-10 inline-flex items-center gap-4">
         {children}
         <span
           aria-hidden="true"
-          className="text-base transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          className={`text-base transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${locale === "fa" ? "-scale-x-100" : ""}`}
         >
           ↗
         </span>

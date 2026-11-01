@@ -3,6 +3,7 @@
 import { Phone } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { type ComponentType, useId, useState } from "react";
+import { translations, type Locale } from "@/lib/translations";
 
 type ContactMethod = "phone" | "telegram" | "instagram" | "github";
 
@@ -92,16 +93,16 @@ const CONTACT_CHANNELS: readonly ContactChannel[] = [
   },
 ];
 
-function IdleContent() {
+function IdleContent({ locale }: { locale: Locale }) {
   return (
     <div className="flex items-center gap-2 px-4 py-2.5">
       <span aria-hidden="true" className="size-1.5 bg-accent" />
-      <span className="text-xs font-medium text-white/75">Contact</span>
+      <span className="text-xs font-medium text-white/75">{translations[locale].contact.idle}</span>
     </div>
   );
 }
 
-function ChannelContent({ channel }: { channel: ContactChannel }) {
+function ChannelContent({ channel, locale }: { channel: ContactChannel; locale: Locale }) {
   const { Icon } = channel;
 
   return (
@@ -118,11 +119,11 @@ function ChannelContent({ channel }: { channel: ContactChannel }) {
       >
         <Icon className="size-4" />
       </span>
-      <span className="flex min-w-0 flex-col text-left">
+      <span className="flex min-w-0 flex-col text-start">
         <span className="font-mono text-[0.58rem] uppercase tracking-[0.16em] text-white/50">
           {channel.label}
         </span>
-        <span className="mt-0.5 text-sm font-medium leading-5 text-white transition-colors duration-200 group-hover:text-accent motion-reduce:transition-none">
+        <span dir="ltr" className="mt-0.5 text-sm font-medium leading-5 text-white transition-colors duration-200 group-hover:text-accent motion-reduce:transition-none">
           {channel.value}
         </span>
       </span>
@@ -130,22 +131,25 @@ function ChannelContent({ channel }: { channel: ContactChannel }) {
         aria-hidden="true"
         className="shrink-0 text-sm text-white/40 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent motion-reduce:transform-none motion-reduce:transition-none"
       >
-        {channel.external ? "↗" : "→"}
+        {channel.external ? (locale === "fa" ? "↖" : "↗") : locale === "fa" ? "←" : "→"}
       </span>
       {channel.external && (
-        <span className="sr-only"> (opens in a new tab)</span>
+        <span className="sr-only"> ({translations[locale].common.opensInNewTab})</span>
       )}
     </a>
   );
 }
 
-export default function DynamicIsland({ className = "" }: { className?: string }) {
+export default function DynamicIsland({ className = "", locale = "en" }: { className?: string; locale?: Locale }) {
   const [activeMethod, setActiveMethod] = useState<ContactMethod | null>(null);
   const shouldReduceMotion = useReducedMotion();
   const panelId = useId();
 
-  const activeChannel =
-    CONTACT_CHANNELS.find((channel) => channel.method === activeMethod) ?? null;
+  const channels = CONTACT_CHANNELS.map((channel, index) => ({
+    ...channel,
+    label: translations[locale].contact.channels[index],
+  }));
+  const activeChannel = channels.find((channel) => channel.method === activeMethod) ?? null;
 
   const handleSelect = (method: ContactMethod) => {
     if (method === activeMethod) return;
@@ -166,17 +170,17 @@ export default function DynamicIsland({ className = "" }: { className?: string }
     <div className={`flex flex-col-reverse items-start gap-5 ${className}`}>
       <div
         role="group"
-        aria-label="Select a contact method"
+        aria-label={translations[locale].contact.selectMethod}
         className="flex items-center justify-center gap-1 border border-white/15 bg-black p-1 shadow-sm"
       >
-        {CONTACT_CHANNELS.map(({ method, label, Icon }) => {
+        {channels.map(({ method, label, Icon }) => {
           const isActive = method === activeMethod;
 
           return (
             <button
               key={method}
               type="button"
-              aria-label={`Show ${label} contact details`}
+              aria-label={translations[locale].contact.showDetails.replace("{name}", label)}
               aria-pressed={isActive}
               aria-controls={panelId}
               onClick={() => handleSelect(method)}
@@ -217,9 +221,9 @@ export default function DynamicIsland({ className = "" }: { className?: string }
             className="text-white"
           >
             {activeChannel ? (
-              <ChannelContent channel={activeChannel} />
+              <ChannelContent channel={activeChannel} locale={locale} />
             ) : (
-              <IdleContent />
+              <IdleContent locale={locale} />
             )}
           </motion.div>
         </AnimatePresence>
@@ -228,7 +232,7 @@ export default function DynamicIsland({ className = "" }: { className?: string }
       <p className="sr-only" aria-live="polite" aria-atomic="true">
         {activeChannel
           ? `${activeChannel.label}: ${activeChannel.value}`
-          : "Contact methods"}
+          : translations[locale].contact.idle}
       </p>
     </div>
   );
