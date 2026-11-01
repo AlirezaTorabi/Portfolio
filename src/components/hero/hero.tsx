@@ -1,6 +1,6 @@
 import Image from "next/image";
 import AnimatedHeading from "@/components/ui/AnimatedHeading";
-import HeroButton from "@/components/ui/HeroButton";
+import { Button } from "@/components/ui/button";
 import Magnetic from "@/components/ui/Magnetic";
 import Reveal from "@/components/ui/Reveal";
 import { formatNumber, translations, type Locale } from "@/lib/translations";
@@ -77,18 +77,33 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
             <Reveal delay={0.52}>
               <div className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-2 sm:mt-8">
                 <Magnetic>
-                  <HeroButton href="#work" locale={locale}>{copy.viewWork}</HeroButton>
+                  <Button asChild size="lg" className="group relative isolate min-h-12 overflow-hidden border border-[#09090b] px-6 text-xs font-semibold">
+                    <a href="#work">
+                      <span
+                        aria-hidden="true"
+                        className={`pointer-events-none absolute inset-0 ${locale === "fa" ? "translate-x-full bg-gradient-to-l group-hover:-translate-x-full" : "-translate-x-full bg-gradient-to-r group-hover:translate-x-full"} from-transparent via-[#09090b]/20 to-transparent transition-transform duration-700 motion-reduce:hidden`}
+                      />
+                      <span className="relative z-10 inline-flex items-center gap-4">
+                        {copy.viewWork}
+                        <span
+                          aria-hidden="true"
+                          className={`text-base transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${locale === "fa" ? "-scale-x-100" : ""}`}
+                        >
+                          ↗
+                        </span>
+                      </span>
+                    </a>
+                  </Button>
                 </Magnetic>
-                <a
-                  href="#contact"
-                  className="group relative inline-flex min-h-12 items-center px-5 text-xs font-medium text-foreground/75 transition-colors hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                >
-                  {copy.contactMe}
-                  <span
-                    aria-hidden="true"
-                    className={`absolute inset-x-5 bottom-3 h-px ${locale === "fa" ? "origin-right" : "origin-left"} scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100 motion-reduce:transition-none`}
-                  />
-                </a>
+                <Button asChild variant="ghost" size="lg" className="group relative h-12 px-5 text-xs font-medium text-[#3f3f46] hover:bg-transparent hover:text-[#09090b] dark:text-white dark:hover:text-white">
+                  <a href="#contact">
+                    {copy.contactMe}
+                    <span
+                      aria-hidden="true"
+                      className={`absolute inset-x-5 bottom-3 h-px ${locale === "fa" ? "origin-right" : "origin-left"} scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100 motion-reduce:transition-none`}
+                    />
+                  </a>
+                </Button>
               </div>
             </Reveal>
           </div>
@@ -150,12 +165,6 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
               ))}
             </ul>
 
-            <p
-              aria-hidden="true"
-              className="font-mono text-[0.6875rem] text-foreground/40"
-            >
-              AT / 001
-            </p>
           </div>
         </Reveal>
       </div>

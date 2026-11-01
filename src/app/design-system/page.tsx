@@ -98,7 +98,7 @@ const nodes: ArchitectureNode[] = [
     id: "hero-button",
     type: "architecture",
     position: { x: 300, y: 950 },
-    data: { category: "UI COMPONENT", title: "HeroButton", detail: "Dither-backed primary action", accent: "#FF5100" },
+    data: { category: "UI COMPONENT", title: "Button", detail: "Shared shadcn action primitive", accent: "#FF5100" },
   },
   {
     id: "dither",

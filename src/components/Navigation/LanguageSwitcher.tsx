@@ -2,6 +2,7 @@
 
 import { Languages } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
 import { translations, type Locale } from "@/lib/translations";
 
 export default function LanguageSwitcher({
@@ -16,17 +17,19 @@ export default function LanguageSwitcher({
   const label = locale === "fa" ? copy.switchToEnglish : copy.switchToPersian;
 
   return (
-    <button
+    <Button
       type="button"
+      variant="ghost"
+      size="icon-lg"
       aria-label={label}
       title={label}
       onClick={() => {
         onNavigate?.();
         router.push(locale === "fa" ? "/" : "/fa");
       }}
-      className="pointer-events-auto inline-flex size-11 items-center justify-center bg-transparent p-0 text-foreground/70 transition-colors hover:text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+      className="pointer-events-auto relative isolate size-11 rounded-full text-[#3f3f46] before:absolute before:inset-1 before:z-0 before:rounded-full before:transition-colors before:content-[''] hover:bg-transparent hover:before:bg-[#e8ecf0] hover:text-[#09090b] dark:text-[#e4e4e7] dark:hover:bg-transparent dark:hover:before:bg-white dark:hover:text-[#09090b] [&_svg]:relative [&_svg]:z-10"
     >
       <Languages aria-hidden="true" className="size-[17px]" />
-    </button>
+    </Button>
   );
 }

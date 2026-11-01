@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
+
 import { useEffect, useMemo, useRef, useState } from "react";
 import GooeyNav, { type GooeyNavItem } from "@/components/Navigation/GooeyNav";
 import LanguageSwitcher from "@/components/Navigation/LanguageSwitcher";
@@ -108,28 +110,30 @@ export default function MobileNavigationSidebar({
   return (
     <>
       <div className="relative md:hidden">
-        <button
+        <Button
           ref={menuButtonRef}
           type="button"
+          variant="ghost"
+          size="icon-lg"
           aria-label={isOpen ? copy.navigation.close : copy.navigation.open}
           aria-expanded={isOpen}
           aria-controls="mobile-navigation-sidebar"
           onClick={() => (isOpen ? closeMenu() : setIsOpen(true))}
-          className="pointer-events-auto z-[80] flex h-11 w-11 shrink-0 items-center justify-center bg-transparent text-foreground transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          className="pointer-events-auto z-[80] size-11 shrink-0 text-[#09090b] transition-colors duration-200 hover:bg-[#e8ecf0] hover:text-[#09090b] focus-visible:ring-accent dark:text-[#f8f9fa] dark:hover:bg-white dark:hover:text-[#09090b]"
         >
           <span className="relative h-5 w-5" aria-hidden="true">
             <span className={`absolute left-0 top-1/2 h-px w-full bg-current transition-[rotate,translate] duration-200 ${isOpen ? "rotate-45" : "-translate-y-[6px]"}`} />
             <span className={`absolute left-0 top-1/2 h-px w-full bg-current transition-opacity duration-150 ${isOpen ? "opacity-0" : "opacity-100"}`} />
             <span className={`absolute left-0 top-1/2 h-px w-full bg-current transition-[rotate,translate] duration-200 ${isOpen ? "-rotate-45" : "translate-y-[6px]"}`} />
           </span>
-        </button>
+        </Button>
 
         <div
           ref={controlsRef}
           data-mobile-controls
           aria-hidden={!isOpen}
           inert={!isOpen}
-          className={`pointer-events-auto absolute end-0 top-full z-[80] mt-1 flex w-11 flex-col items-center gap-0 rounded-sm border border-foreground/15 bg-background p-0 shadow-md transition-[opacity,translate] duration-200 ease-out will-change-[translate,opacity] motion-reduce:transition-none ${isOpen ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0"}`}
+          className={`pointer-events-auto absolute end-0 top-full z-[80] mt-1 flex w-11 flex-col items-center gap-0 rounded-full border border-foreground/15 bg-background p-0 shadow-md transition-[opacity,translate] duration-200 ease-out will-change-[translate,opacity] motion-reduce:transition-none ${isOpen ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0"}`}
         >
           <ThemeSwitcher locale={locale} />
           <LanguageSwitcher locale={locale} onNavigate={closeMenu} />
@@ -155,8 +159,8 @@ export default function MobileNavigationSidebar({
           activeIndex={activeIndex}
           label={copy.navigation.mobile}
           theme={theme}
-          color={theme === "light" ? "#2563eb" : "#8ab4ff"}
-          activeTextColor={theme === "light" ? "#ffffff" : "#111113"}
+          color="#2563eb"
+          activeTextColor="#ffffff"
           size="sm"
           frame={false}
           particleCount={15}

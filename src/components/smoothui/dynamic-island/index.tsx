@@ -3,6 +3,8 @@
 import { Phone } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { type ComponentType, useId, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { ButtonGroup } from "@/components/ui/button-group";
 import { translations, type Locale } from "@/lib/translations";
 
 type ContactMethod = "phone" | "telegram" | "instagram" | "github";
@@ -168,33 +170,34 @@ export default function DynamicIsland({ className = "", locale = "en" }: { class
     // The controls precede the panel in the DOM for keyboard users; the
     // reversed column keeps the island above the icon navigation visually.
     <div className={`flex flex-col-reverse items-center gap-2 ${className}`}>
-      <div
-        role="group"
+      <ButtonGroup
         aria-label={translations[locale].contact.selectMethod}
-        className="flex items-center justify-center gap-1 rounded-full border border-white/15 bg-black/95 p-1 shadow-xl backdrop-blur-xl"
+        className="items-center justify-center gap-1 rounded-full border border-white/15 bg-black/95 p-1 shadow-xl backdrop-blur-xl"
       >
         {channels.map(({ method, label, Icon }) => {
           const isActive = method === activeMethod;
 
           return (
-            <button
+            <Button
               key={method}
               type="button"
+              variant={isActive ? "default" : "ghost"}
+              size="icon-lg"
               aria-label={translations[locale].contact.showDetails.replace("{name}", label)}
               aria-pressed={isActive}
               aria-controls={panelId}
               onClick={() => handleSelect(method)}
-              className={`flex size-11 cursor-pointer items-center justify-center rounded-full transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black motion-reduce:transition-none lg:size-9 ${
+              className={`size-11 rounded-full transition-colors duration-200 focus-visible:ring-offset-2 focus-visible:ring-offset-black motion-reduce:transition-none lg:size-9 ${
                 isActive
-                  ? "bg-accent text-on-accent"
+                  ? "text-white hover:bg-[#1d4ed8]"
                   : "text-white/60 hover:bg-white/10 hover:text-white"
               }`}
             >
               <Icon className="size-4" />
-            </button>
+            </Button>
           );
         })}
-      </div>
+      </ButtonGroup>
 
       <motion.div
         id={panelId}

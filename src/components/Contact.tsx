@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import AnimatedHeading from "@/components/ui/AnimatedHeading";
+import { Button } from "@/components/ui/button";
 import Magnetic from "@/components/ui/Magnetic";
 import Reveal from "@/components/ui/Reveal";
 import { translations, type Locale } from "@/lib/translations";
@@ -45,21 +46,22 @@ export default function Contact({ locale = "en" }: { locale?: Locale }) {
             <Reveal delay={0.18}>
               <div className="mt-10">
                 <Magnetic>
-                  <a
-                    href="https://t.me/AlirezaToorabi"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group inline-flex min-h-12 items-center gap-4 bg-accent px-6 text-base font-semibold text-on-accent transition-colors duration-200 hover:bg-accent/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                  >
-                    <span>{copy.startConversation}</span>
-                    <span
-                      aria-hidden="true"
-                      className={`text-base transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${locale === "fa" ? "-scale-x-100" : ""}`}
+                  <Button asChild size="lg" className="group min-h-12 gap-4 px-6 text-base font-semibold">
+                    <a
+                      href="https://t.me/AlirezaToorabi"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      ↗
-                    </span>
-                    <span className="sr-only"> (opens in a new tab)</span>
-                  </a>
+                      <span>{copy.startConversation}</span>
+                      <span
+                        aria-hidden="true"
+                        className={`text-base transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${locale === "fa" ? "-scale-x-100" : ""}`}
+                      >
+                        ↗
+                      </span>
+                      <span className="sr-only"> (opens in a new tab)</span>
+                    </a>
+                  </Button>
                 </Magnetic>
               </div>
             </Reveal>

@@ -4,6 +4,8 @@ import { useControllableState } from "@radix-ui/react-use-controllable-state";
 import { Monitor, Moon, Sun } from "lucide-react";
 import { motion } from "motion/react";
 import { useCallback, useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { ButtonGroup } from "@/components/ui/button-group";
 import { cn } from "@/lib/utils";
 
 const themes = [
@@ -62,7 +64,8 @@ export const ThemeSwitcher = ({
   }
 
   return (
-    <div
+    <ButtonGroup
+      aria-label="Select theme"
       className={cn(
         "relative isolate flex h-[52px] border border-foreground/20 bg-background p-[3px]",
         className
@@ -72,12 +75,14 @@ export const ThemeSwitcher = ({
         const isActive = theme === key;
 
         return (
-          <button
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon-lg"
             aria-label={label}
-            className="relative size-11 cursor-pointer"
+            className="relative size-11"
             key={key}
             onClick={() => handleThemeClick(key as "light" | "dark" | "system")}
-            type="button"
           >
             {isActive && (
               <motion.div
@@ -92,9 +97,9 @@ export const ThemeSwitcher = ({
                 isActive ? "text-foreground" : "text-muted-foreground"
               )}
             />
-          </button>
+          </Button>
         );
       })}
-    </div>
+    </ButtonGroup>
   );
 };

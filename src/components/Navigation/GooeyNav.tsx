@@ -9,6 +9,7 @@ import {
   type MouseEvent,
   type ReactNode
 } from 'react';
+import { Button } from '@/components/ui/button';
 
 const useIsomorphicLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect;
 
@@ -110,6 +111,7 @@ const THEMES: Record<Palette, Record<string, string>> = {
     '--gn-frame-highlight': 'rgba(255, 255, 255, 0.07)',
     '--gn-frame-shadow': '0 22px 44px -20px rgba(0, 0, 0, 0.8), 0 6px 16px -8px rgba(0, 0, 0, 0.5)',
     '--gn-ink': '#f4f4f5',
+    '--gn-hover-ink': '#09090b',
     '--gn-muted': 'rgba(244, 244, 245, 0.62)'
   },
   light: {
@@ -118,12 +120,13 @@ const THEMES: Record<Palette, Record<string, string>> = {
     '--gn-frame-highlight': 'rgba(255, 255, 255, 0.95)',
     '--gn-frame-shadow': '0 22px 44px -22px rgba(24, 24, 27, 0.3), 0 6px 16px -10px rgba(24, 24, 27, 0.16)',
     '--gn-ink': '#27272a',
+    '--gn-hover-ink': '#27272a',
     '--gn-muted': 'rgba(39, 39, 42, 0.62)'
   }
 };
 
 const PILLS: Record<Palette, { color: string; hover: string; shadow: number }> = {
-  dark: { color: '#f4f4f5', hover: 'rgba(255, 255, 255, 0.16)', shadow: 0.4 },
+  dark: { color: '#f4f4f5', hover: '#ffffff', shadow: 0.4 },
   light: { color: '#27272a', hover: 'rgba(24, 24, 27, 0.1)', shadow: 0.2 }
 };
 
@@ -141,7 +144,7 @@ const LIST = `relative ${LIST_BASE}`;
 const OVERLAY = `${LIST_BASE} pointer-events-none invisible absolute inset-0 text-[var(--gn-active-ink)] [clip-path:inset(100%)]`;
 const LINK_BASE =
   'inline-flex min-h-11 min-w-11 items-center justify-center gap-2 whitespace-nowrap rounded-full border-none bg-transparent px-[var(--gn-x)] py-[var(--gn-y)] [font-family:inherit] [font-size:inherit] [line-height:inherit] font-medium no-underline';
-const LINK = `${LINK_BASE} cursor-pointer text-[var(--gn-muted)] [-webkit-tap-highlight-color:transparent] group-data-[active]:text-[var(--gn-ink)] hover:text-[var(--gn-ink)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--gn-ink)]`;
+const LINK = `${LINK_BASE} cursor-pointer text-[var(--gn-muted)] [-webkit-tap-highlight-color:transparent] group-data-[active]:text-[var(--gn-ink)] hover:text-[var(--gn-hover-ink)] group-data-[active]:hover:text-[var(--gn-ink)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--gn-ink)]`;
 const GHOST = `${LINK_BASE} text-inherit`;
 const ICON = 'inline-flex flex-none [&_svg]:h-[1.15em] [&_svg]:w-[1.15em]';
 const RIM =
@@ -876,13 +879,15 @@ const GooeyNav = ({
           data-active={index === current ? '' : undefined}
         >
           {item.href ? (
-            <a href={item.href} {...shared}>
-              {content}
-            </a>
+            <Button asChild variant="ghost" className={LINK}>
+              <a href={item.href} {...shared}>
+                {content}
+              </a>
+            </Button>
           ) : (
-            <button type="button" {...shared}>
+            <Button type="button" variant="ghost" {...shared}>
               {content}
-            </button>
+            </Button>
           )}
         </li>
       );

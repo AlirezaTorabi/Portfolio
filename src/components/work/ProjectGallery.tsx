@@ -268,7 +268,6 @@ export default function ProjectGallery({ projects, locale = "en" }: ProjectGalle
           </span>
         </div>
       </div>
-    );
     </div>
   );
 }

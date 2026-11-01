@@ -209,7 +209,7 @@ export default function Navbar({ locale = "en" }: { locale?: Locale }) {
 
   return (
     <header
-      className="pointer-events-none fixed inset-x-0 top-0 z-50 isolate border-b border-foreground/10 bg-background/90 backdrop-blur-md"
+      className="pointer-events-none fixed inset-x-0 top-0 z-50 isolate bg-background/90 backdrop-blur-md"
     >
       <div className="relative mx-auto flex h-[76px] max-w-[1800px] items-center justify-between gap-4 ps-4 pe-[10px] md:px-5 lg:px-7">
         <Link
@@ -250,8 +250,8 @@ export default function Navbar({ locale = "en" }: { locale?: Locale }) {
             onChange={handleNavigate}
             label={copy.navigation.primary}
             theme={navTheme}
-            color={navTheme === "light" ? "#2563eb" : "#8ab4ff"}
-            activeTextColor={navTheme === "light" ? "#ffffff" : "#111113"}
+            color="#2563eb"
+            activeTextColor="#ffffff"
             size="sm"
             frame={false}
             particleCount={15}
