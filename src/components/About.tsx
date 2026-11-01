@@ -1,7 +1,5 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
 import AnimatedHeading from "@/components/ui/AnimatedHeading";
 import Reveal from "@/components/ui/Reveal";
 import ToolkitTabs from "@/components/ToolkitTabs";
@@ -49,31 +47,12 @@ const technologies: Technology[] = [
 
 export { technologies, type Technology };
 export default function About() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-  const glowY = useTransform(scrollYProgress, [0, 1], [40, -60]);
-
   return (
     <section
-      ref={sectionRef}
       id="about"
       aria-labelledby="about-title"
       className="relative scroll-mt-20 border-t border-foreground/10"
     >
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 overflow-hidden"
-      >
-        <motion.div
-          data-motion=""
-          className="absolute -top-28 right-0 size-[26rem] rounded-full bg-[#FF7133]/[0.05] blur-3xl"
-          style={{ y: glowY }}
-        />
-      </div>
-
       <div className="relative mx-auto max-w-6xl px-6 py-24 sm:px-8 sm:py-28 lg:px-10 lg:py-32">
         <Reveal>
           <div className="flex items-center justify-between gap-6 border-b border-foreground/15 pb-5">
@@ -92,7 +71,7 @@ export default function About() {
               id="about-title"
               lines={[
                 { text: "I build digital experiences" },
-                { text: "with purpose.", className: "text-[#FF7133]" },
+                { text: "with purpose.", className: "text-accent" },
               ]}
               className="max-w-2xl text-4xl font-medium leading-[1.04] sm:text-5xl lg:text-6xl"
             />
@@ -113,8 +92,8 @@ export default function About() {
               >
                 <span className="absolute inset-0 rounded-full border border-foreground/10" />
                 <span className="absolute inset-7 rounded-full border border-foreground/10" />
-                <span className="absolute inset-0 animate-spin rounded-full border border-transparent border-t-[#FF7133]/60 [animation-duration:24s] motion-reduce:animate-none" />
-                <span className="absolute left-1/2 top-0 h-3 w-px -translate-x-1/2 bg-[#FF7133]/60" />
+                <span className="absolute inset-0 animate-spin rounded-full border border-transparent border-t-accent/60 [animation-duration:24s] motion-reduce:animate-none" />
+                <span className="absolute left-1/2 top-0 h-3 w-px -translate-x-1/2 bg-accent/60" />
                 <span className="absolute bottom-0 left-1/2 h-3 w-px -translate-x-1/2 bg-foreground/15" />
                 <span className="absolute left-0 top-1/2 h-px w-3 -translate-y-1/2 bg-foreground/15" />
                 <span className="absolute right-0 top-1/2 h-px w-3 -translate-y-1/2 bg-foreground/15" />
@@ -137,7 +116,7 @@ export default function About() {
                 className="group border-b border-foreground/10 py-8 sm:py-9"
               >
                 <div className="flex gap-5 sm:gap-8">
-                  <span className="pt-1 font-mono text-xs text-[#FF7133]">
+                  <span className="pt-1 font-mono text-xs text-accent">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <div className="min-w-0">

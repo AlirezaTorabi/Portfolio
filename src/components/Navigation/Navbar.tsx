@@ -218,7 +218,7 @@ export default function Navbar() {
               window.scrollTo({ top: 0, behavior: "smooth" });
             }
           }}
-          className="pointer-events-auto -m-1.5 flex shrink-0 items-center p-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133]"
+          className="pointer-events-auto -m-1.5 flex shrink-0 items-center p-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
         >
           <span className="relative block h-8 w-8 shrink-0 md:h-9 md:w-9">
             <Image
@@ -247,7 +247,7 @@ export default function Navbar() {
             label="Primary navigation"
             theme={navTheme}
             size="sm"
-            frame
+            frame={false}
             particleCount={15}
             spread={56}
             animationTime={200}
@@ -255,7 +255,7 @@ export default function Navbar() {
             gooeyness={0.5}
             wobble={0.5}
             hoverEffect
-            colors={["#ff5a1f", "#ff8a3a", "#ffb020"]}
+            colors={["#2563eb", "#5b8ef0", "#8ab4ff"]}
             className="shrink-0 [&_ul]:flex-nowrap"
           />
         </div>

@@ -9,7 +9,7 @@ export default function HeroButton({ href, children }: HeroButtonProps) {
   return (
     <a
       href={href}
-      className="group relative isolate inline-flex min-h-12 items-center overflow-hidden bg-[#FF7133] px-6 text-xs font-medium text-[#111113] transition-colors duration-300 hover:bg-[#FF8A55] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+      className="group relative isolate inline-flex min-h-12 cursor-pointer items-center overflow-hidden border border-foreground bg-accent px-6 text-xs font-semibold text-on-accent transition-colors duration-200 hover:bg-accent/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
     >
       <span
         aria-hidden="true"

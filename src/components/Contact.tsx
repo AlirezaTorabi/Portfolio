@@ -1,39 +1,28 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import Image from "next/image";
 import DynamicIsland from "@/components/smoothui/dynamic-island";
 import AnimatedHeading from "@/components/ui/AnimatedHeading";
 import Magnetic from "@/components/ui/Magnetic";
 import Reveal from "@/components/ui/Reveal";
 
 export default function Contact() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-  const glowY = useTransform(scrollYProgress, [0, 1], [-40, 70]);
-
   return (
     <section
-      ref={sectionRef}
       id="contact"
       aria-labelledby="contact-title"
-      className="relative scroll-mt-20 border-t border-foreground/10"
+      className="relative isolate scroll-mt-20 overflow-hidden border-t border-foreground/10"
     >
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 overflow-hidden"
-      >
-        <motion.div
-          data-motion=""
-          className="absolute -bottom-32 -left-24 size-[24rem] rounded-full bg-[#FF7133]/[0.045] blur-3xl"
-          style={{ y: glowY }}
-        />
-      </div>
+      <Image
+        src="/contact-img/contact-transparent.png"
+        alt=""
+        width={1234}
+        height={621}
+        sizes="(max-width: 640px) 100vw, 80vw"
+        className="pointer-events-none absolute bottom-0 right-0 z-0 h-auto w-[min(100vw,64rem)] object-contain opacity-[0.1] dark:opacity-[0.16]"
+      />
 
-      <div className="relative mx-auto max-w-6xl px-6 py-24 sm:px-8 sm:py-28 lg:px-10 lg:py-32">
+      <div className="relative z-10 mx-auto max-w-6xl px-6 py-24 sm:px-8 sm:py-28 lg:px-10 lg:py-32">
         <Reveal>
           <div className="flex items-center justify-between gap-6 border-b border-foreground/15 pb-5">
             <p className="text-[0.6875rem] font-medium text-foreground/60">
@@ -51,7 +40,7 @@ export default function Contact() {
               id="contact-title"
               lines={[
                 { text: "Let's build something" },
-                { text: "great together.", className: "text-[#FF7133]" },
+                { text: "great together.", className: "text-accent" },
               ]}
               className="max-w-2xl text-4xl font-medium leading-[1.04] sm:text-5xl lg:text-6xl"
             />
@@ -69,7 +58,7 @@ export default function Contact() {
                     href="https://t.me/AlirezaToorabi"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex min-h-12 items-center gap-4 bg-[#FF7133] px-6 text-xs font-medium text-[#111113] transition-colors duration-300 hover:bg-[#FF8A55] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    className="group inline-flex min-h-12 items-center gap-4 bg-accent px-6 text-xs font-semibold text-on-accent transition-colors duration-200 hover:bg-accent/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                   >
                     <span>Start a Conversation</span>
                     <span

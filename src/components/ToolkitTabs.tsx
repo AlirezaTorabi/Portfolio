@@ -38,7 +38,7 @@ function TechnologyChip({ technology }: { technology: Technology }) {
 
   return (
     <div
-      className="group flex items-center gap-3 rounded-xl border border-foreground/10 bg-transparent px-4 py-3 transition-colors duration-300 hover:border-[#FF7133]/40 hover:bg-foreground/[0.02] dark:border-input/40 dark:hover:border-[#FF7133]/30"
+      className="group flex items-center gap-3 border border-foreground/15 bg-transparent px-4 py-3 transition-colors duration-200 hover:border-accent/50 hover:bg-accent/[0.04] dark:border-input/40 dark:hover:border-accent/40"
       aria-label={technology.name}
     >
       <i

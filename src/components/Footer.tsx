@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Reveal from "@/components/ui/Reveal";
 
 function GitHubIcon() {
@@ -79,14 +80,23 @@ const socials = [
 ];
 
 const focusRing =
-  "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133] focus-visible:ring-offset-2 focus-visible:ring-offset-background";
+  "focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden border-t border-foreground/10">
-      <div className="mx-auto max-w-6xl px-6 pt-16 sm:px-8 sm:pt-20 lg:px-10">
+    <footer className="relative isolate overflow-hidden border-t border-foreground/10">
+      <Image
+        src="/footer-img/footer-transparent.png"
+        alt=""
+        width={1291}
+        height={702}
+        sizes="(max-width: 640px) 100vw, 72vw"
+        className="pointer-events-none absolute right-[-5rem] top-0 z-0 h-auto w-[min(78vw,64rem)] opacity-[0.08] dark:opacity-[0.13] [mask-image:linear-gradient(to_bottom,black_72%,transparent_100%)]"
+      />
+
+      <div className="relative z-10 mx-auto max-w-6xl px-6 pt-16 sm:px-8 sm:pt-20 lg:px-10">
         <Reveal>
           <div className="grid gap-12 md:grid-cols-[minmax(0,1.5fr)_minmax(0,0.9fr)_auto] md:gap-14 lg:gap-20">
             <div>
@@ -94,7 +104,7 @@ export default function Footer() {
                 Alireza Torabi
                 <span
                   aria-hidden="true"
-                  className="mt-0.5 block size-1.5 shrink-0 bg-[#FF7133]"
+                  className="mt-0.5 block size-1.5 shrink-0 bg-accent"
                 />
               </p>
               <p className="mt-2 text-[0.6875rem] font-medium text-foreground/50">
@@ -118,7 +128,7 @@ export default function Footer() {
                     >
                       <span
                         aria-hidden="true"
-                        className="h-px w-4 bg-foreground/20 transition-all duration-200 group-hover:w-6 group-hover:bg-[#FF7133]"
+                        className="h-px w-4 bg-foreground/20 transition-all duration-200 group-hover:w-6 group-hover:bg-accent"
                       />
                       {item.label}
                     </a>
@@ -139,7 +149,7 @@ export default function Footer() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${social.label} (opens in a new tab)`}
-                      className={`grid size-11 place-items-center border border-foreground/10 text-foreground/60 transition-colors duration-200 hover:border-[#FF7133]/50 hover:bg-foreground/[0.03] hover:text-[#FF7133] ${focusRing}`}
+                      className={`grid size-11 place-items-center border border-foreground/15 text-foreground/60 transition-colors duration-200 hover:border-accent/50 hover:bg-accent/[0.06] hover:text-accent ${focusRing}`}
                     >
                       {social.icon}
                     </a>
@@ -163,7 +173,7 @@ export default function Footer() {
           </p>
           <a
             href="#top"
-            className={`group inline-flex min-h-11 items-center gap-2 self-start border border-foreground/10 px-3.5 py-2 text-[0.65rem] font-medium uppercase tracking-[0.12em] text-foreground/60 transition-colors duration-200 hover:border-[#FF7133]/50 hover:text-foreground sm:self-auto ${focusRing}`}
+            className={`group inline-flex min-h-11 items-center gap-2 self-start border border-foreground/15 px-3.5 py-2 text-[0.65rem] font-medium uppercase tracking-[0.12em] text-foreground/60 transition-colors duration-200 hover:border-accent/50 hover:text-foreground sm:self-auto ${focusRing}`}
           >
             Back to top
             <span

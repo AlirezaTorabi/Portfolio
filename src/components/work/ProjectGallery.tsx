@@ -55,13 +55,13 @@ function ProjectCard({
         aria-labelledby={`project-${index}-title`}
         className={`group relative flex h-full min-h-[25rem] flex-col justify-between overflow-hidden border bg-card p-6 transition-colors duration-500 sm:p-8 lg:min-h-[58svh] lg:p-10 ${
           active
-            ? "border-[#FF7133]/40"
+            ? "border-accent/60"
             : "border-foreground/12 hover:border-foreground/25"
         }`}
       >
         <span
           aria-hidden="true"
-          className={`absolute inset-x-0 top-0 h-px origin-left bg-[#FF7133] transition-transform duration-700 ${
+          className={`absolute inset-x-0 top-0 h-px origin-left bg-accent transition-transform duration-300 ${
             active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
           }`}
         />
@@ -75,7 +75,7 @@ function ProjectCard({
 
         <div className="relative">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[0.625rem] text-foreground/55">
-            <span className="text-[#FF7133]">{number}</span>
+            <span className="text-accent">{number}</span>
             <span className="h-px w-6 bg-foreground/20" aria-hidden="true" />
             <span className="text-foreground/55">{project.category}</span>
           </div>
@@ -89,12 +89,12 @@ function ProjectCard({
                 href={projectUrl}
                 target={opensInNewTab ? "_blank" : undefined}
                 rel={opensInNewTab ? "noopener noreferrer" : undefined}
-                className="group/title inline-flex items-baseline gap-2 transition-colors duration-300 hover:text-[#FF7133] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133] focus-visible:ring-offset-4 focus-visible:ring-offset-[#151517]"
+                className="group/title inline-flex items-baseline gap-2 transition-colors duration-200 hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-card"
               >
                 {project.title}
                 <span
                   aria-hidden="true"
-                  className="text-sm text-[#FF7133] transition-transform duration-300 group-hover/title:-translate-y-0.5 group-hover/title:translate-x-0.5"
+                  className="text-sm text-accent transition-transform duration-200 group-hover/title:-translate-y-0.5 group-hover/title:translate-x-0.5"
                 >
                   ↗
                 </span>
@@ -217,7 +217,7 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
           role="region"
           aria-label="Selected project gallery"
           tabIndex={0}
-          className="w-full snap-x snap-mandatory overflow-visible scroll-px-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#FF7133] sm:scroll-px-8"
+          className="w-full snap-x snap-mandatory overflow-visible scroll-px-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent sm:scroll-px-8"
         >
           <motion.ul
             ref={rowRef}
@@ -240,12 +240,12 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
           aria-hidden="true"
           className="gallery-rail mx-auto mt-8 flex w-full max-w-6xl items-center gap-6 px-10"
         >
-          <span className="font-mono text-[0.65rem] text-[#FF7133]">
+          <span className="font-mono text-[0.65rem] text-accent">
             {String(active + 1).padStart(2, "0")}
           </span>
           <span className="relative h-px flex-1 overflow-hidden bg-foreground/12">
             <motion.span
-              className="absolute inset-y-0 left-0 w-full origin-left bg-[#FF7133]"
+              className="absolute inset-y-0 left-0 w-full origin-left bg-accent"
               style={{ scaleX: scrollYProgress }}
             />
           </span>

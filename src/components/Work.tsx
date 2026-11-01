@@ -38,7 +38,7 @@ export default function Work() {
               { text: "Ideas turned into" },
               {
                 text: "digital experiences.",
-                className: "text-[#FF7133]",
+                className: "text-accent",
               },
             ]}
             className="max-w-4xl text-4xl font-medium leading-[1.04] sm:text-5xl lg:text-6xl xl:text-7xl"

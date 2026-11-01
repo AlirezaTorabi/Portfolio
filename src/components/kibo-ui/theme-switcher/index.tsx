@@ -64,7 +64,7 @@ export const ThemeSwitcher = ({
   return (
     <div
       className={cn(
-        "relative isolate flex h-8 rounded-full bg-background p-1 ring-1 ring-neutral-300 dark:ring-neutral-700",
+        "relative isolate flex h-8 border border-foreground/20 bg-background p-1",
         className
       )}
     >
@@ -74,16 +74,16 @@ export const ThemeSwitcher = ({
         return (
           <button
             aria-label={label}
-            className="relative h-6 w-6 rounded-full"
+            className="relative h-6 w-6 cursor-pointer"
             key={key}
             onClick={() => handleThemeClick(key as "light" | "dark" | "system")}
             type="button"
           >
             {isActive && (
               <motion.div
-                className="absolute inset-0 rounded-full bg-secondary"
+                className="absolute inset-0 bg-secondary"
                 layoutId="activeTheme"
-                transition={{ type: "spring", duration: 0.5 }}
+                transition={{ type: "spring", duration: 0.25 }}
               />
             )}
             <Icon

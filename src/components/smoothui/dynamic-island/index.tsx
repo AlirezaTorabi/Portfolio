@@ -95,7 +95,7 @@ const CONTACT_CHANNELS: readonly ContactChannel[] = [
 function IdleContent() {
   return (
     <div className="flex items-center gap-2 px-4 py-2.5">
-      <span aria-hidden="true" className="size-1.5 rounded-full bg-[#FF7133]" />
+      <span aria-hidden="true" className="size-1.5 bg-accent" />
       <span className="text-xs font-medium text-white/75">Contact</span>
     </div>
   );
@@ -110,11 +110,11 @@ function ChannelContent({ channel }: { channel: ContactChannel }) {
       {...(channel.external
         ? { target: "_blank", rel: "noopener noreferrer" }
         : {})}
-      className="group flex max-w-full items-center gap-3 rounded-full px-4 py-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#FF7133]"
+      className="group flex max-w-full items-center gap-3 border border-white/10 px-4 py-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
     >
       <span
         aria-hidden="true"
-        className="grid size-8 shrink-0 place-items-center rounded-full bg-white/10 text-[#FF7133] transition-colors duration-200 group-hover:bg-[#FF7133] group-hover:text-[#111113] motion-reduce:transition-none"
+        className="grid size-8 shrink-0 place-items-center bg-white/10 text-accent transition-colors duration-200 group-hover:bg-accent group-hover:text-on-accent motion-reduce:transition-none"
       >
         <Icon className="size-4" />
       </span>
@@ -122,13 +122,13 @@ function ChannelContent({ channel }: { channel: ContactChannel }) {
         <span className="font-mono text-[0.58rem] uppercase tracking-[0.16em] text-white/50">
           {channel.label}
         </span>
-        <span className="mt-0.5 text-sm font-medium leading-5 text-white transition-colors duration-200 group-hover:text-[#FF7133] motion-reduce:transition-none">
+        <span className="mt-0.5 text-sm font-medium leading-5 text-white transition-colors duration-200 group-hover:text-accent motion-reduce:transition-none">
           {channel.value}
         </span>
       </span>
       <span
         aria-hidden="true"
-        className="shrink-0 text-sm text-white/40 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#FF7133] motion-reduce:transform-none motion-reduce:transition-none"
+        className="shrink-0 text-sm text-white/40 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent motion-reduce:transform-none motion-reduce:transition-none"
       >
         {channel.external ? "↗" : "→"}
       </span>
@@ -167,7 +167,7 @@ export default function DynamicIsland({ className = "" }: { className?: string }
       <div
         role="group"
         aria-label="Select a contact method"
-        className="flex items-center justify-center gap-1 rounded-full border border-white/10 bg-black p-1 shadow-sm"
+        className="flex items-center justify-center gap-1 border border-white/15 bg-black p-1 shadow-sm"
       >
         {CONTACT_CHANNELS.map(({ method, label, Icon }) => {
           const isActive = method === activeMethod;
@@ -180,9 +180,9 @@ export default function DynamicIsland({ className = "" }: { className?: string }
               aria-pressed={isActive}
               aria-controls={panelId}
               onClick={() => handleSelect(method)}
-              className={`flex size-9 cursor-pointer items-center justify-center rounded-full transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7133] focus-visible:ring-offset-2 focus-visible:ring-offset-black motion-reduce:transition-none ${
+              className={`flex size-9 cursor-pointer items-center justify-center transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black motion-reduce:transition-none ${
                 isActive
-                  ? "bg-[#FF7133] text-[#111113]"
+                  ? "bg-accent text-on-accent"
                   : "text-white/60 hover:bg-white/10 hover:text-white"
               }`}
             >
@@ -195,9 +195,8 @@ export default function DynamicIsland({ className = "" }: { className?: string }
       <motion.div
         id={panelId}
         layout
-        style={{ borderRadius: 32 }}
         transition={layoutTransition}
-        className="w-fit max-w-full overflow-hidden rounded-full bg-black"
+        className="w-fit max-w-full overflow-hidden border border-white/15 bg-black"
       >
         <AnimatePresence initial={false} mode="popLayout">
           <motion.div
