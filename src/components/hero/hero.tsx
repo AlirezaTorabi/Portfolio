@@ -57,12 +57,9 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
             />
           </div>
 
-          <Reveal
-            delay={0.26}
-            className="order-2 min-w-0 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-center"
-          >
+          <div className="order-2 min-w-0 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-center">
             <Image
-              src="/hero-img/hero-new-transparent.png"
+              src="/hero-img/hero-new-transparent.webp"
               alt=""
               width={1034}
               height={1002}
@@ -70,14 +67,12 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
               sizes="(max-width: 640px) 42vw, (max-width: 1023px) 40vw, 48vw"
               className="h-auto w-full object-contain"
             />
-          </Reveal>
+          </div>
 
           <div className="order-3 col-span-2 min-w-0 lg:col-span-1 lg:col-start-1 lg:row-start-2 lg:self-start">
-            <Reveal delay={0.42}>
-              <p className="max-w-[30rem] text-pretty text-base leading-7 text-foreground/65 sm:leading-8">
-                {copy.introduction}
-              </p>
-            </Reveal>
+            <p className="max-w-[30rem] text-pretty text-base leading-7 text-foreground/65 sm:leading-8">
+              {copy.introduction}
+            </p>
 
             <Reveal delay={0.52}>
               <div className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-2 sm:mt-8">

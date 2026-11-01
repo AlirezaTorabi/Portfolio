@@ -126,9 +126,10 @@ export default function MobileNavigationSidebar({
 
         <div
           ref={controlsRef}
+          data-mobile-controls
           aria-hidden={!isOpen}
           inert={!isOpen}
-          className={`pointer-events-auto absolute end-0 top-full z-[80] flex flex-col items-center gap-0 bg-background/90 backdrop-blur-md transition-[opacity,transform] duration-200 ${isOpen ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0"}`}
+          className={`pointer-events-auto absolute end-0 top-full z-[80] mt-1 flex w-11 flex-col items-center gap-0 rounded-sm border border-foreground/15 bg-background p-0 shadow-md transition-[opacity,translate] duration-200 ease-out will-change-[translate,opacity] motion-reduce:transition-none ${isOpen ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0"}`}
         >
           <ThemeSwitcher locale={locale} />
           <LanguageSwitcher locale={locale} onNavigate={closeMenu} />
@@ -147,7 +148,7 @@ export default function MobileNavigationSidebar({
         aria-label={copy.navigation.mobile}
         aria-hidden={!isOpen}
         inert={!isOpen}
-        className={`pointer-events-auto fixed left-1/2 top-[10px] z-[70] flex w-fit max-w-[calc(100%-70px)] -translate-x-1/2 items-center rounded-full border border-foreground/20 bg-background px-2 py-1 shadow-xl transition-transform duration-200 ease-out motion-reduce:transition-none md:hidden ${isOpen ? "translate-y-0" : "-translate-y-[calc(100%+10px)]"}`}
+          className={`pointer-events-auto fixed left-1/2 top-[10px] z-[70] flex w-fit max-w-[calc(100%-70px)] -translate-x-1/2 items-center rounded-full border border-foreground/20 bg-background px-2 py-1 shadow-xl transition-[translate] duration-200 ease-out will-change-translate motion-reduce:transition-none md:hidden ${isOpen ? "translate-y-0" : "-translate-y-[calc(100%+10px)]"}`}
       >
         <GooeyNav
           items={iconOnlyItems}
@@ -167,7 +168,7 @@ export default function MobileNavigationSidebar({
           hoverEffect={false}
           onChange={(index) => {
             onNavigate(index);
-            closeMenu();
+            document.body.style.overflow = "";
           }}
           colors={["#2563eb", "#5b8ef0", "#8ab4ff"]}
           className="w-full [&>div]:w-full [&_ul]:w-full [&_ul]:flex-row [&_ul]:flex-nowrap [&_ul]:items-center [&_ul]:justify-center [&_ul]:gap-3 max-[440px]:[&_ul]:gap-0 [&_li]:w-auto [&_a]:h-11 [&_a]:w-16 [&_a]:justify-center [&_a]:gap-0 [&_a]:px-0 [&_a]:py-0 [&_li>span]:h-11 [&_li>span]:w-16 [&_li>span]:justify-center [&_li>span]:px-0 [&_li>span]:py-0 max-[440px]:[&_a]:h-11 max-[440px]:[&_a]:w-11 max-[440px]:[&_li>span]:h-11 max-[440px]:[&_li>span]:w-11"

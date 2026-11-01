@@ -24,6 +24,7 @@ const vazirmatn = Vazirmatn({
   variable: "--font-vazirmatn",
   subsets: ["arabic", "latin"],
   weight: "variable",
+  preload: false,
 });
 
 export const metadata: Metadata = {
