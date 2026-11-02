@@ -28,25 +28,25 @@ export default function Contact({ locale = "en" }: { locale?: Locale }) {
           </div>
         </Reveal>
 
-        <div className="grid gap-10 py-12 sm:py-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:items-center lg:gap-16 lg:py-20">
-          <div className="min-w-0">
+        <div className="flex flex-col gap-8 py-12 sm:py-16 lg:flex-row lg:items-start lg:justify-between lg:gap-10 lg:py-20">
+          <div className={`min-w-0 flex-1 ${locale === "fa" ? "text-right" : ""} lg:flex lg:flex-col lg:items-end`}>
             <AnimatedHeading
               id="contact-title"
               lines={copy.heading.map((text, index) => ({
                 text,
                 className: index === 1 ? "text-accent" : undefined,
               }))}
-              className="max-w-2xl text-4xl font-medium leading-[1.04] sm:text-5xl lg:text-6xl"
+              className="w-full max-w-[32rem] text-left text-4xl font-medium leading-[1.02] tracking-[-0.04em] sm:text-5xl lg:max-w-[36rem] lg:text-right lg:text-[4rem]"
             />
             <Reveal delay={0.1}>
-              <p className="mt-8 max-w-xl text-pretty text-base leading-7 text-foreground/65 sm:leading-8">
+              <p className="mt-8 max-w-xl text-pretty text-base leading-7 text-foreground/65 sm:leading-8 lg:text-left lg:text-lg">
                 {copy.introduction}
               </p>
             </Reveal>
             <Reveal delay={0.18}>
-              <div className="mt-10">
+              <div className={`mt-10 ${locale === "fa" ? "flex justify-end" : "flex justify-start"}`}>
                 <Magnetic>
-                  <Button asChild size="lg" className="group min-h-12 gap-4 px-6 text-base font-semibold">
+                  <Button asChild size="lg" className="group min-h-12 gap-4 px-6 text-base font-semibold shadow-[0_16px_32px_rgba(15,23,42,0.09)]">
                     <a
                       href="https://t.me/AlirezaToorabi"
                       target="_blank"
@@ -65,21 +65,22 @@ export default function Contact({ locale = "en" }: { locale?: Locale }) {
                 </Magnetic>
               </div>
             </Reveal>
-
           </div>
 
           <Reveal
             delay={0.16}
-            className="flex min-w-0 items-center justify-center lg:justify-end"
+            className="flex min-w-0 flex-shrink-0 items-center justify-center lg:-mt-4 lg:justify-end"
           >
-            <Image
-              src="/contact-img/Developer’s Social Contact Hub.png"
-              alt=""
-              width={1234}
-              height={621}
-              sizes="(max-width: 1023px) 100vw, 45vw"
-              className="h-auto w-full max-w-[42rem] object-contain opacity-100"
-            />
+            <div className="rounded-[2rem] border border-foreground/10 bg-card/30 p-2 shadow-[0_12px_30px_rgba(15,23,42,0.04)] backdrop-blur-[2px]">
+              <Image
+                src="/contact-img/Developer’s Social Contact Hub.png"
+                alt=""
+                width={1234}
+                height={621}
+                sizes="(max-width: 1023px) 85vw, 20rem"
+                className="h-auto w-full max-w-[20rem] object-contain opacity-100"
+              />
+            </div>
           </Reveal>
         </div>
       </div>

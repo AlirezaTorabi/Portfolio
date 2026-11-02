@@ -25,7 +25,6 @@ const english = {
   },
   hero: {
     role: "Frontend Developer & UI Designer",
-    established: "Est. 2026",
     name: ["Alireza", "Torabi"],
     introduction:
       "I design and build refined, responsive web experiences, with a focus on clear hierarchy, purposeful motion, and maintainable frontend code.",
@@ -176,7 +175,6 @@ const persian = {
   },
   hero: {
     role: "توسعه‌دهنده فرانت‌اند و طراح رابط کاربری",
-    established: "شروع فعالیت، ۲۰۲۶",
     name: ["علیرضا", "ترابی"],
     introduction:
       "تجربه‌های وبِ دقیق و واکنش‌گرا طراحی و پیاده‌سازی می‌کنم؛ با تمرکز بر سلسله‌مراتب بصری روشن، حرکت هدفمند و کدی که نگه‌داری‌اش ساده باشد.",

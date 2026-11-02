@@ -23,7 +23,7 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
       className="relative isolate flex min-h-svh w-full flex-col overflow-hidden"
     >
       <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col px-5 pb-8 pt-24 sm:px-8 sm:pb-10 sm:pt-28 lg:px-10 lg:pt-28">
-<Reveal>
+        <Reveal>
           <div className="flex items-center justify-between gap-6 border-b border-foreground/15 pb-4">
             <p className="flex min-w-0 items-center gap-3 text-[0.6875rem] font-medium text-foreground/70 sm:text-sm">
               <span
@@ -31,9 +31,6 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
                 className="size-1.5 shrink-0 bg-accent"
               />
               <span className="min-w-0">{copy.role}</span>
-            </p>
-            <p className="hidden shrink-0 font-mono text-[0.6875rem] text-foreground/50 sm:block">
-              {copy.established}
             </p>
           </div>
         </Reveal>
