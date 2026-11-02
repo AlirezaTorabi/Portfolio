@@ -1,6 +1,7 @@
 import Image from "next/image";
 import AnimatedHeading from "@/components/ui/AnimatedHeading";
 import { Button } from "@/components/ui/button";
+import { Highlighter } from "@/components/ui/highlighter";
 import Magnetic from "@/components/ui/Magnetic";
 import Reveal from "@/components/ui/Reveal";
 import { formatNumber, translations, type Locale } from "@/lib/translations";
@@ -71,7 +72,42 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
 
           <div className="order-3 col-span-2 min-w-0 lg:col-span-1 lg:col-start-1 lg:row-start-2 lg:self-start">
             <p className="max-w-[30rem] text-pretty text-base leading-7 text-foreground/65 sm:leading-8">
-              {copy.introduction}
+              {locale === "en" ? (
+                <>
+                  <Highlighter
+                    action="underline"
+                    color="#FF9800"
+                    strokeWidth={2}
+                    animationDuration={700}
+                    padding={2}
+                    isView
+                    delay={1000}
+                  >
+                    I design and build
+                  </Highlighter>
+                  <span className="mx-1.5"> </span>
+                  refined, responsive web experiences,
+                  <span className="mx-1.5"> </span>
+                  with a focus on clear hierarchy,
+                  <span className="mx-1.5"> </span>
+                  <Highlighter
+                    action="highlight"
+                    color="#87CEFA"
+                    strokeWidth={1.6}
+                    animationDuration={700}
+                    padding={1.2}
+                    isView
+                    delay={1000}
+                  >
+                    purposeful motion
+                  </Highlighter>
+                  <span className="mx-1.5">,</span>
+                  <span className="mx-1.5"> </span>
+                  and maintainable frontend code.
+                </>
+              ) : (
+                copy.introduction
+              )}
             </p>
 
             <Reveal delay={0.52}>
