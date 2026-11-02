@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Caveat, Geist_Mono, Quicksand } from "next/font/google";
 import localFont from "next/font/local";
+import ScrollReset from "@/components/ScrollReset";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
@@ -71,6 +72,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <ScrollReset />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

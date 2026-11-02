@@ -27,10 +27,10 @@ export default function PersianNotFound() {
       </div>
 
       <Image
-        src="/404-img/404-transparent.png"
+        src="/404-img/Confused Character with Floating 404 Window.png"
         alt=""
-        width={671}
-        height={622}
+        width={900}
+        height={700}
         sizes="(max-width: 1024px) 62vw, 42vw"
         className="pointer-events-none relative z-0 mx-auto my-5 h-auto w-[min(62vw,18rem)] object-contain lg:absolute lg:bottom-auto lg:left-8 lg:right-auto lg:top-1/2 lg:my-0 lg:w-[min(42vw,32rem)] lg:translate-x-0 lg:-translate-y-1/2"
       />

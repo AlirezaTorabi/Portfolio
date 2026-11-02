@@ -77,19 +77,15 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
                   <Highlighter
                     action="underline"
                     color="#FF9800"
-                    strokeWidth={2}
+                    strokeWidth={1.5}
                     animationDuration={700}
-                    padding={2}
+                    padding={1.5}
                     isView
                     delay={1000}
                   >
                     I design and build
                   </Highlighter>
-                  <span className="mx-1.5"> </span>
-                  refined, responsive web experiences,
-                  <span className="mx-1.5"> </span>
-                  with a focus on clear hierarchy,
-                  <span className="mx-1.5"> </span>
+                  {" refined, responsive web experiences, with a focus on clear hierarchy, "}
                   <Highlighter
                     action="highlight"
                     color="#87CEFA"
@@ -101,9 +97,7 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
                   >
                     purposeful motion
                   </Highlighter>
-                  <span className="mx-1.5">,</span>
-                  <span className="mx-1.5"> </span>
-                  and maintainable frontend code.
+                  {", and maintainable frontend code."}
                 </>
               ) : (
                 copy.introduction
