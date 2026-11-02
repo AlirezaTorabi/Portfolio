@@ -20,8 +20,8 @@ export default function Footer({ locale = "en" }: { locale?: Locale }) {
       <div className="relative z-10 mx-auto max-w-6xl px-6 pt-16 sm:px-8 sm:pt-20 lg:px-10">
         <Reveal>
           <div className="flex flex-col gap-8 md:gap-10">
-            <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
-              <div className={locale === "fa" ? "text-right" : ""}>
+            <div className="flex flex-row items-center justify-between gap-3 sm:gap-5 md:items-start md:gap-8">
+              <div className={`min-w-0 flex-1 ${locale === "fa" ? "text-right" : "text-left"}`}>
                 <p className="flex items-center gap-2.5 text-lg font-medium">
                   {locale === "fa" ? "علیرضا ترابی" : "Alireza Torabi"}
                   <span
@@ -37,14 +37,14 @@ export default function Footer({ locale = "en" }: { locale?: Locale }) {
                 </p>
               </div>
 
-              <div className="flex justify-end md:-mt-12 md:min-w-[18rem]">
+              <div className="flex shrink-0 justify-end md:mt-2 md:min-w-[20rem]">
                 <Image
                   src="/footer-img/Developer Skills Tech Illustration.png"
                   alt=""
                   width={1291}
                   height={702}
-                  sizes="(max-width: 640px) 80vw, 320px"
-                  className={`h-auto w-full max-w-[20rem] -translate-y-12 object-contain ${locale === "fa" ? "object-right" : "object-left"}`}
+                  sizes="(max-width: 640px) 26vw, (max-width: 1023px) 28vw, 320px"
+                  className={`h-auto w-[5.6rem] max-w-[20rem] object-contain sm:w-[7.5rem] md:w-[11rem] md:translate-y-4 ${locale === "fa" ? "object-right" : "object-left"}`}
                 />
               </div>
             </div>
