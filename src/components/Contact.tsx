@@ -73,7 +73,7 @@ export default function Contact({ locale = "en" }: { locale?: Locale }) {
             className="flex min-w-0 items-center justify-center lg:justify-end"
           >
             <Image
-              src="/contact-img/contact-transparent.png"
+              src="/contact-img/Developer’s Social Contact Hub.png"
               alt=""
               width={1234}
               height={621}

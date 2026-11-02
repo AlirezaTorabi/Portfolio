@@ -76,27 +76,7 @@ export default function Footer({ locale = "en" }: { locale?: Locale }) {
           {locale === "fa" ? "علیرضا ترابی" : "ALIREZA TORABI"}
         </p>
 
-        <div className="mt-8 flex flex-col gap-4 border-t border-foreground/10 py-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-foreground/50">
-            © {formatNumber(year, locale)} {locale === "fa" ? "علیرضا ترابی. " : "Alireza Torabi. "}{copy.copyright}
-          </p>
-          <Button
-            asChild
-            variant="outline"
-            size="sm"
-            className="group min-h-11 self-start px-3.5 text-[0.65rem] font-medium uppercase tracking-[0.12em] text-foreground/80 hover:border-accent/60 hover:text-foreground sm:self-auto"
-          >
-            <a href="#top">
-              {copy.backToTop}
-              <span
-                aria-hidden="true"
-                className="text-sm transition-transform duration-200 group-hover:-translate-y-0.5"
-              >
-                ↑
-              </span>
-            </a>
-          </Button>
-        </div>
+        <div className="mt-8 border-t border-foreground/10 py-6" />
       </div>
     </footer>
   );
