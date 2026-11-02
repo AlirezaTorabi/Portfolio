@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Caveat, Geist_Mono, Quicksand } from "next/font/google";
 import localFont from "next/font/local";
+import Script from "next/script";
 import ScrollReset from "@/components/ScrollReset";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
@@ -71,7 +72,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${quicksand.variable} ${caveat.variable} ${geistMono.variable} ${vazirmatn.variable} ${sgKara.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <Script id="theme-script" strategy="beforeInteractive">
+          {themeScript}
+        </Script>
         <ScrollReset />
         <ThemeProvider
           attribute="class"

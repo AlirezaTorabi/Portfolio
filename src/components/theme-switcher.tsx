@@ -13,23 +13,12 @@ import {
 import { type Locale } from "@/lib/translations";
 
 export function ThemeSwitcher({ locale = "en" }: { locale?: Locale }) {
-  const { setTheme } = useTheme();
-  const [isDark, setIsDark] = useState(() =>
-    typeof document !== "undefined" && document.documentElement.classList.contains("dark"),
-  );
+  const { setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const root = document.documentElement;
-    const updateThemeState = () => {
-      setIsDark(root.classList.contains("dark"));
-    };
-
-    updateThemeState();
-    const observer = new MutationObserver(updateThemeState);
-    observer.observe(root, { attributes: true, attributeFilter: ["class"] });
-
-    return () => observer.disconnect();
+    setMounted(true);
   }, []);
 
   useEffect(() => {
@@ -42,6 +31,7 @@ export function ThemeSwitcher({ locale = "en" }: { locale?: Locale }) {
     return () => mediaQuery.removeEventListener("change", updateDevice);
   }, []);
 
+  const isDark = mounted && resolvedTheme === "dark";
   const label = locale === "fa" ? "تغییر پوسته‌ی روشن و تیره" : "Toggle light and dark theme";
 
   return (
