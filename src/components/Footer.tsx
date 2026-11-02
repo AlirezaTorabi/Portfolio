@@ -84,7 +84,7 @@ export default function Footer({ locale = "en" }: { locale?: Locale }) {
             asChild
             variant="outline"
             size="sm"
-            className="group min-h-11 self-start px-3.5 text-[0.65rem] font-medium uppercase tracking-[0.12em] text-[#3f3f46] hover:border-[#93c5fd] hover:text-[#09090b] sm:self-auto"
+            className="group min-h-11 self-start px-3.5 text-[0.65rem] font-medium uppercase tracking-[0.12em] text-foreground/80 hover:border-accent/60 hover:text-foreground sm:self-auto"
           >
             <a href="#top">
               {copy.backToTop}

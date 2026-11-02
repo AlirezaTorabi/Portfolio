@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { Caveat, Geist_Mono, Quicksand, Vazirmatn } from "next/font/google";
+import { Caveat, Geist_Mono, Quicksand } from "next/font/google";
+import localFont from "next/font/local";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
@@ -20,11 +21,18 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const vazirmatn = Vazirmatn({
+const vazirmatn = localFont({
+  src: "../../public/font/vazirmatn/Vazirmatn-ghalamoom.com_/Vazirmatn-ghalamoom.com/static/Vazirmatn-Regular.ttf",
   variable: "--font-vazirmatn",
-  subsets: ["arabic", "latin"],
-  weight: "variable",
-  preload: false,
+  display: "swap",
+  fallback: ["Tahoma", "Arial", "sans-serif"],
+});
+
+const sgKara = localFont({
+  src: "../../public/font/SG-kara/SG-kara/SG kara/SGKara-Light.ttf",
+  variable: "--font-sg-kara",
+  display: "swap",
+  fallback: ["Tahoma", "Arial", "sans-serif"],
 });
 
 export const metadata: Metadata = {
@@ -35,7 +43,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fafafa",
+  themeColor: "#f5f2ed",
   colorScheme: "light dark",
 };
 
@@ -59,7 +67,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
       dir="ltr"
       data-scroll-behavior="smooth"
-      className={`${quicksand.variable} ${caveat.variable} ${geistMono.variable} ${vazirmatn.variable} h-full antialiased`}
+      className={`${quicksand.variable} ${caveat.variable} ${geistMono.variable} ${vazirmatn.variable} ${sgKara.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />

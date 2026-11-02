@@ -120,7 +120,7 @@ export default function MobileNavigationSidebar({
           aria-expanded={isOpen}
           aria-controls="mobile-navigation-sidebar"
           onClick={() => (isOpen ? closeMenu() : setIsOpen(true))}
-          className="pointer-events-auto z-[80] size-11 shrink-0 text-[#09090b] transition-colors duration-200 hover:bg-[#e8ecf0] hover:text-[#09090b] focus-visible:ring-accent dark:text-[#f8f9fa] dark:hover:bg-white dark:hover:text-[#09090b]"
+          className="pointer-events-auto z-[80] size-11 shrink-0 text-foreground transition-colors duration-200 hover:bg-muted hover:text-foreground focus-visible:ring-accent"
         >
           <span className="relative h-5 w-5" aria-hidden="true">
             <span className={`absolute left-0 top-1/2 h-px w-full bg-current transition-[rotate,translate] duration-200 ${isOpen ? "rotate-45" : "-translate-y-[6px]"}`} />
@@ -135,7 +135,7 @@ export default function MobileNavigationSidebar({
           data-mobile-controls
           aria-hidden={!isOpen}
           inert={!isOpen}
-          className={`pointer-events-auto absolute end-0 top-full z-[80] mt-1 flex w-11 flex-col items-center gap-0 rounded-full border border-foreground/15 bg-background p-0 shadow-md transition-[opacity,translate] duration-200 ease-out will-change-[translate,opacity] motion-reduce:transition-none ${isOpen ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0"}`}
+          className={`pointer-events-auto absolute end-0 top-full z-[80] mt-1 flex w-11 flex-col items-center gap-0 rounded-full border border-border bg-card/90 p-0 shadow-[var(--shadow-soft)] transition-[opacity,translate] duration-200 ease-out will-change-[translate,opacity] motion-reduce:transition-none ${isOpen ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0"}`}
         >
           <ThemeSwitcher locale={locale} />
           <LanguageSwitcher locale={locale} onNavigate={closeMenu} />
@@ -155,15 +155,15 @@ export default function MobileNavigationSidebar({
         aria-label={copy.navigation.mobile}
         aria-hidden={!isOpen}
         inert={!isOpen}
-        className={`pointer-events-auto fixed left-1/2 top-[10px] z-[70] flex w-fit max-w-[calc(100%-70px)] -translate-x-1/2 items-center rounded-full border border-white/12 bg-background/75 px-2 py-1 shadow-[0_12px_32px_rgba(0,0,0,0.2)] backdrop-blur-2xl transition-[translate,opacity] duration-200 ease-out will-change-translate motion-reduce:transition-none md:hidden ${isOpen ? "translate-y-0 opacity-100" : "-translate-y-[calc(100%+10px)] opacity-0"}`}
+        className={`pointer-events-auto fixed left-1/2 top-[10px] z-[70] flex w-fit max-w-[calc(100%-70px)] -translate-x-1/2 items-center rounded-full border border-border/80 bg-background/75 px-2 py-1 shadow-[var(--shadow-soft)] backdrop-blur-2xl transition-[translate,opacity] duration-200 ease-out will-change-translate motion-reduce:transition-none md:hidden ${isOpen ? "translate-y-0 opacity-100" : "-translate-y-[calc(100%+10px)] opacity-0"}`}
       >
         <GooeyNav
           items={iconOnlyItems}
           activeIndex={activeIndex}
           label={copy.navigation.mobile}
           theme={theme}
-          color="#2563eb"
-          activeTextColor="#ffffff"
+          color="#2f5df6"
+          activeTextColor="#f5f8ff"
           size="sm"
           frame={false}
           particleCount={12}
@@ -177,7 +177,7 @@ export default function MobileNavigationSidebar({
             onNavigate(index);
             document.body.style.overflow = "";
           }}
-          colors={["#2563eb", "#5b8ef0", "#8ab4ff"]}
+          colors={["#2f5df6", "#5d7ef7", "#8fb5ff"]}
           className={`w-full [&>div]:w-full [&_ul]:w-full [&_ul]:flex-nowrap [&_ul]:items-center [&_ul]:justify-center [&_ul]:gap-3 max-[440px]:[&_ul]:gap-0 [&_li]:w-auto [&_a]:h-11 [&_a]:w-16 [&_a]:justify-center [&_a]:gap-0 [&_a]:px-0 [&_a]:py-0 [&_li>span]:h-11 [&_li>span]:w-16 [&_li>span]:justify-center [&_li>span]:px-0 [&_li>span]:py-0 max-[440px]:[&_a]:h-11 max-[440px]:[&_a]:w-11 max-[440px]:[&_li>span]:h-11 max-[440px]:[&_li>span]:w-11 ${isRtl ? "[&_ul]:flex-row-reverse" : "[&_ul]:flex-row"}`}
         />
       </aside>

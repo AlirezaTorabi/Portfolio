@@ -77,11 +77,11 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
             <Reveal delay={0.52}>
               <div className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-2 sm:mt-8">
                 <Magnetic>
-                  <Button asChild size="lg" className="group relative isolate min-h-12 overflow-hidden border border-[#09090b] px-6 text-xs font-semibold">
+                  <Button asChild size="lg" className="group relative isolate min-h-12 overflow-hidden border border-border bg-foreground px-6 text-xs font-semibold text-background">
                     <a href="#work">
                       <span
                         aria-hidden="true"
-                        className={`pointer-events-none absolute inset-0 ${locale === "fa" ? "translate-x-full bg-gradient-to-l group-hover:-translate-x-full" : "-translate-x-full bg-gradient-to-r group-hover:translate-x-full"} from-transparent via-[#09090b]/20 to-transparent transition-transform duration-700 motion-reduce:hidden`}
+                        className={`pointer-events-none absolute inset-0 ${locale === "fa" ? "translate-x-full bg-gradient-to-l group-hover:-translate-x-full" : "-translate-x-full bg-gradient-to-r group-hover:translate-x-full"} from-transparent via-foreground/20 to-transparent transition-transform duration-700 motion-reduce:hidden`}
                       />
                       <span className="relative z-10 inline-flex items-center gap-4">
                         {copy.viewWork}
@@ -95,7 +95,7 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
                     </a>
                   </Button>
                 </Magnetic>
-                <Button asChild variant="ghost" size="lg" className="group relative h-12 px-5 text-xs font-medium text-[#3f3f46] hover:bg-transparent hover:text-[#09090b] dark:text-white dark:hover:text-white">
+                <Button asChild variant="ghost" size="lg" className="group relative h-12 px-5 text-xs font-medium text-foreground/80 hover:bg-transparent hover:text-foreground">
                   <a href="#contact">
                     {copy.contactMe}
                     <span

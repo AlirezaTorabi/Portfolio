@@ -4,31 +4,59 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #fafafa;
-  --foreground: #09090b;
-  --muted: #e8ecf0;
-  --muted-foreground: #475569;
-  --secondary: rgba(9, 9, 11, 0.06);
-  --accent: #2563eb;
-  --on-accent: #ffffff;
-  --border: #e4e4e7;
-  --card: #ffffff;
-  --scrollbar-thumb: #3f3f46;
-  --scrollbar-thumb-hover: #2563eb;
-  --scrollbar-track: #e8ecf0;
+  --background: #f5f2ed;
+  --foreground: #171a1f;
+  --muted: #ece5dc;
+  --muted-foreground: #5b6571;
+  --secondary: rgba(23, 26, 31, 0.05);
+  --secondary-foreground: #171a1f;
+  --card: #fbfaf8;
+  --card-foreground: #171a1f;
+  --surface: #f0ece7;
+  --surface-hover: #e8e2d9;
+  --accent: #2f5df6;
+  --on-accent: #f5f8ff;
+  --accent-hover: #214ad8;
+  --accent-foreground: #f5f8ff;
+  --border: rgba(23, 26, 31, 0.12);
+  --border-subtle: rgba(23, 26, 31, 0.07);
+  --input: rgba(23, 26, 31, 0.04);
+  --ring: rgba(47, 93, 246, 0.28);
+  --scrollbar-thumb: #8b8f99;
+  --scrollbar-thumb-hover: #2f5df6;
+  --scrollbar-track: #ece3d8;
+  --selection-background: rgba(47, 93, 246, 0.16);
+  --selection-foreground: #171a1f;
+  --shadow-soft: 0 20px 48px -24px rgba(15, 23, 42, 0.18);
+  color-scheme: light;
 }
 
 .dark {
-  --background: #111113;
-  --foreground: #f8f9fa;
-  --muted: rgba(248, 249, 250, 0.6);
-  --muted-foreground: rgba(248, 249, 250, 0.55);
-  --secondary: rgba(248, 249, 250, 0.06);
-  --accent: #8ab4ff;
-  --on-accent: #111113;
-  --border: rgba(248, 249, 250, 0.1);
-  --card: #17191e;
-  --scrollbar-track: rgba(248, 249, 250, 0.04);
+  --background: #0b1016;
+  --foreground: #edf2f7;
+  --muted: rgba(237, 242, 247, 0.08);
+  --muted-foreground: #a3afbb;
+  --secondary: rgba(255, 255, 255, 0.05);
+  --secondary-foreground: #edf2f7;
+  --card: #121a22;
+  --card-foreground: #edf2f7;
+  --surface: #0f171e;
+  --surface-hover: #15212d;
+  --accent: #8fb5ff;
+  --on-accent: #090d14;
+  --accent-hover: #bfd3ff;
+  --accent-foreground: #090d14;
+  --border: rgba(198, 209, 220, 0.12);
+  --border-subtle: rgba(198, 209, 220, 0.08);
+  --input: rgba(255, 255, 255, 0.04);
+  --ring: rgba(143, 181, 255, 0.32);
+  --scrollbar-track: rgba(255, 255, 255, 0.04);
+  --scrollbar-thumb: #5d6978;
+  --scrollbar-thumb-hover: #8fb5ff;
+  --selection-background: rgba(143, 181, 255, 0.28);
+  --selection-foreground: #edf2f7;
+  --shadow-soft: 0 24px 54px -28px rgba(0, 0, 0, 0.72);
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -37,10 +65,24 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
   --color-accent: var(--accent);
   --color-on-accent: var(--on-accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-foreground: var(--accent-foreground);
   --color-border: var(--border);
-  --color-card: var(--card);
+  --color-border-subtle: var(--border-subtle);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-scrollbar-track: var(--scrollbar-track);
+  --color-scrollbar-thumb: var(--scrollbar-thumb);
+  --color-scrollbar-thumb-hover: var(--scrollbar-thumb-hover);
+  --color-selection-background: var(--selection-background);
+  --color-selection-foreground: var(--selection-foreground);
   --font-sans: var(--font-quicksand);
   --font-display: var(--font-caveat);
   --font-mono: var(--font-geist-mono);
@@ -72,12 +114,12 @@ body {
 }
 
 .locale-fa {
-  font-family: var(--font-vazirmatn), sans-serif;
+  font-family: var(--font-vazirmatn), "Tahoma", "Arial", sans-serif;
 }
 
 .locale-fa .font-mono,
 .locale-fa :is(h1, h2, h3, h4, h5, h6) {
-  font-family: var(--font-vazirmatn), sans-serif;
+  font-family: var(--font-sg-kara), "Tahoma", "Arial", sans-serif;
 }
 
 .locale-fa :is(h1, h2, h3, h4, h5, h6) {
@@ -121,8 +163,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::selection {
-  background: var(--accent);
-  color: var(--on-accent);
+  background: var(--selection-background);
+  color: var(--selection-foreground);
 }
 
 /* Premium minimalist scrollbar — light, dark, and system theme aware */

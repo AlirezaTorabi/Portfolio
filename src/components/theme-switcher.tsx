@@ -53,7 +53,7 @@ export function ThemeSwitcher({ locale = "en" }: { locale?: Locale }) {
           size="icon-lg"
           aria-label={label}
           onClick={() => setTheme(isDark ? "light" : "dark")}
-          className="pointer-events-auto relative isolate size-11 rounded-full text-[#3f3f46] transition-colors duration-200 before:absolute before:inset-1 before:z-0 before:rounded-full before:transition-colors before:content-[''] hover:bg-transparent hover:before:bg-[#e8ecf0] hover:text-[#09090b] dark:text-[#e4e4e7] dark:hover:bg-transparent dark:hover:before:bg-white dark:hover:text-[#09090b] motion-reduce:transition-none [&_span]:pointer-events-auto [&_svg]:pointer-events-auto [&_svg]:relative [&_svg]:z-10"
+          className="pointer-events-auto relative isolate size-11 rounded-full text-foreground/80 transition-colors duration-200 before:absolute before:inset-1 before:z-0 before:rounded-full before:transition-colors before:content-[''] hover:bg-transparent hover:before:bg-muted hover:text-foreground motion-reduce:transition-none [&_span]:pointer-events-auto [&_svg]:pointer-events-auto [&_svg]:relative [&_svg]:z-10"
         >
           {isDark ? (
             <Sun03 animateOnHover className="size-[18px]" />
@@ -66,7 +66,7 @@ export function ThemeSwitcher({ locale = "en" }: { locale?: Locale }) {
         side={isMobile ? (locale === "fa" ? "right" : "left") : "bottom"}
         align="center"
         sideOffset={12}
-        className="flex w-fit max-w-[220px] items-center justify-center rounded-full border border-[#d4d4d8]/80 bg-[#f8fafc]/90 px-3 py-1.5 text-[11px] font-medium leading-none whitespace-nowrap text-[#18181b] shadow-[0_8px_18px_rgba(15,23,42,0.08)] backdrop-blur-md dark:border-white/10 dark:bg-[#17191e]/90 dark:text-[#f8f9fa] dark:shadow-[0_10px_22px_rgba(0,0,0,0.24)]"
+        className="flex w-fit max-w-[220px] items-center justify-center rounded-full border border-border/80 bg-card/90 px-3 py-1.5 text-[11px] font-medium leading-none whitespace-nowrap text-card-foreground shadow-[var(--shadow-soft)] backdrop-blur-md"
       >
         {label}
       </HoverCardContent>
