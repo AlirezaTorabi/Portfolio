@@ -3,6 +3,12 @@
 import Image from "next/image";
 import AnimatedHeading from "@/components/ui/AnimatedHeading";
 import Reveal from "@/components/ui/Reveal";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import ToolkitTabs from "@/components/ToolkitTabs";
 import { formatNumber, translations, type Locale } from "@/lib/translations";
 
@@ -72,47 +78,65 @@ export default function About({ locale = "en" }: { locale?: Locale }) {
                 aria-hidden="true"
                 className="relative mt-10 grid size-32 place-items-center sm:size-36"
               >
-                <span className="absolute inset-0 rounded-full border border-foreground/10" />
-                <span className="absolute inset-7 rounded-full border border-foreground/10" />
-                <span className="absolute inset-0 animate-spin rounded-full border border-transparent border-t-accent/60 [animation-duration:24s] motion-reduce:animate-none" />
-                <span className="absolute left-1/2 top-0 h-3 w-px -translate-x-1/2 bg-accent/60" />
-                <span className="absolute bottom-0 left-1/2 h-3 w-px -translate-x-1/2 bg-foreground/15" />
-                <span className="absolute left-0 top-1/2 h-px w-3 -translate-y-1/2 bg-foreground/15" />
-                <span className="absolute right-0 top-1/2 h-px w-3 -translate-y-1/2 bg-foreground/15" />
-                <span className="relative font-mono text-[0.6rem] uppercase tracking-[0.35em] text-foreground/40">
+                <span className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,_rgba(47,93,246,0.18),_rgba(47,93,246,0.08)_32%,_rgba(23,26,31,0)_72%)]" />
+                <span className="absolute inset-[10%] rounded-full border border-accent/25 bg-card/20 shadow-[inset_0_0_24px_rgba(47,93,246,0.08)] backdrop-blur-[2px]" />
+                <span className="absolute inset-[3%] rounded-full border border-foreground/10" />
+                <span className="absolute inset-[18%] rounded-full border border-dashed border-foreground/15" />
+                <span className="absolute inset-0 animate-spin rounded-full border border-transparent border-t-accent border-r-accent/50 [animation-duration:22s] motion-reduce:animate-none" />
+                <span className="absolute inset-2 animate-[spin_28s_linear_infinite_reverse] rounded-full border border-transparent border-l-foreground/20 border-b-foreground/5 motion-reduce:animate-none" />
+                <span className="absolute left-1/2 top-0 h-3 w-px -translate-x-1/2 bg-accent/70 shadow-[0_0_12px_rgba(47,93,246,0.8)]" />
+                <span className="absolute bottom-0 left-1/2 h-3 w-px -translate-x-1/2 bg-foreground/20" />
+                <span className="absolute left-0 top-1/2 h-px w-3 -translate-y-1/2 bg-foreground/20" />
+                <span className="absolute right-0 top-1/2 h-px w-3 -translate-y-1/2 bg-foreground/20" />
+                <span className="absolute right-[18%] top-[18%] h-2.5 w-2.5 rounded-full bg-accent shadow-[0_0_14px_rgba(47,93,246,0.9)]" />
+                <span className="absolute bottom-[20%] left-[18%] h-2 w-2 rounded-full bg-foreground/30" />
+                <span className="relative flex h-12 w-12 items-center justify-center rounded-full border border-accent/35 bg-background/90 text-[0.68rem] font-medium tracking-[0.35em] text-foreground/75 shadow-[0_0_24px_rgba(47,93,246,0.12)] backdrop-blur-sm">
                   AT
                 </span>
               </div>
             </Reveal>
           </div>
 
-          <ol
+          <Accordion
+            type="multiple"
+            defaultValue={copy.principles.map((_, index) => `principle-${index}`)}
             aria-label={copy.principlesLabel}
-            className="m-0 min-w-0 list-none border-t border-foreground/15 p-0"
+            className="m-0 flex min-h-[25rem] min-w-0 list-none flex-col gap-3 p-0 [overflow-anchor:none]"
           >
             {copy.principles.map((principle, index) => (
               <Reveal
-                as="li"
+                as="div"
                 key={principle.title}
                 delay={index * 0.08}
-                className="group border-b border-foreground/10 py-8 sm:py-9"
+                className="group"
               >
-                <div className="flex gap-5 sm:gap-8">
-                  <span className="pt-1 font-mono text-xs text-accent">
-                    {formatNumber(index + 1, locale, 2)}
-                  </span>
-                  <div className="min-w-0">
-                    <h3 className="text-lg font-medium leading-snug sm:text-xl">
-                      {principle.title}
-                    </h3>
-                    <p className="mt-3 max-w-md text-base leading-6 text-foreground/55">
-                      {principle.detail}
-                    </p>
-                  </div>
-                </div>
+                <AccordionItem
+                  value={`principle-${index}`}
+                  className="overflow-hidden rounded-2xl border border-foreground/10 bg-card/70 shadow-[0_0_0_1px_rgba(15,23,42,0.02)] transition-colors duration-200 hover:border-foreground/15 hover:bg-card/90"
+                >
+                  <AccordionTrigger value={`principle-${index}`} className="w-full justify-between gap-5 rounded-2xl px-4 py-4 text-left hover:no-underline sm:px-5 sm:py-4.5 [&[data-state=open]>svg]:rotate-180">
+                    <div className="flex w-full items-center gap-4 sm:gap-5">
+                      <span className="inline-flex size-8 items-center justify-center rounded-full border border-accent/20 bg-accent/5 font-mono text-[0.62rem] text-accent shadow-[0_0_0_2px_rgba(47,93,246,0.04)]">
+                        {formatNumber(index + 1, locale, 2)}
+                      </span>
+                      <div className="min-w-0 text-left">
+                        <h3 className="text-base font-medium leading-snug sm:text-lg">
+                          {principle.title}
+                        </h3>
+                      </div>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent value={`principle-${index}`} className="px-4 sm:px-5">
+                    <div className="pl-12 sm:pl-14">
+                      <p className="max-w-xl text-sm leading-6 text-foreground/60 sm:text-[0.96rem] sm:leading-7">
+                        {principle.detail}
+                      </p>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
               </Reveal>
             ))}
-          </ol>
+          </Accordion>
         </div>
 
         <Reveal>

@@ -10,6 +10,7 @@ interface RevealProps {
   className?: string;
   delay?: number;
   as?: "div" | "li";
+  layout?: boolean | "position";
 }
 
 const motionProps = (delay: number) => ({
@@ -25,19 +26,20 @@ export default function Reveal({
   className,
   delay = 0,
   as = "div",
+  layout,
 }: RevealProps) {
   const props = motionProps(delay);
 
   if (as === "li") {
     return (
-      <motion.li className={className} {...props}>
+      <motion.li className={className} layout={layout} {...props}>
         {children}
       </motion.li>
     );
   }
 
   return (
-    <motion.div className={className} {...props}>
+    <motion.div className={className} layout={layout} {...props}>
       {children}
     </motion.div>
   );
