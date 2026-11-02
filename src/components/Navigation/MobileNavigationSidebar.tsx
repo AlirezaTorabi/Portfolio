@@ -155,7 +155,7 @@ export default function MobileNavigationSidebar({
         aria-label={copy.navigation.mobile}
         aria-hidden={!isOpen}
         inert={!isOpen}
-        className={`pointer-events-auto fixed left-1/2 top-[10px] z-[70] flex w-fit max-w-[calc(100%-70px)] -translate-x-1/2 items-center rounded-full border border-foreground/20 bg-background px-2 py-1 shadow-xl transition-[translate] duration-200 ease-out will-change-translate motion-reduce:transition-none md:hidden ${isOpen ? "translate-y-0" : "-translate-y-[calc(100%+10px)]"}`}
+        className={`pointer-events-auto fixed left-1/2 top-[10px] z-[70] flex w-fit max-w-[calc(100%-70px)] -translate-x-1/2 items-center rounded-full border border-white/12 bg-background/75 px-2 py-1 shadow-[0_12px_32px_rgba(0,0,0,0.2)] backdrop-blur-2xl transition-[translate,opacity] duration-200 ease-out will-change-translate motion-reduce:transition-none md:hidden ${isOpen ? "translate-y-0 opacity-100" : "-translate-y-[calc(100%+10px)] opacity-0"}`}
       >
         <GooeyNav
           items={iconOnlyItems}
@@ -166,13 +166,13 @@ export default function MobileNavigationSidebar({
           activeTextColor="#ffffff"
           size="sm"
           frame={false}
-          particleCount={15}
+          particleCount={12}
           spread={56}
           animationTime={600}
           timeVariance={300}
           gooeyness={0.5}
           wobble={0.5}
-          hoverEffect={false}
+          hoverEffect
           onChange={(index) => {
             onNavigate(index);
             document.body.style.overflow = "";

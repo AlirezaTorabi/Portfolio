@@ -224,9 +224,9 @@ export default function Navbar({ locale = "en" }: { locale?: Locale }) {
 
   return (
     <header
-      className="pointer-events-none fixed inset-x-0 top-0 z-50 isolate bg-background/90 backdrop-blur-md"
+      className="pointer-events-none fixed inset-x-0 top-3 z-50 isolate px-3 md:px-4 lg:px-5"
     >
-      <div className="relative mx-auto flex h-[76px] max-w-[1800px] items-center justify-between gap-4 ps-4 pe-[10px] md:px-5 lg:px-7">
+      <div className="relative mx-auto flex h-[76px] max-w-[1800px] items-center justify-between gap-4 rounded-full border border-white/10 bg-background/55 px-4 shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_18px_40px_rgba(0,0,0,0.12)] backdrop-blur-xl md:px-5 lg:px-6">
         <Link
           href={locale === "fa" ? "/fa" : "/"}
           aria-label={copy.navigation.home}

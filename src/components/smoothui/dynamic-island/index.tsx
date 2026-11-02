@@ -115,7 +115,7 @@ function ChannelContent({ channel, locale }: { channel: ContactChannel; locale: 
       {...(channel.external
         ? { target: "_blank", rel: "noopener noreferrer" }
         : {})}
-      className="group flex max-w-full items-center gap-3 px-4 py-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
+      className="group flex max-w-full items-center gap-2 px-3 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent"
     >
       <span
         aria-hidden="true"
@@ -124,10 +124,13 @@ function ChannelContent({ channel, locale }: { channel: ContactChannel; locale: 
         <Icon className="size-4" />
       </span>
       <span className="flex min-w-0 flex-col text-start">
-        <span className="font-mono text-[0.58rem] uppercase tracking-[0.16em] text-white/50">
+        <span className="-mb-0.5 font-mono text-[0.5rem] uppercase tracking-[0.16em] text-white/50 transition-transform duration-200 group-hover:-translate-y-0.5 motion-reduce:transition-none">
           {channel.label}
         </span>
-        <span dir="ltr" className="mt-0.5 text-sm font-medium leading-5 text-white transition-colors duration-200 group-hover:text-accent motion-reduce:transition-none">
+        <span
+          dir="ltr"
+          className="text-[0.78rem] font-medium leading-4 text-white transition-colors duration-200 group-hover:text-accent motion-reduce:transition-none"
+        >
           {channel.value}
         </span>
       </span>
@@ -135,8 +138,8 @@ function ChannelContent({ channel, locale }: { channel: ContactChannel; locale: 
         aria-hidden="true"
         className={`shrink-0 text-sm text-white/40 transition-all duration-200 ${
           isRtl
-            ? "group-hover:-translate-x-0.5 group-hover:-translate-y-0.5"
-            : "group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            ? "group-hover:translate-x-[-1px] group-hover:translate-y-0"
+            : "group-hover:translate-x-[1px] group-hover:translate-y-0"
         } group-hover:text-accent motion-reduce:transform-none motion-reduce:transition-none`}
       >
         {channel.external ? (isRtl ? "↖" : "↗") : isRtl ? "←" : "→"}
@@ -161,8 +164,7 @@ export default function DynamicIsland({ className = "", locale = "en" }: { class
   const activeChannel = channels.find((channel) => channel.method === activeMethod) ?? null;
 
   const handleSelect = (method: ContactMethod) => {
-    if (method === activeMethod) return;
-    setActiveMethod(method);
+    setActiveMethod((current) => (current === method ? null : method));
   };
 
   const layoutTransition = shouldReduceMotion

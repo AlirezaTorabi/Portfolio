@@ -165,6 +165,12 @@ const IS_TOUCH =
   typeof window !== 'undefined' &&
   ('ontouchstart' in window || navigator.maxTouchPoints > 0);
 
+const supportsWebGL2 = () => {
+  if (typeof window === 'undefined') return false;
+  const canvas = document.createElement('canvas');
+  return !!canvas.getContext('webgl2');
+};
+
 const VERTEX = `#version 300 es
 in vec2 aPosition;
 void main() {
@@ -396,8 +402,7 @@ const GooeyNav = ({
     if (!stage || !canvas || !list || !overlay || !fallback) return;
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    // Skip WebGL entirely on touch devices to avoid main-thread contention.
-    const useWebgl = !reduced && !IS_TOUCH;
+    const useWebgl = !reduced && supportsWebGL2();
     const gl = useWebgl ? canvas.getContext('webgl2', { alpha: true, premultipliedAlpha: true, antialias: false }) : null;
     const pipeline = gl ? build(gl) : null;
     fallback.style.display = pipeline ? 'none' : 'block';
