@@ -37,7 +37,7 @@ export default function About({ locale = "en" }: { locale?: Locale }) {
     <section
       id="about"
       aria-labelledby="about-title"
-      className="relative scroll-mt-20 border-t border-foreground/10"
+      className="relative scroll-mt-20 overflow-x-hidden border-t border-foreground/10"
     >
       <div className="relative mx-auto max-w-6xl px-6 py-24 sm:px-8 sm:py-28 lg:px-10 lg:py-32">
         <Reveal>
@@ -51,8 +51,8 @@ export default function About({ locale = "en" }: { locale?: Locale }) {
           </div>
         </Reveal>
 
-        <div className="grid gap-12 py-12 sm:py-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-20 lg:py-20">
-          <div className="lg:sticky lg:top-28 lg:self-start">
+        <div className="grid min-w-0 gap-12 py-12 sm:py-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-20 lg:py-20">
+          <div className="min-w-0 lg:sticky lg:top-28 lg:self-start">
             <AnimatedHeading
               id="about-title"
               lines={copy.heading.map((text, index) => ({
@@ -88,7 +88,7 @@ export default function About({ locale = "en" }: { locale?: Locale }) {
 
           <ol
             aria-label={copy.principlesLabel}
-            className="m-0 list-none border-t border-foreground/15 p-0"
+            className="m-0 min-w-0 list-none border-t border-foreground/15 p-0"
           >
             {copy.principles.map((principle, index) => (
               <Reveal
@@ -116,16 +116,18 @@ export default function About({ locale = "en" }: { locale?: Locale }) {
         </div>
 
         <Reveal>
-          <div className="grid gap-8 border-t border-foreground/15 pt-10 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] md:items-center md:gap-12 lg:gap-16">
-            <Image
-              src="/about-img/Developer Tech Skills Collage.png"
-              alt={copy.illustrationAlt}
-              width={1160}
-              height={693}
-              sizes="(max-width: 767px) 75vw, 32vw"
-              className="mx-auto h-auto w-full max-w-[20rem] object-contain md:mx-0"
-            />
-            <div className="w-full">
+          <div className="grid min-w-0 gap-8 border-t border-foreground/15 pt-10 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] md:items-center md:gap-12 lg:gap-16">
+            <div className="min-w-0 overflow-hidden">
+              <Image
+                src="/about-img/Developer Tech Skills Collage.png"
+                alt={copy.illustrationAlt}
+                width={1160}
+                height={693}
+                sizes="(max-width: 767px) 75vw, 32vw"
+                className="mx-auto h-auto w-full max-w-[20rem] object-contain md:mx-0"
+              />
+            </div>
+            <div className="w-full min-w-0 max-w-full overflow-hidden">
               <ToolkitTabs locale={locale} />
             </div>
           </div>

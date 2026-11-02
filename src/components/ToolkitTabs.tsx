@@ -54,8 +54,8 @@ export default function ToolkitTabs({ locale = "en" }: { locale?: Locale }) {
   const [activeValue, setActiveValue] = useState<(typeof TAB_VALUES)[number]>("frontend");
 
   return (
-    <Tabs value={activeValue} onValueChange={(value) => setActiveValue(value as (typeof TAB_VALUES)[number])} className="w-full min-w-0">
-      <TabsList className="grid w-full grid-cols-2 gap-1 border border-foreground/15 bg-transparent p-1 sm:grid-cols-4">
+    <Tabs value={activeValue} onValueChange={(value) => setActiveValue(value as (typeof TAB_VALUES)[number])} className="w-full min-w-0 max-w-full overflow-hidden">
+      <TabsList className="grid w-full max-w-full grid-cols-2 gap-1 overflow-hidden border border-foreground/15 bg-transparent p-1 sm:grid-cols-4">
         {TAB_VALUES.map((value, index) => {
           const label = copy.tabs[index];
           const isActive = activeValue === value;
@@ -64,19 +64,19 @@ export default function ToolkitTabs({ locale = "en" }: { locale?: Locale }) {
             <TabsTrigger
               key={value}
               value={value}
-              className="group relative isolate inline-flex min-h-11 w-full items-center justify-center overflow-hidden px-2 text-sm font-medium text-foreground/55 transition-colors duration-200 hover:text-foreground data-[state=active]:text-foreground sm:px-3"
+              className="group relative isolate inline-flex min-h-10 w-full min-w-0 max-w-full items-center justify-center overflow-hidden px-0.5 text-[0.52rem] font-medium leading-none tracking-[-0.02em] text-foreground/55 transition-colors duration-200 hover:text-foreground data-[state=active]:text-foreground sm:px-2 sm:text-sm"
               aria-label={copy.showTechnologies.replace("{name}", label)}
             >
               {isActive ? (
                 <Highlighter
                   action="highlight"
                   color="#87CEFA"
-                  strokeWidth={1.5}
-                  animationDuration={420}
-                  padding={1.5}
+                  strokeWidth={1.2}
+                  animationDuration={320}
+                  padding={1.1}
                   multiline={false}
                   isView
-                  delay={180}
+                  delay={120}
                 >
                   {label}
                 </Highlighter>
