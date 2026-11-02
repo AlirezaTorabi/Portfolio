@@ -853,13 +853,21 @@ const GooeyNav = ({
   }, [items, pillColor, palette, gooeyness, size, frame]);
 
   const textColor = activeTextColor || contrastInk(pillRgb);
+  const isRtl = typeof document !== 'undefined' && document.documentElement.dir === 'rtl';
 
   const labels = (interactive: boolean) =>
     items.map((item, index) => {
       const content = (
         <>
           {item.icon && <span className={ICON}>{item.icon}</span>}
-          {item.label && <span>{item.label}</span>}
+          {item.label && (
+            <span
+              className={isRtl ? 'translate-y-[1px] leading-none' : 'leading-none'}
+              style={isRtl ? { transform: 'translateY(1px)' } : undefined}
+            >
+              {item.label}
+            </span>
+          )}
         </>
       );
       if (!interactive) {
