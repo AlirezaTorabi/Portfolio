@@ -59,8 +59,8 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
 
           <div className="order-2 min-w-0 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-center">
             <Image
-              src="/hero-img/hero-new-transparent.webp"
-              alt=""
+              src="/hero-img/Professional%20UI_UX%20Creative%20Vector.png"
+              alt="Professional UI/UX creative vector illustration"
               width={1034}
               height={1002}
               preload
