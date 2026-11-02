@@ -118,17 +118,14 @@ export default function About({ locale = "en" }: { locale?: Locale }) {
         <Reveal>
           <div className="grid gap-8 border-t border-foreground/15 pt-10 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] md:items-center md:gap-12 lg:gap-16">
             <Image
-              src="/hero-img/hero-transparent.png"
+              src="/about-img/Developer Tech Skills Collage.png"
               alt={copy.illustrationAlt}
               width={1160}
               height={693}
               sizes="(max-width: 767px) 75vw, 32vw"
               className="mx-auto h-auto w-full max-w-[20rem] object-contain md:mx-0"
             />
-            <div className="grid gap-4 lg:grid-cols-[8rem_minmax(0,1fr)] lg:items-start lg:gap-8">
-              <p className="text-[0.65rem] font-medium uppercase text-foreground/50">
-                {copy.toolkit}
-              </p>
+            <div className="w-full">
               <ToolkitTabs locale={locale} />
             </div>
           </div>

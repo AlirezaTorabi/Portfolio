@@ -1,6 +1,8 @@
 "use client";
 
-import { Tabs, TabsContent, TabsContents, TabsHighlight, TabsHighlightItem, TabsList, TabsTrigger } from "@animate-ui/react/primitives/tabs";
+import { useState } from "react";
+import { Tabs, TabsContent, TabsContents, TabsList, TabsTrigger } from "@animate-ui/react/primitives/tabs";
+import { Highlighter } from "@/components/ui/highlighter";
 import type { Technology } from "@/components/About";
 import { formatNumber, translations, type Locale } from "@/lib/translations";
 
@@ -49,32 +51,42 @@ function TechnologyCard({ technology }: { technology: Technology }) {
 
 export default function ToolkitTabs({ locale = "en" }: { locale?: Locale }) {
   const copy = translations[locale].toolkit;
+  const [activeValue, setActiveValue] = useState<(typeof TAB_VALUES)[number]>("frontend");
 
   return (
-    <Tabs defaultValue="frontend" className="w-full min-w-0">
-      <TabsHighlight className="relative z-0 w-full border border-foreground/15 bg-secondary/60 p-1">
-        <TabsList className="grid w-full grid-cols-2 gap-1 sm:grid-cols-4">
-          {TAB_VALUES.map((value, index) => {
-            const label = copy.tabs[index];
+    <Tabs value={activeValue} onValueChange={(value) => setActiveValue(value as (typeof TAB_VALUES)[number])} className="w-full min-w-0">
+      <TabsList className="grid w-full grid-cols-2 gap-1 border border-foreground/15 bg-transparent p-1 sm:grid-cols-4">
+        {TAB_VALUES.map((value, index) => {
+          const label = copy.tabs[index];
+          const isActive = activeValue === value;
 
-            return (
-            <TabsHighlightItem
+          return (
+            <TabsTrigger
               key={value}
               value={value}
-              className="min-w-0"
+              className="group relative isolate inline-flex min-h-11 w-full items-center justify-center overflow-hidden px-2 text-sm font-medium text-foreground/55 transition-colors duration-200 hover:text-foreground data-[state=active]:text-foreground sm:px-3"
+              aria-label={copy.showTechnologies.replace("{name}", label)}
             >
-              <TabsTrigger
-                value={value}
-                className="inline-flex min-h-11 w-full items-center justify-center px-2 text-sm font-medium text-foreground/55 transition-colors duration-200 hover:text-foreground data-[state=active]:text-foreground sm:px-3"
-                aria-label={copy.showTechnologies.replace("{name}", label)}
-              >
-                {label}
-              </TabsTrigger>
-            </TabsHighlightItem>
-            );
-          })}
-        </TabsList>
-      </TabsHighlight>
+              {isActive ? (
+                <Highlighter
+                  action="highlight"
+                  color="#87CEFA"
+                  strokeWidth={1.5}
+                  animationDuration={420}
+                  padding={1.5}
+                  multiline={false}
+                  isView
+                  delay={180}
+                >
+                  {label}
+                </Highlighter>
+              ) : (
+                <span className="relative z-10">{label}</span>
+              )}
+            </TabsTrigger>
+          );
+        })}
+      </TabsList>
 
       <TabsContents className="mt-3 w-full border border-foreground/15 bg-card text-card-foreground">
         {TAB_VALUES.map((value, index) => {
