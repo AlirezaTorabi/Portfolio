@@ -162,6 +162,7 @@ export default function MobileNavigationSidebar({
           activeIndex={activeIndex}
           label={copy.navigation.mobile}
           theme={theme}
+          locale={locale}
           color="#2f5df6"
           activeTextColor="#f5f8ff"
           size="sm"

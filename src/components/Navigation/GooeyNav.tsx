@@ -30,6 +30,7 @@ interface GooeyNavProps {
   activeIndex?: number;
   onChange?: (index: number, item: GooeyNavItem) => void;
   theme?: Palette;
+  locale?: 'en' | 'fa';
   color?: string;
   activeTextColor?: string;
   colors?: string[];
@@ -335,6 +336,7 @@ const GooeyNav = ({
   activeIndex,
   onChange,
   theme = 'dark',
+  locale = 'en',
   color,
   activeTextColor,
   colors = [],
@@ -853,7 +855,7 @@ const GooeyNav = ({
   }, [items, pillColor, palette, gooeyness, size, frame]);
 
   const textColor = activeTextColor || contrastInk(pillRgb);
-  const isRtl = typeof document !== 'undefined' && document.documentElement.dir === 'rtl';
+  const isRtl = locale === 'fa';
 
   const labels = (interactive: boolean) =>
     items.map((item, index) => {

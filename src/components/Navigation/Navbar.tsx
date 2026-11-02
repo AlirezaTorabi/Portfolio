@@ -265,6 +265,7 @@ export default function Navbar({ locale = "en" }: { locale?: Locale }) {
             onChange={handleNavigate}
             label={copy.navigation.primary}
             theme={navTheme}
+            locale={locale}
             color="#2f5df6"
             activeTextColor="#f5f8ff"
             size="sm"
