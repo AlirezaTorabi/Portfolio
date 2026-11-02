@@ -17,6 +17,7 @@ export function ThemeSwitcher({ locale = "en" }: { locale?: Locale }) {
   const [isDark, setIsDark] = useState(() =>
     typeof document !== "undefined" && document.documentElement.classList.contains("dark"),
   );
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -29,6 +30,16 @@ export function ThemeSwitcher({ locale = "en" }: { locale?: Locale }) {
     observer.observe(root, { attributes: true, attributeFilter: ["class"] });
 
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const updateDevice = () => setIsMobile(mediaQuery.matches);
+
+    updateDevice();
+    mediaQuery.addEventListener("change", updateDevice);
+
+    return () => mediaQuery.removeEventListener("change", updateDevice);
   }, []);
 
   const label = locale === "fa" ? "تغییر پوسته‌ی روشن و تیره" : "Toggle light and dark theme";
@@ -52,10 +63,10 @@ export function ThemeSwitcher({ locale = "en" }: { locale?: Locale }) {
         </Button>
       </HoverCardTrigger>
       <HoverCardContent
-        side={locale === "fa" ? "right" : "left"}
+        side={isMobile ? (locale === "fa" ? "right" : "left") : "bottom"}
         align="center"
         sideOffset={12}
-        className="flex w-fit max-w-[220px] items-center justify-center rounded-full border border-[#e4e4e7]/80 bg-white/90 px-3 py-1.5 text-[11px] font-medium leading-none whitespace-nowrap text-[#18181b] shadow-lg shadow-black/5 backdrop-blur-md dark:border-white/10 dark:bg-[#111113]/90 dark:text-[#f4f4f5]"
+        className="flex w-fit max-w-[220px] items-center justify-center rounded-full border border-[#d4d4d8]/80 bg-[#f8fafc]/90 px-3 py-1.5 text-[11px] font-medium leading-none whitespace-nowrap text-[#18181b] shadow-[0_8px_18px_rgba(15,23,42,0.08)] backdrop-blur-md dark:border-white/10 dark:bg-[#17191e]/90 dark:text-[#f8f9fa] dark:shadow-[0_10px_22px_rgba(0,0,0,0.24)]"
       >
         {label}
       </HoverCardContent>
