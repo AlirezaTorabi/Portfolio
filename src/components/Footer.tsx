@@ -35,7 +35,7 @@ export default function Footer({ locale = "en" }: { locale?: Locale }) {
                 {copy.tagline}
               </p>
               <Image
-                src="/footer-img/footer-transparent.png"
+                src="/footer-img/Developer Skills Tech Illustration.png"
                 alt=""
                 width={1291}
                 height={702}
