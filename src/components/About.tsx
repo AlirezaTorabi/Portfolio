@@ -116,7 +116,11 @@ export default function About({ locale = "en" }: { locale?: Locale }) {
                 >
                   <AccordionTrigger value={`principle-${index}`} className="w-full justify-between gap-5 rounded-2xl px-4 py-4 text-left hover:no-underline sm:px-5 sm:py-4.5 [&[data-state=open]>svg]:rotate-180">
                     <div className="flex w-full items-center gap-4 sm:gap-5">
-                      <span className="inline-flex size-8 items-center justify-center rounded-full border border-accent/20 bg-accent/5 font-mono text-[0.62rem] text-accent shadow-[0_0_0_2px_rgba(47,93,246,0.04)]">
+                      <span
+                        dir="ltr"
+                        className="inline-flex size-9 shrink-0 items-center justify-center rounded-full border border-accent/20 bg-accent/5 font-mono text-[0.62rem] leading-none tracking-[-0.08em] text-accent shadow-[0_0_0_2px_rgba(47,93,246,0.04)]"
+                        style={{ fontVariantNumeric: "tabular-nums" }}
+                      >
                         {formatNumber(index + 1, locale, 2)}
                       </span>
                       <div className="min-w-0 text-left">

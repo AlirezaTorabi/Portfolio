@@ -141,12 +141,17 @@ function AccordionTrigger({
   )
 }
 
+type AccordionContentProps = Omit<React.ComponentPropsWithoutRef<typeof motion.div>, "children"> & {
+  value: string
+  children: React.ReactNode
+}
+
 function AccordionContent({
   className,
   children,
   value,
   ...props
-}: React.ComponentProps<typeof motion.div> & { value: string }) {
+}: AccordionContentProps) {
   const context = React.useContext(AccordionContext)
   if (!context) {
     throw new Error("AccordionContent must be used inside Accordion")
