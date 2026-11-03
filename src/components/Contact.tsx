@@ -43,7 +43,12 @@ export default function Contact({ locale = "en" }: { locale?: Locale }) {
               id="contact-title"
               lines={copy.heading.map((text, index) => ({
                 text,
-                className: index === 1 ? "text-accent" : undefined,
+                className:
+                  index === 1
+                    ? `text-accent ${isRtl ? "display-persian" : ""}`
+                    : isRtl
+                      ? "display-persian"
+                      : undefined,
               }))}
               className={`w-full max-w-[32rem] text-4xl font-medium leading-[1.02] tracking-[-0.04em] sm:text-5xl lg:max-w-[36rem] lg:text-[4rem] ${
                 isRtl ? "text-right" : "text-left"

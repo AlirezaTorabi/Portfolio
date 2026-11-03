@@ -23,6 +23,20 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const lateef = localFont({
+  src: "../../public/font/Lateef,Rakkas/Lateef/Lateef-Regular.ttf",
+  variable: "--font-lateef",
+  display: "swap",
+  fallback: ["Tahoma", "Arial", "sans-serif"],
+});
+
+const rakkas = localFont({
+  src: "../../public/font/Lateef,Rakkas/Rakkas/Rakkas-Regular.ttf",
+  variable: "--font-rakkas",
+  display: "swap",
+  fallback: ["Tahoma", "Arial", "sans-serif"],
+});
+
 const vazirmatn = localFont({
   src: "../../public/font/vazirmatn/Vazirmatn-ghalamoom.com_/Vazirmatn-ghalamoom.com/static/Vazirmatn-Regular.ttf",
   variable: "--font-vazirmatn",
@@ -69,7 +83,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
       dir="ltr"
       data-scroll-behavior="smooth"
-      className={`${quicksand.variable} ${caveat.variable} ${geistMono.variable} ${vazirmatn.variable} ${sgKara.variable} h-full antialiased`}
+      className={`${quicksand.variable} ${caveat.variable} ${geistMono.variable} ${lateef.variable} ${rakkas.variable} ${vazirmatn.variable} ${sgKara.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <Script id="theme-script" strategy="beforeInteractive">

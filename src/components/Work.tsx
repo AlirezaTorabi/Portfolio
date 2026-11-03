@@ -50,13 +50,20 @@ export default function Work({ locale = "en" }: { locale?: Locale }) {
           <AnimatedHeading
             id="work-title"
             lines={[
-              { text: copy.heading[0] },
+              {
+                text: copy.heading[0],
+                className: locale === "fa" ? "display-persian" : undefined,
+              },
               {
                 text: copy.heading[1],
-                className: "text-accent",
+                className: locale === "fa" ? "display-persian text-accent" : "text-accent",
               },
             ]}
-            className="max-w-4xl text-4xl font-medium leading-[1.04] sm:text-5xl lg:text-6xl xl:text-7xl"
+            className={
+              locale === "fa"
+                ? "w-full max-w-[62rem] text-[clamp(2.5rem,5vw,9.2rem)] font-medium leading-[1.2] tracking-[-0.04em] sm:text-[clamp(3rem,6vw,8rem)] md:text-[clamp(3.8rem,7vw,8.8rem)]"
+                : "max-w-4xl text-4xl font-medium leading-[1.04] sm:text-5xl lg:text-6xl xl:text-7xl"
+            }
           />
           <Reveal delay={0.12}>
             <p className="max-w-md text-pretty text-base leading-7 text-foreground/65 sm:leading-8">

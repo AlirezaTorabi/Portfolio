@@ -70,6 +70,7 @@ export default function About({ locale = "en" }: { locale?: Locale }) {
                 className: index === 1 ? "text-accent" : undefined,
               }))}
               className="max-w-2xl text-4xl font-medium leading-[1.04] sm:text-5xl lg:text-6xl"
+              style={{ fontFamily: "var(--font-rakkas), serif" }}
             />
             <Reveal delay={0.1}>
               <p className="mt-6 max-w-xl text-pretty text-base leading-7 text-foreground/65 sm:leading-8">
@@ -83,7 +84,7 @@ export default function About({ locale = "en" }: { locale?: Locale }) {
                   avatarUrl="/about-img/alireza.png"
                   iconUrl="/about-img/alireza.png"
                   name="Alireza Torabi"
-                  title="Frontend Developer & UI Designer"
+                  title=""
                   handle="alirezatorabi"
                   status="Available for work"
                   statusColor="#4ade80"

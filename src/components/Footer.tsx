@@ -15,10 +15,10 @@ export default function Footer({ locale = "en" }: { locale?: Locale }) {
     { label: translations[locale].navigation.work, href: "#work" },
     { label: translations[locale].navigation.contact, href: "#contact" },
   ];
-  const isRtl = locale === "fa";
+  const isRtl = true;
 
   return (
-    <footer className="relative isolate overflow-hidden pb-10 pt-4" dir={isRtl ? "rtl" : "ltr"}>
+    <footer className="relative isolate overflow-hidden pb-10 pt-4" dir="rtl">
       <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-10">
         <div className="h-px w-full bg-gradient-to-r from-transparent via-foreground/15 to-transparent" aria-hidden="true" />
       </div>

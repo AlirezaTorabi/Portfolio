@@ -27,20 +27,18 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
         <div className="h-px w-full bg-gradient-to-r from-transparent via-foreground/15 to-transparent" aria-hidden="true" />
       </div>
       <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col px-5 pb-5 pt-14 sm:px-8 sm:pb-6 sm:pt-18 lg:px-10 lg:pt-18">
-        <Reveal>
-          <div className="flex items-center justify-between gap-6 pb-4">
-            <p className="inline-flex min-w-0 items-center gap-3 rounded-full border border-border/80 bg-card/60 px-3 py-1.5 text-[0.6875rem] font-medium text-foreground/75 shadow-[0_10px_30px_rgba(15,23,42,0.04)] backdrop-blur-sm sm:text-sm">
-              <span
-                aria-hidden="true"
-                className="size-1.5 shrink-0 rounded-full bg-accent shadow-[0_0_16px_rgba(75,111,255,0.7)]"
-              />
-              <span className="min-w-0">{copy.role}</span>
-            </p>
-          </div>
-        </Reveal>
-
         <div className="grid flex-1 grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] content-center items-center gap-x-3 gap-y-4 py-5 sm:gap-x-6 sm:gap-y-6 sm:py-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:grid-rows-[auto_auto] lg:gap-x-12 lg:gap-y-6 lg:py-7 xl:gap-x-16">
           <div className="order-1 min-w-0 lg:col-start-1 lg:row-start-1 lg:self-end">
+            <Reveal delay={0.12}>
+              <p className="mb-4 inline-flex min-w-0 items-center gap-2.5 rounded-[8px] border border-border/20 bg-card/10 px-2.5 py-1 text-[0.6875rem] font-medium text-foreground/75 shadow-[0_4px_10px_rgba(15,23,42,0.015)] backdrop-blur-sm sm:text-sm">
+                <span
+                  aria-hidden="true"
+                  className="size-1.5 shrink-0 rounded-full bg-accent/80 shadow-[0_0_8px_rgba(75,111,255,0.35)]"
+                />
+                <span className="min-w-0">{copy.role}</span>
+              </p>
+            </Reveal>
+
             <AnimatedHeading
               as="h1"
               id="hero-title"
@@ -48,6 +46,11 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
               start="load"
               delay={0.18}
               className="text-[clamp(2.4rem,12vw,7rem)] font-medium leading-[0.9] tracking-[-0.045em] text-foreground"
+              style={
+                locale === "fa"
+                  ? { fontFamily: "var(--font-rakkas), serif" }
+                  : { fontFamily: "var(--font-caveat), cursive", fontWeight: 600 }
+              }
               lines={[
                 { text: copy.name[0] },
                 {
@@ -82,7 +85,7 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
                 <>
                   <Highlighter
                     action="underline"
-                    color="var(--accent)"
+                    color="#facc15"
                     strokeWidth={1.5}
                     animationDuration={700}
                     padding={1.5}
@@ -106,7 +109,34 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
                   {", and maintainable frontend code."}
                 </>
               ) : (
-                copy.introduction
+                <>
+                  <Highlighter
+                    action="underline"
+                    color="#facc15"
+                    strokeWidth={1.5}
+                    animationDuration={700}
+                    padding={1.5}
+                    isView
+                    delay={1000}
+                  >
+                    تجربه‌های وب دقیق و واکنش‌گرا
+                  </Highlighter>
+                  {" طراحی و پیاده‌سازی می‌کنم؛ با تمرکز بر "}
+                  <span>سلسله‌مراتب بصری روشن</span>
+                  {"، "}
+                  <Highlighter
+                    action="highlight"
+                    color="#60a5fa"
+                    strokeWidth={1.6}
+                    animationDuration={700}
+                    padding={1.2}
+                    isView
+                    delay={1000}
+                  >
+                    حرکت هدفمند
+                  </Highlighter>
+                  {" و کدی که نگه‌داری‌اش ساده باشد."}
+                </>
               )}
             </p>
 

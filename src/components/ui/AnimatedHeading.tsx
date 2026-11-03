@@ -15,6 +15,7 @@ interface AnimatedHeadingProps {
   as?: "h1" | "h2" | "h3";
   lines: AnimatedHeadingLine[];
   className?: string;
+  style?: React.CSSProperties;
   /**
    * "line" masks the whole line and moves it up; "word" staggers words inside
    * each line. Use "word" once per page at most.
@@ -42,6 +43,7 @@ export default function AnimatedHeading({
   as = "h2",
   lines,
   className,
+  style,
   mode = "line",
   start = "inView",
   delay = 0,
@@ -92,7 +94,7 @@ export default function AnimatedHeading({
 
   if (as === "h1") {
     return (
-      <h1 id={id} className={className}>
+      <h1 id={id} className={className} style={style}>
         {content}
       </h1>
     );
@@ -100,14 +102,14 @@ export default function AnimatedHeading({
 
   if (as === "h3") {
     return (
-      <h3 id={id} className={className}>
+      <h3 id={id} className={className} style={style}>
         {content}
       </h3>
     );
   }
 
   return (
-    <h2 id={id} className={className}>
+    <h2 id={id} className={className} style={style}>
       {content}
     </h2>
   );

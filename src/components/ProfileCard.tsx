@@ -164,6 +164,7 @@ const PHOTO_STYLE: CSSProperties = {
   inset: 'calc(var(--pc-parallax) * -1)',
   width: 'calc(100% + var(--pc-parallax) * 2)',
   height: 'calc(100% + var(--pc-parallax) * 2)',
+  objectPosition: 'center center',
   transform: 'translate3d(var(--pc-shift-x), var(--pc-shift-y), 0)'
 };
 
@@ -193,7 +194,7 @@ const LAYER = 'pointer-events-none absolute inset-0 rounded-[inherit]';
 const HOLO = `${LAYER} [mix-blend-mode:var(--pc-blend)]`;
 const HOLO_LAYER = 'absolute inset-0';
 const PHOTO = 'pointer-events-none absolute select-none object-cover object-bottom';
-const INFO = 'absolute bottom-[18px] left-5 right-5 text-white';
+const INFO = 'absolute bottom-[18px] left-1/2 w-[calc(100%-40px)] -translate-x-1/2 text-center text-white';
 const NAME = 'm-0 text-[20px] font-semibold leading-[1.25] tracking-[-0.01em] text-[inherit]';
 const TITLE = 'mx-0 mb-0 mt-1 text-[14px] leading-[1.45] text-white/78';
 const TILE_RIM = `${LAYER} [box-shadow:inset_0_0_0_1px_var(--pc-tile-edge),inset_0_1px_0_var(--pc-tile-highlight)]`;
@@ -505,7 +506,6 @@ const ProfileCard = ({
               </span>
             )}
             <div className={META}>
-              {handle && <span className={HANDLE}>@{handle}</span>}
               {status && <span className={STATUS}>{status}</span>}
             </div>
           </div>

@@ -24,7 +24,7 @@ export default function MobileNavigationSidebar({
   onNavigate,
 }: MobileNavigationSidebarProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const isRtl = locale === "fa";
+  const isRtl = true;
   const copy = translations[locale];
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const sidebarRef = useRef<HTMLElement>(null);

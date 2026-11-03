@@ -134,7 +134,7 @@ export default function Navbar({ locale = "en" }: { locale?: Locale }) {
 
   useEffect(() => {
     document.documentElement.lang = locale;
-    document.documentElement.dir = locale === "fa" ? "rtl" : "ltr";
+    document.documentElement.dir = "rtl";
   }, [locale]);
 
   const handleNavigate = useCallback((index: number) => {
