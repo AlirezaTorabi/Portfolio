@@ -9,16 +9,16 @@ const focusRing =
 export default function Footer({ locale = "en" }: { locale?: Locale }) {
   const year = new Date().getFullYear();
   const copy = translations[locale].footer;
+  const isRtl = locale === "fa";
   const navigation = [
     { label: translations[locale].navigation.home, href: "#top" },
     { label: translations[locale].navigation.about, href: "#about" },
     { label: translations[locale].navigation.work, href: "#work" },
     { label: translations[locale].navigation.contact, href: "#contact" },
   ];
-  const isRtl = true;
 
   return (
-    <footer className="relative isolate overflow-hidden pb-10 pt-4" dir="rtl">
+    <footer className="relative isolate overflow-hidden pb-10 pt-4" dir={isRtl ? "rtl" : "ltr"}>
       <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-10">
         <div className="h-px w-full bg-gradient-to-r from-transparent via-foreground/15 to-transparent" aria-hidden="true" />
       </div>
@@ -63,7 +63,11 @@ export default function Footer({ locale = "en" }: { locale?: Locale }) {
               </div>
 
               <nav aria-label={copy.navigation} className={isRtl ? "w-full text-right" : "w-full text-left"}>
-                <ul className="mt-3 flex flex-col items-center justify-center gap-1 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-3 md:gap-5">
+                <ul
+                  className={`mx-auto mt-3 flex w-fit flex-col gap-1 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-3 md:gap-5 ${
+                    isRtl ? "items-end" : "items-start"
+                  }`}
+                >
                   {navigation.map((item) => (
                     <li key={item.label} className="sm:inline-flex">
                       <a
@@ -72,9 +76,9 @@ export default function Footer({ locale = "en" }: { locale?: Locale }) {
                       >
                         <span
                           aria-hidden="true"
-                          className="h-px w-4 bg-foreground/20 transition-all duration-200 group-hover:w-6 group-hover:bg-accent"
+                          className={isRtl ? "order-2 h-px w-4 bg-foreground/20 transition-all duration-200 group-hover:w-6 group-hover:bg-accent" : "order-2 h-px w-4 bg-foreground/20 transition-all duration-200 group-hover:w-6 group-hover:bg-accent"}
                         />
-                        {item.label}
+                        <span className={isRtl ? "order-1" : "order-1"}>{item.label}</span>
                       </a>
                     </li>
                   ))}
@@ -87,7 +91,21 @@ export default function Footer({ locale = "en" }: { locale?: Locale }) {
         <div className="mt-6 flex items-center justify-center gap-2 py-4 text-center text-[0.6875rem] font-medium text-foreground/50">
           <span>© {year}</span>
           <span aria-hidden="true">•</span>
-          <span>{locale === "fa" ? "طراحی و توسعه" : "Design & development"}</span>
+          <a
+            href="https://alito.ir/"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 transition-opacity hover:opacity-80"
+          >
+            <Image
+              src="/avatar-img/Cool Blue-Haired Avatar Sticker.png"
+              alt="Alireza Torabi avatar"
+              width={20}
+              height={20}
+              className="h-5 w-5 rounded-full object-cover"
+            />
+            <span>{locale === "fa" ? "طراحی و توسعه" : "Design & development"}</span>
+          </a>
         </div>
       </div>
     </footer>
