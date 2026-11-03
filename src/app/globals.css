@@ -131,17 +131,17 @@ button, a {
 .locale-fa {
   direction: rtl;
   text-align: right;
-  font-family: var(--font-lateef), "Tahoma", "Arial", serif;
+  font-family: var(--font-lateef), serif;
 }
 
 .locale-fa .font-mono,
 .locale-fa :is(h1, h2, h3, h4, h5, h6) {
-  font-family: var(--font-sg-kara), "Tahoma", "Arial", sans-serif;
+  font-family: var(--font-lateef), serif;
 }
 
 .hero-display-name,
 .locale-fa .display-persian {
-  font-family: var(--font-rakkas), "Noto Naskh Arabic", serif;
+  font-family: var(--font-rakkas), serif;
   font-weight: 400;
   letter-spacing: -0.03em;
   line-height: 1.6;

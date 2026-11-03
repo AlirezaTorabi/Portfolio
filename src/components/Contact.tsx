@@ -53,6 +53,11 @@ export default function Contact({ locale = "en" }: { locale?: Locale }) {
               className={`w-full max-w-[32rem] text-4xl font-medium leading-[1.02] tracking-[-0.04em] sm:text-5xl lg:max-w-[36rem] lg:text-[4rem] ${
                 isRtl ? "text-right" : "text-left"
               }`}
+              style={
+                isRtl
+                  ? { whiteSpace: "nowrap", display: "inline-block" }
+                  : undefined
+              }
             />
 
             <Reveal delay={0.1}>
