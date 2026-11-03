@@ -1,6 +1,7 @@
 'use client';
 
-import { memo, useEffect, useRef, type CSSProperties } from 'react';
+import { memo, useEffect, useMemo, useRef, type CSSProperties } from 'react';
+import { type Locale } from '@/lib/translations';
 
 type Palette = 'dark' | 'light';
 
@@ -27,6 +28,7 @@ interface ProfileCardProps {
   enableMobileTilt?: boolean;
   mobileTiltSensitivity?: number;
   intro?: boolean;
+  locale?: Locale;
   className?: string;
 }
 
@@ -162,9 +164,11 @@ const SHIFT_STYLE: CSSProperties = {
 
 const PHOTO_STYLE: CSSProperties = {
   inset: 'calc(var(--pc-parallax) * -1)',
+  left: 0,
+  top: 0,
   width: 'calc(100% + var(--pc-parallax) * 2)',
   height: 'calc(100% + var(--pc-parallax) * 2)',
-  objectPosition: 'center center',
+  objectFit: 'cover',
   transform: 'translate3d(var(--pc-shift-x), var(--pc-shift-y), 0)'
 };
 
@@ -224,10 +228,10 @@ const ProfileCard = ({
   avatarUrl = '',
   iconUrl,
   miniAvatarUrl,
-  name = 'Javi A. Torres',
-  title = 'Software Engineer',
-  handle = 'javicodes',
-  status = 'Online',
+  name,
+  title,
+  handle,
+  status,
   statusColor = '#22c55e',
   contactText = 'Contact',
   showUserInfo = true,
@@ -243,13 +247,26 @@ const ProfileCard = ({
   enableMobileTilt = false,
   mobileTiltSensitivity = 5,
   intro = true,
+  locale = 'en',
   className = ''
 }: ProfileCardProps) => {
+  const localizedName = name ?? (locale === 'fa' ? 'علیرضا ترابی' : 'Alireza Torabi');
+  const localizedTitle = title ?? (locale === 'fa' ? 'توسعه‌دهنده فرانت‌اند و طراح رابط کاربری' : 'Frontend Developer & UI Designer');
+  const localizedStatus = status ?? (locale === 'fa' ? 'در دسترس برای همکاری' : 'Available for work');
+  const primaryHandle = handle ?? 'alirezatorabi';
+  const cardLabel = [localizedName, localizedTitle, contactText].filter(Boolean).join(' · ');
+  const isRtl = locale === 'fa';
+
   const rootRef = useRef<HTMLDivElement>(null);
   const engineRef = useRef<Engine | null>(null);
-  const settings = { enableTilt, tiltStrength, parallax, mobileTiltSensitivity, intro };
+  const settings = useMemo(
+    () => ({ enableTilt, tiltStrength, parallax, mobileTiltSensitivity, intro }),
+    [enableTilt, tiltStrength, parallax, mobileTiltSensitivity, intro]
+  );
   const settingsRef = useRef(settings);
-  settingsRef.current = settings;
+  useEffect(() => {
+    settingsRef.current = settings;
+  }, [settings]);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -445,10 +462,19 @@ const ProfileCard = ({
   const backdrop = backdropColor
     ? `linear-gradient(180deg, color-mix(in srgb, ${backdropColor}, #ffffff 12%) 0%, color-mix(in srgb, ${backdropColor}, #000000 18%) 100%)`
     : 'var(--pc-tile)';
+  const photoStyle: CSSProperties = {
+    ...PHOTO_STYLE,
+    objectPosition: isRtl ? '72% center' : 'center center'
+  };
 
   return (
     <div
       ref={rootRef}
+      dir={isRtl ? 'rtl' : 'ltr'}
+      lang={locale}
+      data-handle={primaryHandle}
+      aria-label={cardLabel}
+      onClick={onContactClick}
       className={`${ROOT} ${className}`.trim()}
       style={
         {
@@ -479,19 +505,19 @@ const ProfileCard = ({
           {avatarUrl && (
             <img
               className={PHOTO}
-              style={PHOTO_STYLE}
+              style={photoStyle}
               src={avatarUrl}
               alt={name || ''}
               loading="lazy"
               draggable={false}
             />
           )}
-          {(name || title) && (
+          {(localizedName || localizedTitle) && (
             <>
               <span className={LAYER} style={SCRIM_STYLE} />
               <div className={INFO}>
-                {name && <h3 className={NAME}>{name}</h3>}
-                {title && <p className={TITLE}>{title}</p>}
+                {localizedName && <h3 className={NAME}>{localizedName}</h3>}
+                {localizedTitle && <p className={TITLE}>{localizedTitle}</p>}
               </div>
             </>
           )}
@@ -506,7 +532,8 @@ const ProfileCard = ({
               </span>
             )}
             <div className={META}>
-              {status && <span className={STATUS}>{status}</span>}
+              {primaryHandle && <span className={HANDLE}>@{primaryHandle}</span>}
+              {localizedStatus && <span className={STATUS}>{localizedStatus}</span>}
             </div>
           </div>
         )}

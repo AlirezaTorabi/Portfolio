@@ -39,6 +39,11 @@ const technologies: Technology[] = [
 export { technologies, type Technology };
 export default function About({ locale = "en" }: { locale?: Locale }) {
   const copy = translations[locale].about;
+  const profileCardCopy = {
+    name: locale === "fa" ? "علیرضا ترابی" : "Alireza Torabi",
+    title: translations[locale].hero.role,
+    status: locale === "fa" ? "در دسترس برای همکاری" : "Available for work",
+  };
 
   return (
     <section
@@ -83,10 +88,11 @@ export default function About({ locale = "en" }: { locale?: Locale }) {
                 <ProfileCard
                   avatarUrl="/about-img/alireza.png"
                   iconUrl="/about-img/alireza.png"
-                  name="Alireza Torabi"
-                  title=""
+                  locale={locale}
+                  name={profileCardCopy.name}
+                  title={profileCardCopy.title}
                   handle="alirezatorabi"
-                  status="Available for work"
+                  status={profileCardCopy.status}
                   statusColor="#4ade80"
                   contactText=""
                   showUserInfo

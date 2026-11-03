@@ -35,6 +35,54 @@
 			"command": "npm run build",
 			"isBackground": false,
 			"problemMatcher": []
+		},
+		{
+			"label": "Validate profile card localization",
+			"type": "shell",
+			"command": "npx eslint src/components/ProfileCard.tsx src/components/About.tsx",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "test"
+		},
+		{
+			"label": "Validate profile card localization 2",
+			"type": "shell",
+			"command": "npx eslint src/components/ProfileCard.tsx src/components/About.tsx",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "test"
+		},
+		{
+			"label": "Check final validation",
+			"type": "shell",
+			"command": "npx eslint src/components/ProfileCard.tsx src/components/About.tsx",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "test"
+		},
+		{
+			"label": "Final ESLint check",
+			"type": "shell",
+			"command": "npx eslint src/components/ProfileCard.tsx src/components/About.tsx",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "test"
+		},
+		{
+			"label": "Validate footer tweak",
+			"type": "shell",
+			"command": "npx eslint src/components/Footer.tsx",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "test"
+		},
+		{
+			"label": "Quick validation for ProfileCard alignment",
+			"type": "shell",
+			"command": "npx eslint src/components/ProfileCard.tsx",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "test"
 		}
 	]
 }
