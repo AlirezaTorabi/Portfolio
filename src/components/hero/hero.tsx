@@ -22,16 +22,17 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
       aria-labelledby="hero-title"
       className="relative isolate flex min-h-[82svh] w-full flex-col overflow-hidden"
     >
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(circle_at_top_left,_rgba(37,99,235,0.18),_transparent_30%),radial-gradient(circle_at_80%_25%,_rgba(37,99,235,0.08),_transparent_24%)]" aria-hidden="true" />
       <div className="mx-auto w-full max-w-6xl px-5 pt-4 sm:px-8 lg:px-10">
         <div className="h-px w-full bg-gradient-to-r from-transparent via-foreground/15 to-transparent" aria-hidden="true" />
       </div>
       <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col px-5 pb-5 pt-14 sm:px-8 sm:pb-6 sm:pt-18 lg:px-10 lg:pt-18">
         <Reveal>
           <div className="flex items-center justify-between gap-6 pb-4">
-            <p className="flex min-w-0 items-center gap-3 text-[0.6875rem] font-medium text-foreground/70 sm:text-sm">
+            <p className="inline-flex min-w-0 items-center gap-3 rounded-full border border-border/80 bg-card/60 px-3 py-1.5 text-[0.6875rem] font-medium text-foreground/75 shadow-[0_10px_30px_rgba(15,23,42,0.04)] backdrop-blur-sm sm:text-sm">
               <span
                 aria-hidden="true"
-                className="size-1.5 shrink-0 bg-accent"
+                className="size-1.5 shrink-0 rounded-full bg-accent shadow-[0_0_16px_rgba(75,111,255,0.7)]"
               />
               <span className="min-w-0">{copy.role}</span>
             </p>
@@ -59,15 +60,20 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
           </div>
 
           <div className="order-2 min-w-0 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-center">
-            <Image
-              src="/hero-img/Professional%20UI_UX%20Creative%20Vector.png"
-              alt="Professional UI/UX creative vector illustration"
-              width={1034}
-              height={1002}
-              preload
-              sizes="(max-width: 640px) 42vw, (max-width: 1023px) 40vw, 48vw"
-              className="h-auto w-full object-contain"
-            />
+            <div className="relative">
+              <div className="absolute inset-4 -z-10 rounded-[2.5rem] bg-[radial-gradient(circle,_rgba(75,111,255,0.18),_rgba(75,111,255,0.08)_35%,_transparent_75%)] blur-3xl" aria-hidden="true" />
+              <div className="rounded-[2rem] border border-border/80 bg-card/60 p-3 shadow-[0_35px_90px_-30px_rgba(17,24,39,0.28)] backdrop-blur-sm sm:p-4 lg:p-5">
+                <Image
+                  src="/hero-img/Professional%20UI_UX%20Creative%20Vector.png"
+                  alt="Professional UI/UX creative vector illustration"
+                  width={1034}
+                  height={1002}
+                  preload
+                  sizes="(max-width: 640px) 42vw, (max-width: 1023px) 40vw, 48vw"
+                  className="h-auto w-full object-contain"
+                />
+              </div>
+            </div>
           </div>
 
           <div className="order-3 col-span-2 min-w-0 lg:col-span-1 lg:col-start-1 lg:row-start-2 lg:self-start">
@@ -76,7 +82,7 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
                 <>
                   <Highlighter
                     action="underline"
-                    color="#FF9800"
+                    color="var(--accent)"
                     strokeWidth={1.5}
                     animationDuration={700}
                     padding={1.5}
@@ -88,7 +94,7 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
                   {" refined, responsive web experiences, with a focus on clear hierarchy, "}
                   <Highlighter
                     action="highlight"
-                    color="#87CEFA"
+                    color="var(--accent)"
                     strokeWidth={1.6}
                     animationDuration={700}
                     padding={1.2}

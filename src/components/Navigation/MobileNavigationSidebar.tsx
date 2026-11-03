@@ -158,7 +158,7 @@ export default function MobileNavigationSidebar({
           label={copy.navigation.mobile}
           theme={theme}
           locale={locale}
-          color="#2f5df6"
+          color="#2563eb"
           activeTextColor="#f5f8ff"
           size="sm"
           frame={false}
@@ -172,7 +172,7 @@ export default function MobileNavigationSidebar({
           onChange={(index) => {
             onNavigate(index);
           }}
-          colors={["#2f5df6", "#5d7ef7", "#8fb5ff"]}
+          colors={["#2563eb", "#1d4ed8", "#93c5fd"]}
           className={`w-full [&>div]:w-full [&_ul]:w-full [&_ul]:flex-nowrap [&_ul]:items-center [&_ul]:justify-center [&_ul]:gap-3 max-[440px]:[&_ul]:gap-0 [&_li]:w-auto [&_a]:h-11 [&_a]:w-16 [&_a]:justify-center [&_a]:gap-0 [&_a]:px-0 [&_a]:py-0 [&_li>span]:h-11 [&_li>span]:w-16 [&_li>span]:justify-center [&_li>span]:px-0 [&_li>span]:py-0 max-[440px]:[&_a]:h-11 max-[440px]:[&_a]:w-11 max-[440px]:[&_li>span]:h-11 max-[440px]:[&_li>span]:w-11 ${isRtl ? "[&_ul]:flex-row-reverse" : "[&_ul]:flex-row"}`}
         />
       </aside>

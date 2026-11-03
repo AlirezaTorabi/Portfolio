@@ -4,58 +4,58 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #f5f2ed;
-  --foreground: #171a1f;
-  --muted: #ece5dc;
-  --muted-foreground: #5b6571;
-  --secondary: rgba(23, 26, 31, 0.05);
-  --secondary-foreground: #171a1f;
-  --card: #fbfaf8;
-  --card-foreground: #171a1f;
-  --surface: #f0ece7;
-  --surface-hover: #e8e2d9;
-  --accent: #2f5df6;
-  --on-accent: #f5f8ff;
-  --accent-hover: #214ad8;
-  --accent-foreground: #f5f8ff;
-  --border: rgba(23, 26, 31, 0.12);
-  --border-subtle: rgba(23, 26, 31, 0.07);
-  --input: rgba(23, 26, 31, 0.04);
-  --ring: rgba(47, 93, 246, 0.28);
-  --scrollbar-thumb: #8b8f99;
-  --scrollbar-thumb-hover: #2f5df6;
-  --scrollbar-track: #ece3d8;
-  --selection-background: rgba(47, 93, 246, 0.16);
-  --selection-foreground: #171a1f;
-  --shadow-soft: 0 20px 48px -24px rgba(15, 23, 42, 0.18);
+  --background: #f5f3ef;
+  --foreground: #111827;
+  --muted: #f0efe9;
+  --muted-foreground: #586174;
+  --secondary: rgba(17, 24, 39, 0.05);
+  --secondary-foreground: #111827;
+  --card: rgba(255, 255, 255, 0.75);
+  --card-foreground: #111827;
+  --surface: #f0eee8;
+  --surface-hover: #e7e4df;
+  --accent: #2563eb;
+  --on-accent: #edf4ff;
+  --accent-hover: #1d4ed8;
+  --accent-foreground: #edf4ff;
+  --border: rgba(17, 24, 39, 0.12);
+  --border-subtle: rgba(17, 24, 39, 0.08);
+  --input: rgba(17, 24, 39, 0.04);
+  --ring: rgba(37, 99, 235, 0.22);
+  --scrollbar-thumb: #8b93a7;
+  --scrollbar-thumb-hover: #2563eb;
+  --scrollbar-track: #efeae3;
+  --selection-background: rgba(37, 99, 235, 0.14);
+  --selection-foreground: #111827;
+  --shadow-soft: 0 24px 60px -32px rgba(17, 24, 39, 0.26);
   color-scheme: light;
 }
 
 .dark {
-  --background: #0b1016;
-  --foreground: #edf2f7;
-  --muted: rgba(237, 242, 247, 0.08);
-  --muted-foreground: #a3afbb;
+  --background: #09131d;
+  --foreground: #edf3ff;
+  --muted: rgba(237, 243, 255, 0.08);
+  --muted-foreground: #a8b3c7;
   --secondary: rgba(255, 255, 255, 0.05);
-  --secondary-foreground: #edf2f7;
-  --card: #121a22;
-  --card-foreground: #edf2f7;
-  --surface: #0f171e;
-  --surface-hover: #15212d;
-  --accent: #8fb5ff;
-  --on-accent: #090d14;
-  --accent-hover: #bfd3ff;
-  --accent-foreground: #090d14;
-  --border: rgba(198, 209, 220, 0.12);
-  --border-subtle: rgba(198, 209, 220, 0.08);
+  --secondary-foreground: #edf3ff;
+  --card: rgba(15, 22, 32, 0.82);
+  --card-foreground: #edf3ff;
+  --surface: #0d1824;
+  --surface-hover: #122032;
+  --accent: #7aa2ff;
+  --on-accent: #09131d;
+  --accent-hover: #a8c0ff;
+  --accent-foreground: #09131d;
+  --border: rgba(176, 190, 214, 0.14);
+  --border-subtle: rgba(176, 190, 214, 0.1);
   --input: rgba(255, 255, 255, 0.04);
-  --ring: rgba(143, 181, 255, 0.32);
+  --ring: rgba(122, 162, 255, 0.28);
   --scrollbar-track: rgba(255, 255, 255, 0.04);
-  --scrollbar-thumb: #5d6978;
-  --scrollbar-thumb-hover: #8fb5ff;
-  --selection-background: rgba(143, 181, 255, 0.28);
-  --selection-foreground: #edf2f7;
-  --shadow-soft: 0 24px 54px -28px rgba(0, 0, 0, 0.72);
+  --scrollbar-thumb: #66768d;
+  --scrollbar-thumb-hover: #7aa2ff;
+  --selection-background: rgba(122, 162, 255, 0.22);
+  --selection-foreground: #edf3ff;
+  --shadow-soft: 0 26px 64px -24px rgba(0, 0, 0, 0.78);
   color-scheme: dark;
 }
 
@@ -106,11 +106,22 @@ html.light .nav-theme-pending {
 
 body {
   min-height: 100dvh;
-  background: linear-gradient(180deg, rgba(245,242,237,0.96) 0%, rgba(245,242,237,1) 100%);
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 22%),
+    radial-gradient(circle at top right, rgba(37, 99, 235, 0.06), transparent 26%),
+    linear-gradient(180deg, rgba(245,243,239,0.96) 0%, rgba(245,243,239,1) 100%);
   color: var(--foreground);
   font-family: var(--font-quicksand), sans-serif;
   letter-spacing: 0;
   line-height: 1.6;
+  text-rendering: optimizeLegibility;
+}
+
+html.dark body {
+  background:
+    radial-gradient(circle at top left, rgba(122, 162, 255, 0.12), transparent 25%),
+    radial-gradient(circle at 90% 18%, rgba(122, 162, 255, 0.12), transparent 24%),
+    linear-gradient(180deg, rgba(9, 19, 29, 1) 0%, rgba(10, 17, 26, 1) 100%);
 }
 
 button, a {

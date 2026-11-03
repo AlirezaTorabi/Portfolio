@@ -70,7 +70,7 @@ export default function ToolkitTabs({ locale = "en" }: { locale?: Locale }) {
               {isActive ? (
                 <Highlighter
                   action="highlight"
-                  color="#87CEFA"
+                  color="var(--accent)"
                   strokeWidth={1.2}
                   animationDuration={320}
                   padding={1.1}

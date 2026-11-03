@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import ProfileCard from "@/components/ProfileCard";
 import AnimatedHeading from "@/components/ui/AnimatedHeading";
 import Reveal from "@/components/ui/Reveal";
 import {
@@ -77,25 +78,27 @@ export default function About({ locale = "en" }: { locale?: Locale }) {
             </Reveal>
 
             <Reveal delay={0.18}>
-              <div
-                aria-hidden="true"
-                className="relative mt-8 grid size-32 place-items-center sm:size-36"
-              >
-                <span className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,_rgba(47,93,246,0.18),_rgba(47,93,246,0.08)_32%,_rgba(23,26,31,0)_72%)]" />
-                <span className="absolute inset-[10%] rounded-full border border-accent/25 bg-card/20 shadow-[inset_0_0_24px_rgba(47,93,246,0.08)] backdrop-blur-[2px]" />
-                <span className="absolute inset-[3%] rounded-full border border-foreground/10" />
-                <span className="absolute inset-[18%] rounded-full border border-dashed border-foreground/15" />
-                <span className="absolute inset-0 animate-spin rounded-full border border-transparent border-t-accent border-r-accent/50 [animation-duration:22s] motion-reduce:animate-none" />
-                <span className="absolute inset-2 animate-[spin_28s_linear_infinite_reverse] rounded-full border border-transparent border-l-foreground/20 border-b-foreground/5 motion-reduce:animate-none" />
-                <span className="absolute left-1/2 top-0 h-3 w-px -translate-x-1/2 bg-accent/70 shadow-[0_0_12px_rgba(47,93,246,0.8)]" />
-                <span className="absolute bottom-0 left-1/2 h-3 w-px -translate-x-1/2 bg-foreground/20" />
-                <span className="absolute left-0 top-1/2 h-px w-3 -translate-y-1/2 bg-foreground/20" />
-                <span className="absolute right-0 top-1/2 h-px w-3 -translate-y-1/2 bg-foreground/20" />
-                <span className="absolute right-[18%] top-[18%] h-2.5 w-2.5 rounded-full bg-accent shadow-[0_0_14px_rgba(47,93,246,0.9)]" />
-                <span className="absolute bottom-[20%] left-[18%] h-2 w-2 rounded-full bg-foreground/30" />
-                <span className="relative flex h-12 w-12 items-center justify-center rounded-full border border-accent/35 bg-background/90 text-[0.68rem] font-medium tracking-[0.35em] text-foreground/75 shadow-[0_0_24px_rgba(47,93,246,0.12)] backdrop-blur-sm">
-                  AT
-                </span>
+              <div className="mt-8 flex justify-center lg:justify-start">
+                <ProfileCard
+                  avatarUrl="/about-img/alireza.png"
+                  iconUrl="/about-img/alireza.png"
+                  name="Alireza Torabi"
+                  title="Frontend Developer & UI Designer"
+                  handle="alirezatorabi"
+                  status="Available for work"
+                  statusColor="#4ade80"
+                  contactText=""
+                  showUserInfo
+                  theme="dark"
+                  backdropColor="#131a2a"
+                  radius={18}
+                  holo={0.9}
+                  glare={0.5}
+                  enableTilt
+                  tiltStrength={12}
+                  parallax={8}
+                  className="!w-[14.5rem] max-w-full"
+                />
               </div>
             </Reveal>
           </div>

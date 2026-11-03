@@ -107,22 +107,22 @@ interface Pipeline {
 
 const THEMES: Record<Palette, Record<string, string>> = {
   dark: {
-    '--gn-frame': 'rgba(38, 35, 46, 0.66)',
-    '--gn-frame-edge': 'rgba(255, 255, 255, 0.08)',
-    '--gn-frame-highlight': 'rgba(255, 255, 255, 0.07)',
-    '--gn-frame-shadow': '0 22px 44px -20px rgba(0, 0, 0, 0.8), 0 6px 16px -8px rgba(0, 0, 0, 0.5)',
-    '--gn-ink': '#f4f4f5',
-    '--gn-hover-ink': '#111827',
-    '--gn-muted': 'rgba(244, 244, 245, 0.62)'
+    '--gn-frame': 'rgba(11, 19, 28, 0.82)',
+    '--gn-frame-edge': 'rgba(255, 255, 255, 0.12)',
+    '--gn-frame-highlight': 'rgba(255, 255, 255, 0.1)',
+    '--gn-frame-shadow': '0 22px 44px -20px rgba(0, 0, 0, 0.82), 0 10px 18px -12px rgba(0, 0, 0, 0.7)',
+    '--gn-ink': '#f8fbff',
+    '--gn-hover-ink': '#e7f0ff',
+    '--gn-muted': 'rgba(244, 248, 255, 0.8)'
   },
   light: {
-    '--gn-frame': 'rgba(240, 240, 243, 0.8)',
-    '--gn-frame-edge': 'rgba(24, 24, 27, 0.07)',
-    '--gn-frame-highlight': 'rgba(255, 255, 255, 0.95)',
-    '--gn-frame-shadow': '0 22px 44px -22px rgba(24, 24, 27, 0.3), 0 6px 16px -10px rgba(24, 24, 27, 0.16)',
-    '--gn-ink': '#27272a',
-    '--gn-hover-ink': '#27272a',
-    '--gn-muted': 'rgba(39, 39, 42, 0.62)'
+    '--gn-frame': 'rgba(255, 255, 255, 0.9)',
+    '--gn-frame-edge': 'rgba(24, 24, 27, 0.12)',
+    '--gn-frame-highlight': 'rgba(255, 255, 255, 0.98)',
+    '--gn-frame-shadow': '0 22px 44px -22px rgba(24, 24, 27, 0.34), 0 12px 22px -16px rgba(37, 99, 235, 0.14)',
+    '--gn-ink': '#111827',
+    '--gn-hover-ink': '#0f172a',
+    '--gn-muted': 'rgba(17, 24, 39, 0.72)'
   }
 };
 

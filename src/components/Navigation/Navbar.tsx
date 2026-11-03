@@ -226,7 +226,7 @@ export default function Navbar({ locale = "en" }: { locale?: Locale }) {
     <header
       className="pointer-events-none fixed inset-x-0 top-3 z-50 isolate px-3 md:px-4 lg:px-5"
     >
-      <div className="relative mx-auto flex h-[68px] max-w-[1480px] items-center justify-between gap-4 rounded-[18px] border border-border/80 bg-background/75 px-3 shadow-[var(--shadow-soft)] backdrop-blur-xl md:px-4 lg:px-5">
+      <div className="relative mx-auto flex h-[68px] max-w-[1480px] items-center justify-between gap-4 rounded-[18px] border border-foreground/12 bg-background/90 px-3 shadow-[0_22px_56px_-30px_rgba(15,23,42,0.42)] backdrop-blur-xl md:px-4 lg:px-5">
         <Link
           href={locale === "fa" ? "/fa" : "/"}
           aria-label={copy.navigation.home}
@@ -266,7 +266,7 @@ export default function Navbar({ locale = "en" }: { locale?: Locale }) {
             label={copy.navigation.primary}
             theme={navTheme}
             locale={locale}
-            color="#2f5df6"
+            color="#2563eb"
             activeTextColor="#f5f8ff"
             size="sm"
             frame={false}
@@ -277,7 +277,7 @@ export default function Navbar({ locale = "en" }: { locale?: Locale }) {
             gooeyness={0.5}
             wobble={0.5}
             hoverEffect
-            colors={["#2f5df6", "#5d7ef7", "#8fb5ff"]}
+            colors={["#2563eb", "#1d4ed8", "#93c5fd"]}
             className="shrink-0 [&_ul]:flex-nowrap"
           />
         </div>
