@@ -43,11 +43,14 @@ export default function About({ locale = "en" }: { locale?: Locale }) {
     <section
       id="about"
       aria-labelledby="about-title"
-      className="relative scroll-mt-20 overflow-x-hidden border-t border-foreground/10"
+      className="relative scroll-mt-20 overflow-x-hidden pt-4"
     >
-      <div className="relative mx-auto max-w-6xl px-6 py-24 sm:px-8 sm:py-28 lg:px-10 lg:py-32">
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-10">
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-foreground/15 to-transparent" aria-hidden="true" />
+      </div>
+      <div className="relative mx-auto max-w-6xl px-6 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-24">
         <Reveal>
-          <div className="flex items-center justify-between gap-6 border-b border-foreground/15 pb-5">
+          <div className="flex items-center justify-between gap-6 pb-5">
             <p className="text-[0.6875rem] font-medium text-foreground/60">
               {copy.eyebrow}
             </p>
@@ -57,7 +60,7 @@ export default function About({ locale = "en" }: { locale?: Locale }) {
           </div>
         </Reveal>
 
-        <div className="grid min-w-0 gap-12 py-12 sm:py-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-20 lg:py-20">
+        <div className="grid min-w-0 gap-8 py-8 sm:py-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-12 lg:py-12">
           <div className="min-w-0 lg:sticky lg:top-28 lg:self-start">
             <AnimatedHeading
               id="about-title"
@@ -68,7 +71,7 @@ export default function About({ locale = "en" }: { locale?: Locale }) {
               className="max-w-2xl text-4xl font-medium leading-[1.04] sm:text-5xl lg:text-6xl"
             />
             <Reveal delay={0.1}>
-              <p className="mt-8 max-w-xl text-pretty text-base leading-7 text-foreground/65 sm:leading-8">
+              <p className="mt-6 max-w-xl text-pretty text-base leading-7 text-foreground/65 sm:leading-8">
                 {copy.introduction}
               </p>
             </Reveal>
@@ -76,7 +79,7 @@ export default function About({ locale = "en" }: { locale?: Locale }) {
             <Reveal delay={0.18}>
               <div
                 aria-hidden="true"
-                className="relative mt-10 grid size-32 place-items-center sm:size-36"
+                className="relative mt-8 grid size-32 place-items-center sm:size-36"
               >
                 <span className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,_rgba(47,93,246,0.18),_rgba(47,93,246,0.08)_32%,_rgba(23,26,31,0)_72%)]" />
                 <span className="absolute inset-[10%] rounded-full border border-accent/25 bg-card/20 shadow-[inset_0_0_24px_rgba(47,93,246,0.08)] backdrop-blur-[2px]" />
@@ -144,7 +147,7 @@ export default function About({ locale = "en" }: { locale?: Locale }) {
         </div>
 
         <Reveal>
-          <div className="grid min-w-0 gap-8 border-t border-foreground/15 pt-10 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] md:items-center md:gap-12 lg:gap-16">
+          <div className="grid min-w-0 gap-6 pt-8 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] md:items-center md:gap-8 lg:gap-12">
             <div className="min-w-0 overflow-hidden">
               <Image
                 src="/about-img/Developer Tech Skills Collage.png"

@@ -226,7 +226,7 @@ export default function Navbar({ locale = "en" }: { locale?: Locale }) {
     <header
       className="pointer-events-none fixed inset-x-0 top-3 z-50 isolate px-3 md:px-4 lg:px-5"
     >
-      <div className="relative mx-auto flex h-[76px] max-w-[1800px] items-center justify-between gap-4 rounded-[22px] border border-border/80 bg-background/70 px-4 shadow-[var(--shadow-soft)] backdrop-blur-xl md:px-5 lg:px-6">
+      <div className="relative mx-auto flex h-[68px] max-w-[1480px] items-center justify-between gap-4 rounded-[18px] border border-border/80 bg-background/75 px-3 shadow-[var(--shadow-soft)] backdrop-blur-xl md:px-4 lg:px-5">
         <Link
           href={locale === "fa" ? "/fa" : "/"}
           aria-label={copy.navigation.home}
@@ -246,7 +246,7 @@ export default function Navbar({ locale = "en" }: { locale?: Locale }) {
           }}
           className="pointer-events-auto -m-1.5 flex shrink-0 items-center p-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
         >
-          <span className="relative block h-8 w-8 shrink-0 md:h-9 md:w-9">
+          <span className="relative block h-7 w-7 shrink-0 md:h-8 md:w-8">
             <Image
               src="/at-logo-light.png"
               alt="Alireza Torabi Logo"

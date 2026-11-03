@@ -15,12 +15,15 @@ export default function Contact({ locale = "en" }: { locale?: Locale }) {
     <section
       id="contact"
       aria-labelledby="contact-title"
-      className="relative isolate scroll-mt-20 border-t border-foreground/10"
+      className="relative isolate scroll-mt-20 pt-4"
       dir={isRtl ? "rtl" : "ltr"}
     >
-      <div className="mx-auto max-w-6xl px-6 py-24 sm:px-8 sm:py-28 lg:px-10 lg:py-32">
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-10">
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-foreground/15 to-transparent" aria-hidden="true" />
+      </div>
+      <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-24">
         <Reveal>
-          <div className="flex items-center justify-between gap-6 border-b border-foreground/15 pb-5">
+          <div className="flex items-center justify-between gap-6 pb-5">
             <p className="text-[0.6875rem] font-medium text-foreground/60">
               {copy.eyebrow}
             </p>
@@ -30,13 +33,9 @@ export default function Contact({ locale = "en" }: { locale?: Locale }) {
           </div>
         </Reveal>
 
-        <div
-          className={`flex flex-row items-center gap-4 py-12 sm:gap-6 sm:py-16 lg:items-start lg:justify-between lg:gap-10 lg:py-20 ${
-            isRtl ? "lg:flex-row-reverse" : ""
-          }`}
-        >
+        <div className="mt-8 grid items-center gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(260px,420px)] lg:gap-8 lg:py-6">
           <div
-            className={`min-w-0 flex-1 ${isRtl ? "text-right" : "text-left"} flex flex-col ${
+            className={`order-2 min-w-0 ${isRtl ? "text-right" : "text-left"} flex flex-col ${
               isRtl ? "lg:items-end" : "lg:items-start"
             }`}
           >
@@ -50,17 +49,19 @@ export default function Contact({ locale = "en" }: { locale?: Locale }) {
                 isRtl ? "text-right" : "text-left"
               }`}
             />
+
             <Reveal delay={0.1}>
               <p
-                className={`mt-8 max-w-xl text-pretty text-base leading-7 text-foreground/65 sm:leading-8 lg:text-lg ${
+                className={`mt-6 max-w-xl text-pretty text-base leading-7 text-foreground/65 sm:leading-8 lg:text-lg ${
                   isRtl ? "text-right" : "text-left"
                 }`}
               >
                 {copy.introduction}
               </p>
             </Reveal>
+
             <Reveal delay={0.18}>
-              <div className={`mt-10 flex ${isRtl ? "justify-end" : "justify-start"}`}>
+              <div className={`mt-8 flex justify-center sm:justify-center ${isRtl ? "sm:justify-end" : "sm:justify-start"}`}>
                 <Magnetic>
                   <Button
                     asChild
@@ -91,19 +92,20 @@ export default function Contact({ locale = "en" }: { locale?: Locale }) {
 
           <Reveal
             delay={0.16}
-            className={`flex shrink-0 items-center justify-center lg:-mt-4 ${
-              isRtl ? "lg:justify-start" : "lg:justify-end"
-            }`}
+            className="order-1 flex items-center justify-center lg:order-2 lg:justify-end"
           >
-            <div className="w-[7.5rem] rounded-[1.5rem] border border-foreground/10 bg-card/30 p-2 shadow-[0_12px_30px_rgba(15,23,42,0.04)] backdrop-blur-[2px] sm:w-[9rem] lg:w-[20rem]">
-              <Image
-                src="/contact-img/Developer’s Social Contact Hub.png"
-                alt=""
-                width={1234}
-                height={621}
-                sizes="(max-width: 640px) 28vw, (max-width: 1023px) 18vw, 20rem"
-                className="h-auto w-full object-contain opacity-100"
-              />
+            <div className="relative w-full max-w-[16rem] sm:max-w-[18rem] lg:max-w-[22rem]">
+              <div className="absolute inset-0 -z-10 rounded-[2rem] bg-accent/8 blur-2xl" />
+              <div className="rounded-[2rem] border border-foreground/10 bg-card/50 p-3 shadow-[0_18px_45px_rgba(15,23,42,0.06)] backdrop-blur-[3px] sm:p-4 lg:p-5">
+                <Image
+                  src="/contact-img/Developer’s Social Contact Hub.png"
+                  alt=""
+                  width={1234}
+                  height={621}
+                  sizes="(max-width: 640px) 42vw, (max-width: 1023px) 30vw, 22rem"
+                  className="h-auto w-full object-contain opacity-100"
+                />
+              </div>
             </div>
           </Reveal>
         </div>

@@ -15,7 +15,7 @@ export default function PortfolioPage({ locale }: { locale: Locale }) {
     <div
       lang={locale}
       dir={locale === "fa" ? "rtl" : "ltr"}
-      className={`locale-${locale} relative min-h-screen pb-24 text-foreground`}
+      className={`locale-${locale} relative min-h-screen pb-12 text-foreground`}
     >
       <a
         href="#main-content"

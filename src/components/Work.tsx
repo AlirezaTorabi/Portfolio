@@ -22,11 +22,14 @@ export default function Work({ locale = "en" }: { locale?: Locale }) {
     <section
       id="work"
       aria-labelledby="work-title"
-      className="relative isolate scroll-mt-20 border-t border-foreground/10 pb-16 sm:pb-20"
+      className="relative isolate scroll-mt-20 pb-12 pt-4 sm:pb-16"
     >
-      <div className="relative mx-auto max-w-6xl px-6 pt-24 sm:px-8 sm:pt-28 lg:px-10 lg:pt-32">
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-10">
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-foreground/15 to-transparent" aria-hidden="true" />
+      </div>
+      <div className="relative mx-auto max-w-6xl px-6 pt-14 sm:px-8 sm:pt-18 lg:px-10 lg:pt-20">
         <Reveal>
-          <div className="flex items-center justify-between gap-6 border-b border-foreground/15 pb-5">
+          <div className="flex items-center justify-between gap-6 pb-5">
             <p className="text-[0.6875rem] font-medium text-foreground/60">
               {copy.eyebrow}
             </p>
@@ -43,7 +46,7 @@ export default function Work({ locale = "en" }: { locale?: Locale }) {
           </div>
         </Reveal>
 
-        <div className="grid gap-6 py-12 sm:py-16 md:grid-cols-[minmax(0,1fr)_minmax(16rem,0.55fr)] md:items-end md:gap-12 md:py-20">
+        <div className="grid gap-6 py-8 sm:py-10 md:grid-cols-[minmax(0,1fr)_minmax(16rem,0.55fr)] md:items-end md:gap-8 md:py-12">
           <AnimatedHeading
             id="work-title"
             lines={[

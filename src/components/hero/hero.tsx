@@ -20,11 +20,14 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
     <section
       id="top"
       aria-labelledby="hero-title"
-      className="relative isolate flex min-h-svh w-full flex-col overflow-hidden"
+      className="relative isolate flex min-h-[82svh] w-full flex-col overflow-hidden"
     >
-      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col px-5 pb-8 pt-24 sm:px-8 sm:pb-10 sm:pt-28 lg:px-10 lg:pt-28">
+      <div className="mx-auto w-full max-w-6xl px-5 pt-4 sm:px-8 lg:px-10">
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-foreground/15 to-transparent" aria-hidden="true" />
+      </div>
+      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col px-5 pb-5 pt-14 sm:px-8 sm:pb-6 sm:pt-18 lg:px-10 lg:pt-18">
         <Reveal>
-          <div className="flex items-center justify-between gap-6 border-b border-foreground/15 pb-4">
+          <div className="flex items-center justify-between gap-6 pb-4">
             <p className="flex min-w-0 items-center gap-3 text-[0.6875rem] font-medium text-foreground/70 sm:text-sm">
               <span
                 aria-hidden="true"
@@ -35,7 +38,7 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
           </div>
         </Reveal>
 
-        <div className="grid flex-1 grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] content-center items-center gap-x-3 gap-y-6 py-8 sm:gap-x-6 sm:gap-y-8 sm:py-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:grid-rows-[auto_auto] lg:gap-x-12 lg:gap-y-8 lg:py-10 xl:gap-x-16">
+        <div className="grid flex-1 grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] content-center items-center gap-x-3 gap-y-4 py-5 sm:gap-x-6 sm:gap-y-6 sm:py-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:grid-rows-[auto_auto] lg:gap-x-12 lg:gap-y-6 lg:py-7 xl:gap-x-16">
           <div className="order-1 min-w-0 lg:col-start-1 lg:row-start-1 lg:self-end">
             <AnimatedHeading
               as="h1"
@@ -68,7 +71,7 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
           </div>
 
           <div className="order-3 col-span-2 min-w-0 lg:col-span-1 lg:col-start-1 lg:row-start-2 lg:self-start">
-            <p className="max-w-[30rem] text-pretty text-base leading-7 text-foreground/65 sm:leading-8">
+            <p className="max-w-[28rem] text-pretty text-base leading-7 text-foreground/65 sm:leading-8">
               {locale === "en" ? (
                 <>
                   <Highlighter
@@ -137,7 +140,7 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
         </div>
 
         <Reveal delay={0.58}>
-          <div className="border-t border-foreground/10 pt-5">
+          <div className="pt-4">
             <div className="flex items-baseline justify-between gap-4">
               <p className="font-mono text-[0.6875rem] text-foreground/55">
                 {copy.practice}
@@ -171,7 +174,7 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
         </Reveal>
 
         <Reveal delay={0.64}>
-          <div className="mt-6 flex items-center justify-between gap-6 border-t border-foreground/10 pt-5">
+          <div className="mt-4 flex items-center justify-between gap-6 pt-4">
             <a
               href="#work"
               className="group inline-flex min-h-11 items-center gap-3 text-[0.6875rem] font-medium text-foreground/60 transition-colors hover:text-foreground/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-background"

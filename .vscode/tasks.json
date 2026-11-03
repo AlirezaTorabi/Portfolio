@@ -1,0 +1,40 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "lint-contact-footer",
+			"type": "shell",
+			"command": "npm run lint -- --file src/components/Contact.tsx --file src/components/Footer.tsx",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "next-build-validate",
+			"type": "shell",
+			"command": "npm run build",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "footer-mobile-visual-check",
+			"type": "shell",
+			"command": "npm run build",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "footer-mobile-layout-check",
+			"type": "shell",
+			"command": "npm run build",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "contact-button-validate",
+			"type": "shell",
+			"command": "npm run build",
+			"isBackground": false,
+			"problemMatcher": []
+		}
+	]
+}

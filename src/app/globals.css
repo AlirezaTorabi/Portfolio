@@ -106,11 +106,15 @@ html.light .nav-theme-pending {
 
 body {
   min-height: 100dvh;
-  background: transparent;
+  background: linear-gradient(180deg, rgba(245,242,237,0.96) 0%, rgba(245,242,237,1) 100%);
   color: var(--foreground);
   font-family: var(--font-quicksand), sans-serif;
   letter-spacing: 0;
   line-height: 1.6;
+}
+
+button, a {
+  cursor: pointer;
 }
 
 .locale-fa {
