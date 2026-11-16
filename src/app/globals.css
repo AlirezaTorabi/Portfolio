@@ -4,57 +4,57 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #f5f3ef;
-  --foreground: #111827;
-  --muted: #f0efe9;
-  --muted-foreground: #586174;
-  --secondary: rgba(17, 24, 39, 0.05);
-  --secondary-foreground: #111827;
-  --card: rgba(255, 255, 255, 0.75);
-  --card-foreground: #111827;
-  --surface: #f0eee8;
-  --surface-hover: #e7e4df;
-  --accent: #2563eb;
-  --on-accent: #edf4ff;
-  --accent-hover: #1d4ed8;
-  --accent-foreground: #edf4ff;
-  --border: rgba(17, 24, 39, 0.12);
-  --border-subtle: rgba(17, 24, 39, 0.08);
-  --input: rgba(17, 24, 39, 0.04);
-  --ring: rgba(37, 99, 235, 0.22);
-  --scrollbar-thumb: #8b93a7;
-  --scrollbar-thumb-hover: #2563eb;
-  --scrollbar-track: #efeae3;
-  --selection-background: rgba(37, 99, 235, 0.14);
-  --selection-foreground: #111827;
-  --shadow-soft: 0 24px 60px -32px rgba(17, 24, 39, 0.26);
+  --background: #f2f1ec;
+  --foreground: #191c18;
+  --muted: #e9e8e1;
+  --muted-foreground: #62675f;
+  --secondary: rgba(25, 28, 24, 0.05);
+  --secondary-foreground: #191c18;
+  --card: rgba(255, 255, 252, 0.78);
+  --card-foreground: #191c18;
+  --surface: #ebeae3;
+  --surface-hover: #e0dfd7;
+  --accent: #d84f37;
+  --on-accent: #fff8f4;
+  --accent-hover: #b83e2b;
+  --accent-foreground: #fff8f4;
+  --border: rgba(25, 28, 24, 0.14);
+  --border-subtle: rgba(25, 28, 24, 0.09);
+  --input: rgba(25, 28, 24, 0.04);
+  --ring: rgba(216, 79, 55, 0.24);
+  --scrollbar-thumb: #98998f;
+  --scrollbar-thumb-hover: #d84f37;
+  --scrollbar-track: #e9e8e1;
+  --selection-background: rgba(216, 79, 55, 0.17);
+  --selection-foreground: #191c18;
+  --shadow-soft: 0 24px 60px -32px rgba(25, 28, 24, 0.24);
   color-scheme: light;
 }
 
 .dark {
-  --background: #09131d;
-  --foreground: #edf3ff;
-  --muted: rgba(237, 243, 255, 0.08);
-  --muted-foreground: #a8b3c7;
+  --background: #151a16;
+  --foreground: #f2f1e9;
+  --muted: rgba(242, 241, 233, 0.08);
+  --muted-foreground: #b4b8aa;
   --secondary: rgba(255, 255, 255, 0.05);
-  --secondary-foreground: #edf3ff;
-  --card: rgba(15, 22, 32, 0.82);
-  --card-foreground: #edf3ff;
-  --surface: #0d1824;
-  --surface-hover: #122032;
-  --accent: #7aa2ff;
-  --on-accent: #09131d;
-  --accent-hover: #a8c0ff;
-  --accent-foreground: #09131d;
-  --border: rgba(176, 190, 214, 0.14);
-  --border-subtle: rgba(176, 190, 214, 0.1);
+  --secondary-foreground: #f2f1e9;
+  --card: rgba(28, 34, 29, 0.86);
+  --card-foreground: #f2f1e9;
+  --surface: #202720;
+  --surface-hover: #29332b;
+  --accent: #f07b62;
+  --on-accent: #201713;
+  --accent-hover: #ff9a7f;
+  --accent-foreground: #201713;
+  --border: rgba(216, 224, 206, 0.15);
+  --border-subtle: rgba(216, 224, 206, 0.1);
   --input: rgba(255, 255, 255, 0.04);
-  --ring: rgba(122, 162, 255, 0.28);
+  --ring: rgba(240, 123, 98, 0.3);
   --scrollbar-track: rgba(255, 255, 255, 0.04);
-  --scrollbar-thumb: #66768d;
-  --scrollbar-thumb-hover: #7aa2ff;
-  --selection-background: rgba(122, 162, 255, 0.22);
-  --selection-foreground: #edf3ff;
+  --scrollbar-thumb: #707a6c;
+  --scrollbar-thumb-hover: #f07b62;
+  --selection-background: rgba(240, 123, 98, 0.25);
+  --selection-foreground: #f2f1e9;
   --shadow-soft: 0 26px 64px -24px rgba(0, 0, 0, 0.78);
   color-scheme: dark;
 }
@@ -106,10 +106,7 @@ html.light .nav-theme-pending {
 
 body {
   min-height: 100dvh;
-  background:
-    radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 22%),
-    radial-gradient(circle at top right, rgba(37, 99, 235, 0.06), transparent 26%),
-    linear-gradient(180deg, rgba(245,243,239,0.96) 0%, rgba(245,243,239,1) 100%);
+  background: var(--background);
   color: var(--foreground);
   font-family: var(--font-quicksand), sans-serif;
   letter-spacing: 0;
@@ -118,10 +115,16 @@ body {
 }
 
 html.dark body {
-  background:
-    radial-gradient(circle at top left, rgba(122, 162, 255, 0.12), transparent 25%),
-    radial-gradient(circle at 90% 18%, rgba(122, 162, 255, 0.12), transparent 24%),
-    linear-gradient(180deg, rgba(9, 19, 29, 1) 0%, rgba(10, 17, 26, 1) 100%);
+  background: var(--background);
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--foreground) 4%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--foreground) 4%, transparent) 1px, transparent 1px);
+  background-position: center top;
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 92%);
 }
 
 button, a {

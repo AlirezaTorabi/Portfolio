@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { memo, useEffect, useMemo, useRef, type CSSProperties } from 'react';
 import { type Locale } from '@/lib/translations';
 
@@ -503,11 +504,14 @@ const ProfileCard = ({
             <span className={HOLO_LAYER} style={SHIFT_STYLE} />
           </span>
           {avatarUrl && (
-            <img
+            <Image
               className={PHOTO}
               style={photoStyle}
               src={avatarUrl}
               alt={name || ''}
+              width={800}
+              height={1000}
+              unoptimized
               loading="lazy"
               draggable={false}
             />
@@ -528,7 +532,16 @@ const ProfileCard = ({
           <div className={FOOTER}>
             {miniAvatarUrl && (
               <span className={AVATAR}>
-                <img className={AVATAR_IMAGE} src={miniAvatarUrl} alt="" loading="lazy" draggable={false} />
+                <Image
+                  className={AVATAR_IMAGE}
+                  src={miniAvatarUrl}
+                  alt=""
+                  width={36}
+                  height={36}
+                  unoptimized
+                  loading="lazy"
+                  draggable={false}
+                />
               </span>
             )}
             <div className={META}>

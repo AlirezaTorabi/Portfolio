@@ -1,7 +1,7 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { Moon } from "@/components/animate-ui/icons/moon";
 import { Sun03 } from "@/components/animate-ui/icons/hugeicons/sun-03";
 import { Button } from "@/components/ui/button";
@@ -12,14 +12,14 @@ import {
 } from "@/components/ui/hover-card";
 import { type Locale } from "@/lib/translations";
 
+const subscribe = () => () => {};
+const getSnapshot = () => true;
+const getServerSnapshot = () => false;
+
 export function ThemeSwitcher({ locale = "en" }: { locale?: Locale }) {
   const { setTheme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
   const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 767px)");

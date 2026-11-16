@@ -24,7 +24,7 @@ export default function MobileNavigationSidebar({
   onNavigate,
 }: MobileNavigationSidebarProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const isRtl = true;
+  const isRtl = locale === "fa";
   const copy = translations[locale];
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const sidebarRef = useRef<HTMLElement>(null);
@@ -150,7 +150,7 @@ export default function MobileNavigationSidebar({
         aria-label={copy.navigation.mobile}
         aria-hidden={!isOpen}
         inert={!isOpen}
-        className={`pointer-events-auto fixed left-1/2 top-[10px] z-[70] flex w-fit max-w-[calc(100%-70px)] -translate-x-1/2 items-center rounded-full border border-border/80 bg-background/75 px-2 py-1 shadow-[var(--shadow-soft)] backdrop-blur-2xl transition-[translate,opacity] duration-200 ease-out will-change-translate motion-reduce:transition-none md:hidden ${isOpen ? "translate-y-0 opacity-100" : "-translate-y-[calc(100%+10px)] opacity-0"}`}
+        className={`pointer-events-auto fixed left-1/2 top-1/2 z-[70] flex w-fit max-w-[calc(100%-70px)] -translate-x-1/2 items-center rounded-full border border-border/80 bg-background/75 px-2 py-1 shadow-[var(--shadow-soft)] backdrop-blur-2xl transition-[translate,opacity] duration-200 ease-out will-change-translate motion-reduce:transition-none md:hidden ${isOpen ? "-translate-y-1/2 opacity-100" : "-translate-y-[calc(150%+10px)] opacity-0"}`}
       >
         <GooeyNav
           items={iconOnlyItems}
@@ -173,7 +173,7 @@ export default function MobileNavigationSidebar({
             onNavigate(index);
           }}
           colors={["#2563eb", "#1d4ed8", "#93c5fd"]}
-          className={`w-full [&>div]:w-full [&_ul]:w-full [&_ul]:flex-nowrap [&_ul]:items-center [&_ul]:justify-center [&_ul]:gap-3 max-[440px]:[&_ul]:gap-0 [&_li]:w-auto [&_a]:h-11 [&_a]:w-16 [&_a]:justify-center [&_a]:gap-0 [&_a]:px-0 [&_a]:py-0 [&_li>span]:h-11 [&_li>span]:w-16 [&_li>span]:justify-center [&_li>span]:px-0 [&_li>span]:py-0 max-[440px]:[&_a]:h-11 max-[440px]:[&_a]:w-11 max-[440px]:[&_li>span]:h-11 max-[440px]:[&_li>span]:w-11 ${isRtl ? "[&_ul]:flex-row-reverse" : "[&_ul]:flex-row"}`}
+          className="w-full [&>div]:w-full [&_ul]:w-full [&_ul]:flex-nowrap [&_ul]:items-center [&_ul]:justify-center [&_ul]:gap-3 max-[440px]:[&_ul]:gap-0 [&_li]:w-auto [&_a]:h-11 [&_a]:w-16 [&_a]:justify-center [&_a]:gap-0 [&_a]:px-0 [&_a]:py-0 [&_li>span]:h-11 [&_li>span]:w-16 [&_li>span]:justify-center [&_li>span]:px-0 [&_li>span]:py-0 max-[440px]:[&_a]:h-11 max-[440px]:[&_a]:w-11 max-[440px]:[&_li>span]:h-11 max-[440px]:[&_li>span]:w-11"
         />
       </aside>
     </>

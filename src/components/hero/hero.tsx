@@ -20,14 +20,14 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
     <section
       id="top"
       aria-labelledby="hero-title"
-      className="relative isolate flex min-h-[82svh] w-full flex-col overflow-hidden"
+      className="relative isolate flex min-h-[80svh] w-full flex-col overflow-hidden"
     >
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(circle_at_top_left,_rgba(37,99,235,0.18),_transparent_30%),radial-gradient(circle_at_80%_25%,_rgba(37,99,235,0.08),_transparent_24%)]" aria-hidden="true" />
+      <div className="hero-grid pointer-events-none absolute inset-0 -z-10" aria-hidden="true" />
       <div className="mx-auto w-full max-w-6xl px-5 pt-4 sm:px-8 lg:px-10">
         <div className="h-px w-full bg-gradient-to-r from-transparent via-foreground/15 to-transparent" aria-hidden="true" />
       </div>
       <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col px-5 pb-5 pt-14 sm:px-8 sm:pb-6 sm:pt-18 lg:px-10 lg:pt-18">
-        <div className="grid flex-1 grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] content-center items-center gap-x-3 gap-y-4 py-5 sm:gap-x-6 sm:gap-y-6 sm:py-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:grid-rows-[auto_auto] lg:gap-x-12 lg:gap-y-6 lg:py-7 xl:gap-x-16">
+        <div className="grid flex-1 grid-cols-1 content-center items-center gap-y-5 py-5 sm:gap-y-7 sm:py-6 md:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] md:grid-rows-[auto_auto] md:gap-x-8 lg:gap-x-12 lg:gap-y-6 lg:py-7 xl:gap-x-16">
           <div className="order-1 min-w-0 lg:col-start-1 lg:row-start-1 lg:self-end">
             <Reveal delay={0.12}>
               <p className="mb-4 inline-flex min-w-0 items-center gap-2.5 rounded-[8px] border border-border/20 bg-card/10 px-2.5 py-1 text-[0.6875rem] font-medium text-foreground/75 shadow-[0_4px_10px_rgba(15,23,42,0.015)] backdrop-blur-sm sm:text-sm">
@@ -62,24 +62,38 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
             />
           </div>
 
-          <div className="order-2 min-w-0 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-center">
-            <div className="relative">
-              <div className="absolute inset-4 -z-10 rounded-[2.5rem] bg-[radial-gradient(circle,_rgba(75,111,255,0.18),_rgba(75,111,255,0.08)_35%,_transparent_75%)] blur-3xl" aria-hidden="true" />
-              <div className="rounded-[2rem] border border-border/80 bg-card/60 p-3 shadow-[0_35px_90px_-30px_rgba(17,24,39,0.28)] backdrop-blur-sm sm:p-4 lg:p-5">
+          <div className="order-3 min-w-0 md:col-start-2 md:row-span-2 md:row-start-1 md:self-center">
+            <div className="rounded-2xl border border-border/80 bg-card/80 p-3 shadow-[0_28px_70px_-34px_rgba(20,25,18,0.32)] backdrop-blur-sm sm:rounded-3xl sm:p-4 lg:p-5">
+              <div className="mb-3 flex items-center justify-between gap-3 border-b border-border/70 px-1 pb-3">
+                <div className="flex items-center gap-1.5" aria-hidden="true">
+                  <span className="size-2 rounded-full bg-[#ed6a5e]" />
+                  <span className="size-2 rounded-full bg-[#e6b84a]" />
+                  <span className="size-2 rounded-full bg-[#70ad72]" />
+                </div>
+                <span className="truncate font-mono text-[0.62rem] text-foreground/50">
+                  {locale === "fa" ? "نمونه‌کار / رابط کاربری" : "Selected work / UI design"}
+                </span>
+                <span className="font-mono text-[0.62rem] text-accent">01</span>
+              </div>
+              <div className="overflow-hidden rounded-xl border border-border/60 bg-background/70 p-2 sm:p-3">
                 <Image
                   src="/hero-img/Professional%20UI_UX%20Creative%20Vector.png"
                   alt="Professional UI/UX creative vector illustration"
                   width={1034}
                   height={1002}
                   preload
-                  sizes="(max-width: 640px) 42vw, (max-width: 1023px) 40vw, 48vw"
-                  className="h-auto w-full object-contain"
+                  sizes="(max-width: 1023px) 90vw, 46vw"
+                  className="mx-auto h-auto max-h-[34rem] w-full object-contain"
                 />
+              </div>
+              <div className="flex items-center justify-between gap-3 px-1 pt-3 text-[0.62rem] text-foreground/55">
+                <span>{locale === "fa" ? "طراحی رابط و تجربه کاربری" : "Interface & experience design"}</span>
+                <span className="font-mono">2026</span>
               </div>
             </div>
           </div>
 
-          <div className="order-3 col-span-2 min-w-0 lg:col-span-1 lg:col-start-1 lg:row-start-2 lg:self-start">
+          <div className="order-2 min-w-0 md:col-span-1 md:col-start-1 md:row-start-2 md:self-start">
             <p className="max-w-[28rem] text-pretty text-base leading-7 text-foreground/65 sm:leading-8">
               {locale === "en" ? (
                 <>

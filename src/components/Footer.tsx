@@ -1,29 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
 import Reveal from "@/components/ui/Reveal";
-import { formatNumber, translations, type Locale } from "@/lib/translations";
+import { translations, type Locale } from "@/lib/translations";
 
 const focusRing =
   "focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
 export default function Footer({ locale = "en" }: { locale?: Locale }) {
-  const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   const year = new Date().getFullYear();
   const copy = translations[locale].footer;
   const isRtl = locale === "fa";
-  const avatarSrc = mounted && resolvedTheme === "light"
-    ? "/avatar-img/Cool Blue-Haired Avatar Sticker.png"
-    : "/avatar-img/Cool Blue Hoodie Avatar.png";
   const navigation = [
     { label: translations[locale].navigation.home, href: "#top" },
     { label: translations[locale].navigation.about, href: "#about" },
@@ -112,11 +99,18 @@ export default function Footer({ locale = "en" }: { locale?: Locale }) {
             className="inline-flex items-center gap-2 rounded-[8px] border border-foreground/10 bg-foreground px-2.5 py-1 text-background transition-all duration-200 hover:opacity-90"
           >
             <Image
-              src={avatarSrc}
+              src="/avatar-img/Cool Blue-Haired Avatar Sticker.png"
               alt="Alireza Torabi avatar"
               width={20}
               height={20}
-              className="h-5 w-5 rounded-full object-cover"
+              className="h-5 w-5 rounded-full object-cover dark:hidden"
+            />
+            <Image
+              src="/avatar-img/Cool Blue Hoodie Avatar.png"
+              alt="Alireza Torabi avatar"
+              width={20}
+              height={20}
+              className="hidden h-5 w-5 rounded-full object-cover dark:block"
             />
             <span>{locale === "fa" ? "طراحی و توسعه" : "Design & development"}</span>
           </a>
