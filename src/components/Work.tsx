@@ -25,7 +25,7 @@ export default function Work({ locale = "en" }: { locale?: Locale }) {
       className="relative isolate scroll-mt-20 pb-12 pt-4 sm:pb-16"
     >
       <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-10">
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-foreground/15 to-transparent" aria-hidden="true" />
+        <div className="h-px w-full bg-gradient-to-r from-accent/70 via-foreground/15 to-transparent rtl:bg-gradient-to-l" aria-hidden="true" />
       </div>
       <div className="relative mx-auto max-w-6xl px-6 pt-14 sm:px-8 sm:pt-18 lg:px-10 lg:pt-20">
         <Reveal>

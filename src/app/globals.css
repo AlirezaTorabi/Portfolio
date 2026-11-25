@@ -106,16 +106,15 @@ html.light .nav-theme-pending {
 
 body {
   min-height: 100dvh;
-  background: var(--background);
+  background-color: var(--background);
+  background-image:
+    radial-gradient(920px 460px at 100% -10%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 62%),
+    radial-gradient(680px 380px at -6% 16%, color-mix(in srgb, var(--foreground) 5%, transparent), transparent 58%);
   color: var(--foreground);
   font-family: var(--font-quicksand), sans-serif;
   letter-spacing: 0;
   line-height: 1.6;
   text-rendering: optimizeLegibility;
-}
-
-html.dark body {
-  background: var(--background);
 }
 
 .hero-grid {
@@ -171,10 +170,17 @@ html.dark nav[aria-label="Primary navigation"] span {
   color: var(--gn-ink) !important;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2 {
   font-family: var(--font-caveat), cursive;
-  line-height: 1.08;
+  line-height: 1.12;
   letter-spacing: 0;
+  font-weight: 600;
+}
+
+h3, h4, h5, h6 {
+  font-family: var(--font-quicksand), sans-serif;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
   font-weight: 600;
 }
 

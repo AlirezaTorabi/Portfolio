@@ -21,7 +21,7 @@ export default function Footer({ locale = "en" }: { locale?: Locale }) {
   return (
     <footer className="relative isolate overflow-hidden pb-10 pt-4" dir={isRtl ? "rtl" : "ltr"}>
       <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-10">
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-foreground/15 to-transparent" aria-hidden="true" />
+        <div className="h-px w-full bg-gradient-to-r from-accent/70 via-foreground/15 to-transparent rtl:bg-gradient-to-l" aria-hidden="true" />
       </div>
       <div className="relative z-10 mx-auto max-w-6xl px-6 py-8 sm:px-8 sm:py-10 lg:px-10">
         <Reveal>
@@ -30,7 +30,7 @@ export default function Footer({ locale = "en" }: { locale?: Locale }) {
               <div className="flex flex-col gap-4 md:grid md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:items-center md:gap-6 lg:gap-8">
                 <div className="order-1 flex w-full justify-center md:order-1">
                   <div className="relative w-full max-w-[17rem] sm:max-w-[20rem] lg:max-w-[24rem]">
-                    <div className="absolute inset-0 -z-10 rounded-[2rem] bg-[radial-gradient(circle,_rgba(75,111,255,0.16),_rgba(75,111,255,0.04)_35%,_transparent_72%)] blur-2xl" />
+                    <div className="absolute inset-0 -z-10 rounded-[2rem] bg-[radial-gradient(circle,color-mix(in_srgb,var(--accent)_18%,transparent),transparent_70%)] blur-2xl" />
                     <div className="aspect-[1234/621] overflow-hidden rounded-[2rem] border border-foreground/10 bg-card/70 p-3 shadow-[0_18px_45px_rgba(15,23,42,0.06)] backdrop-blur-[3px] sm:p-4 lg:p-5">
                       <Image
                         src="/footer-img/Developer Skills Tech Illustration.png"
@@ -50,7 +50,7 @@ export default function Footer({ locale = "en" }: { locale?: Locale }) {
                       {locale === "fa" ? "علیرضا ترابی" : "Alireza Torabi"}
                       <span
                         aria-hidden="true"
-                        className="mt-0.5 block size-1.5 shrink-0 rounded-full bg-accent shadow-[0_0_12px_rgba(75,111,255,0.7)]"
+                        className="mt-0.5 block size-1.5 shrink-0 rounded-full bg-accent shadow-[0_0_12px_color-mix(in_srgb,var(--accent)_65%,transparent)]"
                       />
                     </p>
                     <p className="mt-2 text-[0.6875rem] font-medium text-foreground/50">

@@ -7,6 +7,13 @@ import Magnetic from "@/components/ui/Magnetic";
 import Reveal from "@/components/ui/Reveal";
 import { translations, type Locale } from "@/lib/translations";
 
+const channels = [
+  { href: "tel:+989176631858", external: false },
+  { href: "https://t.me/AlirezaToorabi", external: true },
+  { href: "https://www.instagram.com/AlirezaToorabi/", external: true },
+  { href: "https://github.com/AlirezaTorabi", external: true },
+] as const;
+
 export default function Contact({ locale = "en" }: { locale?: Locale }) {
   const copy = translations[locale].contact;
   const isRtl = locale === "fa";
@@ -19,7 +26,7 @@ export default function Contact({ locale = "en" }: { locale?: Locale }) {
       dir={isRtl ? "rtl" : "ltr"}
     >
       <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-10">
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-foreground/15 to-transparent" aria-hidden="true" />
+        <div className="h-px w-full bg-gradient-to-r from-accent/70 via-foreground/15 to-transparent rtl:bg-gradient-to-l" aria-hidden="true" />
       </div>
       <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-24">
         <Reveal>
@@ -97,6 +104,26 @@ export default function Contact({ locale = "en" }: { locale?: Locale }) {
                   </Button>
                 </Magnetic>
               </div>
+            </Reveal>
+
+            <Reveal delay={0.24}>
+              <ul className={`mt-6 flex flex-wrap gap-2 ${isRtl ? "justify-end" : "justify-start"}`}>
+                {channels.map((channel, index) => (
+                  <li key={channel.href}>
+                    <a
+                      href={channel.href}
+                      target={channel.external ? "_blank" : undefined}
+                      rel={channel.external ? "noopener noreferrer" : undefined}
+                      className="inline-flex min-h-11 items-center rounded-full border border-foreground/12 bg-card/70 px-4 text-sm text-foreground/75 transition-colors hover:border-accent/50 hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                    >
+                      {copy.channels[index]}
+                      {channel.external ? (
+                        <span className="sr-only"> ({translations[locale].common.opensInNewTab})</span>
+                      ) : null}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </Reveal>
           </div>
 

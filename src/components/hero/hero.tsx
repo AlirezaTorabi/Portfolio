@@ -24,7 +24,7 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
     >
       <div className="hero-grid pointer-events-none absolute inset-0 -z-10" aria-hidden="true" />
       <div className="mx-auto w-full max-w-6xl px-5 pt-4 sm:px-8 lg:px-10">
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-foreground/15 to-transparent" aria-hidden="true" />
+        <div className="h-px w-full bg-gradient-to-r from-accent/70 via-foreground/15 to-transparent rtl:bg-gradient-to-l" aria-hidden="true" />
       </div>
       <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col px-5 pb-5 pt-14 sm:px-8 sm:pb-6 sm:pt-18 lg:px-10 lg:pt-18">
         <div className="grid flex-1 grid-cols-1 content-center items-center gap-y-5 py-5 sm:gap-y-7 sm:py-6 md:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] md:grid-rows-[auto_auto] md:gap-x-8 lg:gap-x-12 lg:gap-y-6 lg:py-7 xl:gap-x-16">
@@ -33,7 +33,7 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
               <p className="mb-4 inline-flex min-w-0 items-center gap-2.5 rounded-[8px] border border-border/20 bg-card/10 px-2.5 py-1 text-[0.6875rem] font-medium text-foreground/75 shadow-[0_4px_10px_rgba(15,23,42,0.015)] backdrop-blur-sm sm:text-sm">
                 <span
                   aria-hidden="true"
-                  className="size-1.5 shrink-0 rounded-full bg-accent/80 shadow-[0_0_8px_rgba(75,111,255,0.35)]"
+                  className="size-1.5 shrink-0 rounded-full bg-accent shadow-[0_0_8px_color-mix(in_srgb,var(--accent)_55%,transparent)]"
                 />
                 <span className="min-w-0">{copy.role}</span>
               </p>
@@ -63,32 +63,29 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
           </div>
 
           <div className="order-3 min-w-0 md:col-start-2 md:row-span-2 md:row-start-1 md:self-center">
-            <div className="rounded-2xl border border-border/80 bg-card/80 p-3 shadow-[0_28px_70px_-34px_rgba(20,25,18,0.32)] backdrop-blur-sm sm:rounded-3xl sm:p-4 lg:p-5">
-              <div className="mb-3 flex items-center justify-between gap-3 border-b border-border/70 px-1 pb-3">
-                <div className="flex items-center gap-1.5" aria-hidden="true">
-                  <span className="size-2 rounded-full bg-[#ed6a5e]" />
-                  <span className="size-2 rounded-full bg-[#e6b84a]" />
-                  <span className="size-2 rounded-full bg-[#70ad72]" />
+            <div className="relative">
+              <div
+                aria-hidden="true"
+                className="absolute -inset-6 -z-10 rounded-[2rem] bg-[radial-gradient(circle_at_50%_40%,color-mix(in_srgb,var(--accent)_22%,transparent),transparent_68%)]"
+              />
+              <div className="overflow-hidden rounded-[1.6rem] border border-border/80 bg-card/75 p-3 shadow-[0_30px_70px_-36px_rgba(20,25,18,0.45)] backdrop-blur-sm sm:p-4">
+                <div className="mb-3 flex items-center justify-between gap-3 px-1">
+                  <span className="font-mono text-[0.62rem] text-accent">01</span>
+                  <span className="truncate font-mono text-[0.62rem] text-foreground/50">
+                    {locale === "fa" ? "نمونه‌کار / رابط کاربری" : "Selected work / UI design"}
+                  </span>
                 </div>
-                <span className="truncate font-mono text-[0.62rem] text-foreground/50">
-                  {locale === "fa" ? "نمونه‌کار / رابط کاربری" : "Selected work / UI design"}
-                </span>
-                <span className="font-mono text-[0.62rem] text-accent">01</span>
-              </div>
-              <div className="overflow-hidden rounded-xl border border-border/60 bg-background/70 p-2 sm:p-3">
-                <Image
-                  src="/hero-img/Professional%20UI_UX%20Creative%20Vector.png"
-                  alt="Professional UI/UX creative vector illustration"
-                  width={1034}
-                  height={1002}
-                  preload
-                  sizes="(max-width: 1023px) 90vw, 46vw"
-                  className="mx-auto h-auto max-h-[34rem] w-full object-contain"
-                />
-              </div>
-              <div className="flex items-center justify-between gap-3 px-1 pt-3 text-[0.62rem] text-foreground/55">
-                <span>{locale === "fa" ? "طراحی رابط و تجربه کاربری" : "Interface & experience design"}</span>
-                <span className="font-mono">2026</span>
+                <div className="overflow-hidden rounded-2xl bg-background/80">
+                  <Image
+                    src="/hero-img/Professional%20UI_UX%20Creative%20Vector.png"
+                    alt="Professional UI/UX creative vector illustration"
+                    width={1034}
+                    height={1002}
+                    preload
+                    sizes="(max-width: 1023px) 90vw, 46vw"
+                    className="mx-auto h-auto max-h-[32rem] w-full object-contain"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -190,7 +187,7 @@ export default function Hero({ locale = "en" }: { locale?: Locale }) {
         </div>
 
         <Reveal delay={0.58}>
-          <div className="pt-4">
+          <div className="mt-2 border-t border-foreground/10 pt-6">
             <div className="flex items-baseline justify-between gap-4">
               <p className="font-mono text-[0.6875rem] text-foreground/55">
                 {copy.practice}

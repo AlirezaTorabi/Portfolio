@@ -52,7 +52,7 @@ export default function About({ locale = "en" }: { locale?: Locale }) {
       className="relative scroll-mt-20 overflow-x-hidden pt-4"
     >
       <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-10">
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-foreground/15 to-transparent" aria-hidden="true" />
+        <div className="h-px w-full bg-gradient-to-r from-accent/70 via-foreground/15 to-transparent rtl:bg-gradient-to-l" aria-hidden="true" />
       </div>
       <div className="relative mx-auto max-w-6xl px-6 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-24">
         <Reveal>
@@ -127,7 +127,7 @@ export default function About({ locale = "en" }: { locale?: Locale }) {
                   value={`principle-${index}`}
                   className="overflow-hidden rounded-2xl border border-foreground/10 bg-card/70 shadow-[0_0_0_1px_rgba(15,23,42,0.02)] transition-colors duration-200 hover:border-foreground/15 hover:bg-card/90"
                 >
-                  <AccordionTrigger value={`principle-${index}`} className="w-full justify-between gap-5 rounded-2xl px-4 py-4 text-left hover:no-underline sm:px-5 sm:py-4.5 [&[data-state=open]>svg]:rotate-180">
+                  <AccordionTrigger value={`principle-${index}`} className="w-full justify-between gap-5 rounded-2xl px-4 py-4 text-start hover:no-underline sm:px-5 sm:py-4.5 [&[data-state=open]>svg]:rotate-180">
                     <div className="flex w-full items-center gap-4 sm:gap-5">
                       <span
                         dir="ltr"
@@ -136,7 +136,7 @@ export default function About({ locale = "en" }: { locale?: Locale }) {
                       >
                         {formatNumber(index + 1, locale, 2)}
                       </span>
-                      <div className="min-w-0 text-left">
+                      <div className="min-w-0 text-start">
                         <h3 className="text-base font-medium leading-snug sm:text-lg">
                           {principle.title}
                         </h3>
@@ -144,7 +144,7 @@ export default function About({ locale = "en" }: { locale?: Locale }) {
                     </div>
                   </AccordionTrigger>
                   <AccordionContent value={`principle-${index}`} className="px-4 sm:px-5">
-                    <div className="pl-12 sm:pl-14">
+                    <div className="ps-12 sm:ps-14">
                       <p className="max-w-xl text-sm leading-6 text-foreground/60 sm:text-[0.96rem] sm:leading-7">
                         {principle.detail}
                       </p>

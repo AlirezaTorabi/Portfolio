@@ -49,6 +49,12 @@ function ProjectCard({
 }) {
   const number = formatNumber(index + 1, locale, 2);
   const totalNumber = formatNumber(total, locale, 2);
+  const washes = [
+    "from-accent/25",
+    "from-[#2f6f4e]/25",
+    "from-[#c4a15a]/30",
+    "from-[#3d5a80]/25",
+  ] as const;
   const projectUrl = getValidProjectUrl(project.url);
   const opensInNewTab = projectUrl
     ? /^https?:\/\//i.test(projectUrl)
@@ -58,15 +64,19 @@ function ProjectCard({
     <li className="gallery-card w-[86vw] shrink-0 snap-center sm:w-[78vw] md:w-[min(74vw,640px)] lg:w-[min(68vw,780px)]">
       <article
         aria-labelledby={`project-${index}-title`}
-        className={`group relative flex h-full min-h-[23rem] flex-col justify-between overflow-hidden border bg-card p-6 transition-colors duration-500 sm:min-h-[25rem] sm:p-8 lg:min-h-[58svh] lg:p-10 ${
+        className={`group relative flex h-full min-h-[23rem] flex-col justify-between overflow-hidden rounded-[1.4rem] border bg-card p-6 shadow-[0_24px_50px_-36px_rgba(20,25,18,0.45)] transition-colors duration-500 sm:min-h-[25rem] sm:p-8 lg:min-h-[58svh] lg:p-10 ${
           active
-            ? "border-accent/60"
+            ? "border-accent/70"
             : "border-foreground/12 hover:border-foreground/25"
         }`}
       >
         <span
           aria-hidden="true"
-          className={`absolute inset-x-0 top-0 h-px origin-left bg-accent transition-transform duration-300 ${
+          className={`pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b ${washes[index % washes.length]} to-transparent`}
+        />
+        <span
+          aria-hidden="true"
+          className={`absolute inset-x-6 top-0 h-px origin-left bg-accent transition-transform duration-300 ${
             active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
           }`}
         />
